@@ -10,16 +10,17 @@ import { sendEmail } from '../functions';
 const router = Router()
 
 
-const accountSid = 'AC6045db8c73356ad4c2d041f47f68a0e6'; // Reemplázalo con tu Account SID
-const authToken = '5692d11c8e13eee17afa9e035b97cbe3'; // Reemplázalo con tu Auth Token
+const accountSid = process.env.TWILIO_ACCOUNT_SID; // Reemplázalo con tu Account SID
+const authToken = process.env.TWILIO_AUTH_TOKEN; // Reemplázalo con tu Auth Token
 const client = twilio(accountSid, authToken);
-const verifySid = 'VA155c94a883312047341e9f69a2992715';
+const verifySid = process.env.TWILIO_VERIFY_SID;
+
 
 router.post('/enviar-verificacion-telefono', async (req, res) => {
     const { telefono } = req.body;
     console.log(telefono)
     try {
-        const verification = await client.verify.v2.services(verifySid)
+        const verification = await client.verify.v2.services(verifySid as string)
             .verifications.create({ to: telefono, channel: 'sms' });
 
         res.json(verification)
@@ -35,7 +36,7 @@ router.post('/verificar-codigo-telefono', async (req, res) => {
     console.log(telefono)
     console.log(code)
     try {
-        const check = await client.verify.v2.services(verifySid)
+        const check = await client.verify.v2.services(verifySid as string)
             .verificationChecks.create({ to: telefono, code: code });
 
       
