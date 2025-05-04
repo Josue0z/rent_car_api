@@ -1,0 +1,406 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuarios {
+  usuarioId      Int            @id @unique @default(autoincrement())
+  usuarioLogin   String         @unique
+  usuarioClave   String
+  fhCreacion     DateTime?      @default(now())
+  usuarioPerfil  String?
+  clienteId      Int?
+  cliente        Clientes?      @relation(fields: [clienteId], references: [clienteId])
+  beneficiarioId Int?
+  beneficiario   Beneficiarios? @relation(fields: [beneficiarioId], references: [beneficiarioId])
+  usuarioEstatus Int
+  estatus        UsuarioEstatus @relation(fields: [usuarioEstatus], references: [usuarioEstatus])
+  documentos     Documentos[]
+  usuarioTipo    Int?
+  tipoUsuario    UsuarioTipo?   @relation(fields: [usuarioTipo], references: [usuarioTipo])
+
+  Valoraciones Valoraciones[]
+
+  autosMeGustas AutosMeGustas[]
+
+  manejadorId Int?
+  manejador   Manejadores? @relation(fields: [manejadorId], references: [manejadorId])
+
+  cambioClave Boolean @default(false)
+}
+
+model UsuarioEstatus {
+  usuarioEstatus       Int        @id @unique @default(autoincrement())
+  usuarioEstatusNombre String     @unique
+  usuarios             Usuarios[]
+}
+
+model Clientes {
+  clienteId             Int           @id @unique @default(autoincrement())
+  clienteIdentificacion String        @unique
+  clienteNombre         String
+  fhCreacion            DateTime?     @default(now())
+  clienteTelefono1      String        @unique
+  clienteTelefono2      String        @unique
+  usuarios              Usuarios[]
+  tarjetas              Tarjetas[]
+  reservas              Reservas[]
+  clientedirId          Int?
+  direccion             Direcciones?  @relation("xd", fields: [clientedirId], references: [clientedirId])
+  direcciones           Direcciones[]
+  clienteCorreo         String?
+}
+
+model Beneficiarios {
+  beneficiarioId             Int             @id @unique @default(autoincrement())
+  beneficiarioNombre         String
+  beneficiarioIdentificacion String          @unique
+  beneficiarioDireccion      String
+  beneficiarioCoorX          Decimal
+  beneficiarioCoorY          Decimal
+  bancoId                    Int
+  banco                      Bancos          @relation(fields: [bancoId], references: [bancoId])
+  beneficiarioCuentaTipo     Int
+  bancoCuentaTipo            BancoCuentaTipo @relation(fields: [beneficiarioCuentaTipo], references: [bancoCuentaTipoId])
+  beneficiarioCuentaNo       String          @unique
+  beneficiarioFecha          DateTime?       @default(now())
+  usuarios                   Usuarios[]
+  autos                      Autos[]
+  reservas                   Reservas[]
+  beneficiarioCorreo         String?
+}
+
+model Direcciones {
+  clientedirId     Int        @id @unique @default(autoincrement())
+  clientedirNombre String
+  clientedirX      Float
+  clientedirY      Float
+  clientedirFecha  DateTime   @default(now())
+  clienteId        Int
+  cliente          Clientes   @relation(fields: [clienteId], references: [clienteId])
+  clientes         Clientes[] @relation("xd")
+  imagenBase64     String?
+  alias            String?
+}
+
+model Bancos {
+  bancoId       Int             @id @unique @default(autoincrement())
+  bancoNombre   String
+  bancoNota     String?
+  fhCreacion    DateTime?       @default(now())
+  beneficiarios Beneficiarios[]
+}
+
+model Colores {
+  colorId          Int     @id @unique @default(autoincrement())
+  colorNombre      String
+  colorHexadecimal String
+  autos            Autos[]
+}
+
+model Marcas {
+  marcaId     Int       @id @unique @default(autoincrement())
+  marcaNombre String    @unique
+  marcaLogo   String
+  Modelos     Modelos[]
+  autos       Autos[]
+}
+
+model Modelos {
+  modeloId         Int                @id @unique @default(autoincrement())
+  modeloNombre     String             @unique
+  marcaId          Int
+  marca            Marcas             @relation(fields: [marcaId], references: [marcaId])
+  autos            Autos[]
+  modelosVersiones ModelosVersiones[]
+}
+
+model Tarjetas {
+  tarjetaId          Int        @id @unique @default(autoincrement())
+  tarjetaNombre      String
+  tarjetaNumero      String     @unique
+  tarjetaCcv         String
+  tarjetaVencimiento DateTime
+  clienteId          Int
+  cliente            Clientes   @relation(fields: [clienteId], references: [clienteId])
+  reservas           Reservas[]
+}
+
+model TipoAuto {
+  tipoId     Int     @id @unique @default(autoincrement())
+  tipoNombre String  @unique
+  autos      Autos[]
+}
+
+model Seguros {
+  seguroId     Int     @id @unique @default(autoincrement())
+  seguroNombre String  @unique
+  seguroMonto  Decimal
+  autos        Autos[]
+}
+
+model Valoraciones {
+  valorId         Int      @id @unique @default(autoincrement())
+  valorPuntuacion Decimal
+  valorComentario String
+  valorFecha      DateTime @default(now())
+  autoId          Int
+  auto            Autos    @relation(fields: [autoId], references: [autoId])
+  usuarioId       Int
+  usuario         Usuarios @relation(fields: [usuarioId], references: [usuarioId])
+}
+
+model Autos {
+  autoId                Int                  @id @unique @default(autoincrement())
+  tipoId                Int
+  tipo                  TipoAuto             @relation(fields: [tipoId], references: [tipoId])
+  marcaId               Int
+  marca                 Marcas               @relation(fields: [marcaId], references: [marcaId])
+  modeloId              Int
+  modelo                Modelos              @relation(fields: [modeloId], references: [modeloId])
+  colorId               Int
+  color                 Colores              @relation(fields: [colorId], references: [colorId])
+  autoAno               Int
+  autoDescripcion       String
+  beneficiarioId        Int
+  beneficiario          Beneficiarios        @relation(fields: [beneficiarioId], references: [beneficiarioId])
+  autoFecha             DateTime             @default(now())
+  autoDireccion         String
+  autoCoorX             Decimal
+  autoCoorY             Decimal
+  seguroId              Int?
+  seguro                Seguros?             @relation(fields: [seguroId], references: [seguroId])
+  autoKmIncluido        Decimal
+  autoCondiciones       String
+  autoNumeroViajes      Int                  @default(0)
+  autoNumeroPersonas    Int                  @default(0)
+  autoNumeroPuertas     Int                  @default(0)
+  autoNumeroAsientos    Int                  @default(0)
+  paisId                Int
+  pais                  Paises               @relation(fields: [paisId], references: [paisId])
+  provinciaId           Int?
+  provincia             Provincias?          @relation(fields: [provinciaId], references: [provinciaId])
+  ciudadId              Int
+  ciudad                Ciudades             @relation(fields: [ciudadId], references: [ciudadId])
+  precioId              Int
+  precio                Precios              @relation(fields: [precioId], references: [precioId])
+  reservas              Reservas[]
+  valoraciones          Valoraciones[]
+  imagenes              Imagenes[]
+  autoEstatus           Int?
+  estatus               AutoEstatus?         @relation(fields: [autoEstatus], references: [autoEstatus])
+  fechaDeViajeInicial   DateTime?
+  fechaDeViajeFinal     DateTime?
+  valoracion            Decimal              @default(0)
+  valoracionAcumulacion Decimal              @default(0)
+  cantidadValoracion    Decimal              @default(0)
+  cantidadMeGustas      Int                  @default(0)
+  transmisionId         Int?
+  transmision           AutoTipoTransmision? @relation(fields: [transmisionId], references: [transmisionId])
+
+  autosMeGustas AutosMeGustas[]
+
+  modeloVersionId Int?
+  modeloVersion   ModelosVersiones? @relation(fields: [modeloVersionId], references: [versionId])
+
+  combustibleId Int?
+  combustible   Combustibles? @relation(fields: [combustibleId], references: [combustibleId])
+}
+
+model Imagenes {
+  imagenId      Int              @id @unique @default(autoincrement())
+  imagenNota    String
+  imagenBase64  String
+  autoId        Int
+  auto          Autos            @relation(fields: [autoId], references: [autoId])
+  imagenEstatus Int
+  estatus       DocumentoEstatus @relation(fields: [imagenEstatus], references: [id])
+  fhCreacion    DateTime         @default(now())
+  imagenArchivo String?
+}
+
+model Documentos {
+  documentoId      Int              @id @unique @default(autoincrement())
+  imagenBase64     String
+  documentoEstatus Int
+  estatus          DocumentoEstatus @relation(fields: [documentoEstatus], references: [id])
+  documentoTipo    Int
+  tipo             TipoDocumento    @relation(fields: [documentoTipo], references: [documentoTipo])
+  fhCreacion       DateTime         @default(now())
+  usuarioId        Int
+  usuario          Usuarios         @relation(fields: [usuarioId], references: [usuarioId])
+  imagenArchivo    String?
+}
+
+model TipoDocumento {
+  documentoTipo Int          @id @unique @default(autoincrement())
+  name          String
+  documentos    Documentos[]
+}
+
+model DocumentoEstatus {
+  id                     Int          @id @unique @default(autoincrement())
+  documentoEstatusNombre String
+  imagenes               Imagenes[]
+  documentos             Documentos[]
+}
+
+model Provincias {
+  provinciaId     Int        @id @unique @default(autoincrement())
+  provinciaNombre String
+  paisId          Int
+  pais            Paises     @relation(fields: [paisId], references: [paisId])
+  ciudades        Ciudades[]
+  autos           Autos[]
+}
+
+model Ciudades {
+  ciudadId     Int        @id @unique @default(autoincrement())
+  ciudadNombre String
+  paisId       Int
+  pais         Paises     @relation(fields: [paisId], references: [paisId])
+  provinciaId  Int
+  provincia    Provincias @relation(fields: [provinciaId], references: [provinciaId])
+  autos        Autos[]
+}
+
+model Paises {
+  paisId     Int          @id @unique
+  paisNombre String       @unique
+  provincias Provincias[]
+  ciudades   Ciudades[]
+  autos      Autos[]
+}
+
+model Reservas {
+  reservaId                Int            @id @unique @default(autoincrement())
+  clienteId                Int
+  cliente                  Clientes       @relation(fields: [clienteId], references: [clienteId])
+  beneficiarioId           Int
+  beneficiario             Beneficiarios  @relation(fields: [beneficiarioId], references: [beneficiarioId])
+  reservaFhInicial         DateTime
+  reservaFhFinal           DateTime
+  reservaRecogidaX         Decimal
+  reservaRecogidaY         Decimal
+  reservaRecogidaDireccion String
+  reservaEntregaX          Decimal
+  reservaEntregaY          Decimal
+  reservaEntregaDireccion  String
+  reservaMontoxDias        Int
+  reservaMonto             Decimal
+  reservaAbono             Decimal
+  reservaNotaCliente       String
+  reservaNotaBeneficiario  String
+  reservaMontoTotal        Decimal
+  reservaPagado            Decimal
+  reservaImpuestos         Decimal
+  reservaDescuento         Decimal
+  reservaCreado            DateTime       @default(now())
+  reservaNumero            Int?
+  autoId                   Int
+  auto                     Autos          @relation(fields: [autoId], references: [autoId])
+  tarjetaId                Int
+  tarjeta                  Tarjetas       @relation(fields: [tarjetaId], references: [tarjetaId])
+  reservaEstatus           Int
+  estatus                  ReservaEstatus @relation(fields: [reservaEstatus], references: [reservaEstatus])
+
+  Pagos Pagos[]
+
+  tarjetaNumero String?
+}
+
+model ReservaEstatus {
+  reservaEstatus       Int        @id @unique @default(autoincrement())
+  reservaEstatusNombre String
+  reservas             Reservas[]
+}
+
+model BancoCuentaTipo {
+  bancoCuentaTipoId Int             @id @unique @default(autoincrement())
+  name              String          @unique
+  beneficiarios     Beneficiarios[]
+}
+
+model Precios {
+  precioId           Int     @id @unique @default(autoincrement())
+  precioNombre       String  @unique
+  precioCliente      Decimal
+  precioBeneficiario Decimal
+  autos              Autos[]
+}
+
+model AutoEstatus {
+  autoEstatus       Int     @id @unique @default(autoincrement())
+  autoEstatusNombre String  @unique
+  autos             Autos[]
+}
+
+model UsuarioTipo {
+  usuarioTipo       Int        @id @unique @default(autoincrement())
+  usuarioTipoNombre String?
+  usuarios          Usuarios[]
+}
+
+model Pagos {
+  pagoId     Int      @id @default(autoincrement())
+  reservaId  Int
+  reserva    Reservas @relation(fields: [reservaId], references: [reservaId])
+  monto      Decimal  @default(0)
+  fhCreacion DateTime @default(now())
+}
+
+model AutoTipoTransmision {
+  transmisionId     Int      @id @default(autoincrement())
+  transmisionNombre String
+  fhCreacion        DateTime @default(now())
+
+  Autos Autos[]
+}
+
+model AutosMeGustas {
+  megustaId  Int      @id @default(autoincrement())
+  autoId     Int
+  auto       Autos    @relation(fields: [autoId], references: [autoId])
+  usuarioId  Int
+  usuario    Usuarios @relation(fields: [usuarioId], references: [usuarioId])
+  fhCreacion DateTime @default(now())
+}
+
+model Verificaciones {
+  verificacionId   Int      @id @default(autoincrement())
+  code             String
+  verificado       Boolean  @default(false)
+  fechaVencimiento DateTime
+  fhCreacion       DateTime @default(now())
+}
+
+model Manejadores {
+  manejadorId             Int      @id @default(autoincrement())
+  nombreCompleto          String
+  telefono                String
+  correo                  String
+  manejadorIdentificacion String
+  fhCreacion              DateTime @default(now())
+
+  usuarios Usuarios[]
+}
+
+model ModelosVersiones {
+  versionId     Int     @id @default(autoincrement())
+  versionNombre String
+  modeloId      Int
+  modelo        Modelos @relation(fields: [modeloId], references: [modeloId])
+  autos         Autos[]
+}
+
+model Combustibles {
+  combustibleId     Int    @id @default(autoincrement())
+  combustibleNombre String
+
+  autos Autos[]
+}

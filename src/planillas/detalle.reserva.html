@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESERVA</title>
+    
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        body,html{
+            padding: 0;
+        }
+
+        .container {
+            width:100%;
+            background-color: white;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .row {
+            display: flex;
+            width: 100%;
+        }
+
+
+        .box {
+            width: 50%;
+            padding: 12px;
+            margin-right: 20px;
+
+        }
+
+        .row>.box:nth-child(1) {
+            border-right: 1px solid #F0EDED;
+        }
+
+        .box>h2 {
+            color: #f33333;
+            font-size: 18px;
+            margin: 0;
+
+        }
+
+        .box>.title {
+            color: #414040;
+        }
+
+        .box>.content {
+            color: #807676;
+        }
+
+        .box-img {
+            width: 50%;
+            height: 350px;
+            margin-top: 20px;
+            margin-right: 20px;
+            border-radius: 20px;
+        }
+
+        .xtitle{
+           color: #f33333;
+        }
+        .xcontent{
+            color: grey;
+        }
+        .justify-content-end{
+            justify-content: end;
+        }
+        .justify-content-between{
+            justify-content: space-between;
+        }
+        .border-bottom{
+            border-bottom: 1px solid #d6d4d4;
+        }
+        .fs-weight-small{
+            font-weight: 300;
+        }
+        .custom-btn{
+            display: block;
+            padding: 18px;
+            color: white !important;
+            background-color: #f33333;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 20px;
+            margin:  28px 0;
+            font-size: 20px;
+           
+        }
+     
+    </style>
+
+</head>
+<body>
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="box">
+                <h2>Detalle cliente</h2>
+                <p class="title">Reservado por</p>
+                <p class="content">{{clienteNombre}}</p>
+                <p class="title">Rnc/Cedula</p>
+                <p class="content">{{clienteIdentificacion}}</p>
+                <p class="title">Fechas</p>
+                <p class="content">{{reservaFechas}}</p>
+            </div>
+
+            <div class="box">
+                <h2>Detalle proveedor</h2>
+                <p class="title">Reservado a</p>
+                <p class="content">{{beneficiarioNombre}}</p>
+                <p class="title">Rnc/Cedula</p>
+                <p class="content">{{beneficiarioIdentificacion}}</p>
+                <h2>Detalle vehiculo</h2>
+                <p class="content">{{autoNombre}}</p>
+            </div>
+        </div>
+
+    
+        <div style="width: 100%;">
+            <img src="cid:imagenReserva" alt="Not Load" />
+        </div>
+   
+
+        <div style="width: 100%;">
+             <div class="column"  style="float: right;width: 50%;" >
+                 <div class="border-bottom">
+                    <h3 class="xtitle" style="float: left;">Subtotal</h3>
+                    <h3 class="xcontent fs-weight-small" style="float: right;">{{subtotal}}</h3>
+                 </div>
+              
+                 <div class="border-bottom">
+                    <h3 class="xtitle" style="float: left;">Itbis</h3>
+                    <h3 class="xcontent fs-weight-small" style="float: right;">{{itbis}}</h3>
+                 </div>
+
+                 <div class="border-bottom">
+                    <h3 class="xtitle" style="float: left;">Descuento</h3>
+                    <h3 class="xcontent fs-weight-small" style="float: right;">{{descuento}}</h3>
+                 </div>
+
+                 <div class="border-bottom">
+                    <h3 class="xtitle" style="float: left;">Total</h3>
+                    <h3 class="xcontent fs-weight-small" style="float: right;">{{total}}</h3>
+                 </div>
+
+                 <div class="border-bottom">
+                    <h3 class="xtitle" style="float: left;">Pagado</h3>
+                    <h3 class="xcontent fs-weight-small" style="float: right;">{{pagado}}</h3>
+                 </div>
+
+                 <div class="border-bottom">
+                    <h3 class="xtitle" style="float: left;">Deuda</h3>
+                    <h3 class="xcontent fs-weight-small" style="float: right;">{{deuda}}</h3>
+                 </div>
+             </div>
+        </div>
+
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{reservaTitulo}}&dates={{reservaFhInicial}}/{{reservaFhFinal}}&details={{reservaDetalle}}&location={{reservaRecogida}}" target="_blank" class="custom-btn">
+            Agregar a Google Calendar
+        </a>
+        
+    </div>
+
+</body>
+</html>
+

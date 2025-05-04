@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Pagos" ADD COLUMN     "monto" DECIMAL(65,30) NOT NULL DEFAULT 0;
