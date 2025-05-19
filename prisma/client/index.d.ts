@@ -134,11 +134,6 @@ export type ReservaEstatus = $Result.DefaultSelection<Prisma.$ReservaEstatusPayl
  */
 export type BancoCuentaTipo = $Result.DefaultSelection<Prisma.$BancoCuentaTipoPayload>
 /**
- * Model Precios
- * 
- */
-export type Precios = $Result.DefaultSelection<Prisma.$PreciosPayload>
-/**
  * Model AutoEstatus
  * 
  */
@@ -183,6 +178,16 @@ export type ModelosVersiones = $Result.DefaultSelection<Prisma.$ModelosVersiones
  * 
  */
 export type Combustibles = $Result.DefaultSelection<Prisma.$CombustiblesPayload>
+/**
+ * Model DocumentoFormato
+ * 
+ */
+export type DocumentoFormato = $Result.DefaultSelection<Prisma.$DocumentoFormatoPayload>
+/**
+ * Model DepositosBeneficiarios
+ * 
+ */
+export type DepositosBeneficiarios = $Result.DefaultSelection<Prisma.$DepositosBeneficiariosPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -548,16 +553,6 @@ export class PrismaClient<
   get bancoCuentaTipo(): Prisma.BancoCuentaTipoDelegate<ExtArgs>;
 
   /**
-   * `prisma.precios`: Exposes CRUD operations for the **Precios** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Precios
-    * const precios = await prisma.precios.findMany()
-    * ```
-    */
-  get precios(): Prisma.PreciosDelegate<ExtArgs>;
-
-  /**
    * `prisma.autoEstatus`: Exposes CRUD operations for the **AutoEstatus** model.
     * Example usage:
     * ```ts
@@ -646,6 +641,26 @@ export class PrismaClient<
     * ```
     */
   get combustibles(): Prisma.CombustiblesDelegate<ExtArgs>;
+
+  /**
+   * `prisma.documentoFormato`: Exposes CRUD operations for the **DocumentoFormato** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DocumentoFormatoes
+    * const documentoFormatoes = await prisma.documentoFormato.findMany()
+    * ```
+    */
+  get documentoFormato(): Prisma.DocumentoFormatoDelegate<ExtArgs>;
+
+  /**
+   * `prisma.depositosBeneficiarios`: Exposes CRUD operations for the **DepositosBeneficiarios** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DepositosBeneficiarios
+    * const depositosBeneficiarios = await prisma.depositosBeneficiarios.findMany()
+    * ```
+    */
+  get depositosBeneficiarios(): Prisma.DepositosBeneficiariosDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -1111,7 +1126,6 @@ export namespace Prisma {
     Reservas: 'Reservas',
     ReservaEstatus: 'ReservaEstatus',
     BancoCuentaTipo: 'BancoCuentaTipo',
-    Precios: 'Precios',
     AutoEstatus: 'AutoEstatus',
     UsuarioTipo: 'UsuarioTipo',
     Pagos: 'Pagos',
@@ -1120,7 +1134,9 @@ export namespace Prisma {
     Verificaciones: 'Verificaciones',
     Manejadores: 'Manejadores',
     ModelosVersiones: 'ModelosVersiones',
-    Combustibles: 'Combustibles'
+    Combustibles: 'Combustibles',
+    DocumentoFormato: 'DocumentoFormato',
+    DepositosBeneficiarios: 'DepositosBeneficiarios'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1136,7 +1152,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "usuarios" | "usuarioEstatus" | "clientes" | "beneficiarios" | "direcciones" | "bancos" | "colores" | "marcas" | "modelos" | "tarjetas" | "tipoAuto" | "seguros" | "valoraciones" | "autos" | "imagenes" | "documentos" | "tipoDocumento" | "documentoEstatus" | "provincias" | "ciudades" | "paises" | "reservas" | "reservaEstatus" | "bancoCuentaTipo" | "precios" | "autoEstatus" | "usuarioTipo" | "pagos" | "autoTipoTransmision" | "autosMeGustas" | "verificaciones" | "manejadores" | "modelosVersiones" | "combustibles"
+      modelProps: "usuarios" | "usuarioEstatus" | "clientes" | "beneficiarios" | "direcciones" | "bancos" | "colores" | "marcas" | "modelos" | "tarjetas" | "tipoAuto" | "seguros" | "valoraciones" | "autos" | "imagenes" | "documentos" | "tipoDocumento" | "documentoEstatus" | "provincias" | "ciudades" | "paises" | "reservas" | "reservaEstatus" | "bancoCuentaTipo" | "autoEstatus" | "usuarioTipo" | "pagos" | "autoTipoTransmision" | "autosMeGustas" | "verificaciones" | "manejadores" | "modelosVersiones" | "combustibles" | "documentoFormato" | "depositosBeneficiarios"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2820,76 +2836,6 @@ export namespace Prisma {
           }
         }
       }
-      Precios: {
-        payload: Prisma.$PreciosPayload<ExtArgs>
-        fields: Prisma.PreciosFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PreciosFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PreciosFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload>
-          }
-          findFirst: {
-            args: Prisma.PreciosFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PreciosFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload>
-          }
-          findMany: {
-            args: Prisma.PreciosFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload>[]
-          }
-          create: {
-            args: Prisma.PreciosCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload>
-          }
-          createMany: {
-            args: Prisma.PreciosCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.PreciosCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload>[]
-          }
-          delete: {
-            args: Prisma.PreciosDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload>
-          }
-          update: {
-            args: Prisma.PreciosUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload>
-          }
-          deleteMany: {
-            args: Prisma.PreciosDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PreciosUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.PreciosUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PreciosPayload>
-          }
-          aggregate: {
-            args: Prisma.PreciosAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePrecios>
-          }
-          groupBy: {
-            args: Prisma.PreciosGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PreciosGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PreciosCountArgs<ExtArgs>
-            result: $Utils.Optional<PreciosCountAggregateOutputType> | number
-          }
-        }
-      }
       AutoEstatus: {
         payload: Prisma.$AutoEstatusPayload<ExtArgs>
         fields: Prisma.AutoEstatusFieldRefs
@@ -3520,6 +3466,146 @@ export namespace Prisma {
           }
         }
       }
+      DocumentoFormato: {
+        payload: Prisma.$DocumentoFormatoPayload<ExtArgs>
+        fields: Prisma.DocumentoFormatoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DocumentoFormatoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DocumentoFormatoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload>
+          }
+          findFirst: {
+            args: Prisma.DocumentoFormatoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DocumentoFormatoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload>
+          }
+          findMany: {
+            args: Prisma.DocumentoFormatoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload>[]
+          }
+          create: {
+            args: Prisma.DocumentoFormatoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload>
+          }
+          createMany: {
+            args: Prisma.DocumentoFormatoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DocumentoFormatoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload>[]
+          }
+          delete: {
+            args: Prisma.DocumentoFormatoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload>
+          }
+          update: {
+            args: Prisma.DocumentoFormatoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload>
+          }
+          deleteMany: {
+            args: Prisma.DocumentoFormatoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DocumentoFormatoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.DocumentoFormatoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentoFormatoPayload>
+          }
+          aggregate: {
+            args: Prisma.DocumentoFormatoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDocumentoFormato>
+          }
+          groupBy: {
+            args: Prisma.DocumentoFormatoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DocumentoFormatoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DocumentoFormatoCountArgs<ExtArgs>
+            result: $Utils.Optional<DocumentoFormatoCountAggregateOutputType> | number
+          }
+        }
+      }
+      DepositosBeneficiarios: {
+        payload: Prisma.$DepositosBeneficiariosPayload<ExtArgs>
+        fields: Prisma.DepositosBeneficiariosFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DepositosBeneficiariosFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DepositosBeneficiariosFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload>
+          }
+          findFirst: {
+            args: Prisma.DepositosBeneficiariosFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DepositosBeneficiariosFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload>
+          }
+          findMany: {
+            args: Prisma.DepositosBeneficiariosFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload>[]
+          }
+          create: {
+            args: Prisma.DepositosBeneficiariosCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload>
+          }
+          createMany: {
+            args: Prisma.DepositosBeneficiariosCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DepositosBeneficiariosCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload>[]
+          }
+          delete: {
+            args: Prisma.DepositosBeneficiariosDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload>
+          }
+          update: {
+            args: Prisma.DepositosBeneficiariosUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload>
+          }
+          deleteMany: {
+            args: Prisma.DepositosBeneficiariosDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DepositosBeneficiariosUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.DepositosBeneficiariosUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DepositosBeneficiariosPayload>
+          }
+          aggregate: {
+            args: Prisma.DepositosBeneficiariosAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDepositosBeneficiarios>
+          }
+          groupBy: {
+            args: Prisma.DepositosBeneficiariosGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DepositosBeneficiariosGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DepositosBeneficiariosCountArgs<ExtArgs>
+            result: $Utils.Optional<DepositosBeneficiariosCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3822,12 +3908,14 @@ export namespace Prisma {
     usuarios: number
     autos: number
     reservas: number
+    depositos: number
   }
 
   export type BeneficiariosCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuarios?: boolean | BeneficiariosCountOutputTypeCountUsuariosArgs
     autos?: boolean | BeneficiariosCountOutputTypeCountAutosArgs
     reservas?: boolean | BeneficiariosCountOutputTypeCountReservasArgs
+    depositos?: boolean | BeneficiariosCountOutputTypeCountDepositosArgs
   }
 
   // Custom InputTypes
@@ -3860,6 +3948,13 @@ export namespace Prisma {
    */
   export type BeneficiariosCountOutputTypeCountReservasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReservasWhereInput
+  }
+
+  /**
+   * BeneficiariosCountOutputType without action
+   */
+  export type BeneficiariosCountOutputTypeCountDepositosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DepositosBeneficiariosWhereInput
   }
 
 
@@ -4472,37 +4567,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type PreciosCountOutputType
-   */
-
-  export type PreciosCountOutputType = {
-    autos: number
-  }
-
-  export type PreciosCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    autos?: boolean | PreciosCountOutputTypeCountAutosArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * PreciosCountOutputType without action
-   */
-  export type PreciosCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PreciosCountOutputType
-     */
-    select?: PreciosCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * PreciosCountOutputType without action
-   */
-  export type PreciosCountOutputTypeCountAutosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AutosWhereInput
-  }
-
-
-  /**
    * Count Type AutoEstatusCountOutputType
    */
 
@@ -4685,6 +4749,37 @@ export namespace Prisma {
    */
   export type CombustiblesCountOutputTypeCountAutosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: AutosWhereInput
+  }
+
+
+  /**
+   * Count Type DocumentoFormatoCountOutputType
+   */
+
+  export type DocumentoFormatoCountOutputType = {
+    documentos: number
+  }
+
+  export type DocumentoFormatoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    documentos?: boolean | DocumentoFormatoCountOutputTypeCountDocumentosArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DocumentoFormatoCountOutputType without action
+   */
+  export type DocumentoFormatoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormatoCountOutputType
+     */
+    select?: DocumentoFormatoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DocumentoFormatoCountOutputType without action
+   */
+  export type DocumentoFormatoCountOutputTypeCountDocumentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DocumentosWhereInput
   }
 
 
@@ -8015,6 +8110,8 @@ export namespace Prisma {
     beneficiarioCuentaNo: string | null
     beneficiarioFecha: Date | null
     beneficiarioCorreo: string | null
+    beneficiarioTelefono: string | null
+    imagenBase64: string | null
   }
 
   export type BeneficiariosMaxAggregateOutputType = {
@@ -8029,6 +8126,8 @@ export namespace Prisma {
     beneficiarioCuentaNo: string | null
     beneficiarioFecha: Date | null
     beneficiarioCorreo: string | null
+    beneficiarioTelefono: string | null
+    imagenBase64: string | null
   }
 
   export type BeneficiariosCountAggregateOutputType = {
@@ -8043,6 +8142,8 @@ export namespace Prisma {
     beneficiarioCuentaNo: number
     beneficiarioFecha: number
     beneficiarioCorreo: number
+    beneficiarioTelefono: number
+    imagenBase64: number
     _all: number
   }
 
@@ -8075,6 +8176,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: true
     beneficiarioFecha?: true
     beneficiarioCorreo?: true
+    beneficiarioTelefono?: true
+    imagenBase64?: true
   }
 
   export type BeneficiariosMaxAggregateInputType = {
@@ -8089,6 +8192,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: true
     beneficiarioFecha?: true
     beneficiarioCorreo?: true
+    beneficiarioTelefono?: true
+    imagenBase64?: true
   }
 
   export type BeneficiariosCountAggregateInputType = {
@@ -8103,6 +8208,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: true
     beneficiarioFecha?: true
     beneficiarioCorreo?: true
+    beneficiarioTelefono?: true
+    imagenBase64?: true
     _all?: true
   }
 
@@ -8204,6 +8311,8 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha: Date | null
     beneficiarioCorreo: string | null
+    beneficiarioTelefono: string | null
+    imagenBase64: string | null
     _count: BeneficiariosCountAggregateOutputType | null
     _avg: BeneficiariosAvgAggregateOutputType | null
     _sum: BeneficiariosSumAggregateOutputType | null
@@ -8237,11 +8346,14 @@ export namespace Prisma {
     beneficiarioCuentaNo?: boolean
     beneficiarioFecha?: boolean
     beneficiarioCorreo?: boolean
+    beneficiarioTelefono?: boolean
+    imagenBase64?: boolean
     banco?: boolean | BancosDefaultArgs<ExtArgs>
     bancoCuentaTipo?: boolean | BancoCuentaTipoDefaultArgs<ExtArgs>
     usuarios?: boolean | Beneficiarios$usuariosArgs<ExtArgs>
     autos?: boolean | Beneficiarios$autosArgs<ExtArgs>
     reservas?: boolean | Beneficiarios$reservasArgs<ExtArgs>
+    depositos?: boolean | Beneficiarios$depositosArgs<ExtArgs>
     _count?: boolean | BeneficiariosCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["beneficiarios"]>
 
@@ -8257,6 +8369,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: boolean
     beneficiarioFecha?: boolean
     beneficiarioCorreo?: boolean
+    beneficiarioTelefono?: boolean
+    imagenBase64?: boolean
     banco?: boolean | BancosDefaultArgs<ExtArgs>
     bancoCuentaTipo?: boolean | BancoCuentaTipoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["beneficiarios"]>
@@ -8273,6 +8387,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: boolean
     beneficiarioFecha?: boolean
     beneficiarioCorreo?: boolean
+    beneficiarioTelefono?: boolean
+    imagenBase64?: boolean
   }
 
   export type BeneficiariosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8281,6 +8397,7 @@ export namespace Prisma {
     usuarios?: boolean | Beneficiarios$usuariosArgs<ExtArgs>
     autos?: boolean | Beneficiarios$autosArgs<ExtArgs>
     reservas?: boolean | Beneficiarios$reservasArgs<ExtArgs>
+    depositos?: boolean | Beneficiarios$depositosArgs<ExtArgs>
     _count?: boolean | BeneficiariosCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type BeneficiariosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8296,6 +8413,7 @@ export namespace Prisma {
       usuarios: Prisma.$UsuariosPayload<ExtArgs>[]
       autos: Prisma.$AutosPayload<ExtArgs>[]
       reservas: Prisma.$ReservasPayload<ExtArgs>[]
+      depositos: Prisma.$DepositosBeneficiariosPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       beneficiarioId: number
@@ -8309,6 +8427,8 @@ export namespace Prisma {
       beneficiarioCuentaNo: string
       beneficiarioFecha: Date | null
       beneficiarioCorreo: string | null
+      beneficiarioTelefono: string | null
+      imagenBase64: string | null
     }, ExtArgs["result"]["beneficiarios"]>
     composites: {}
   }
@@ -8678,6 +8798,7 @@ export namespace Prisma {
     usuarios<T extends Beneficiarios$usuariosArgs<ExtArgs> = {}>(args?: Subset<T, Beneficiarios$usuariosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findMany"> | Null>
     autos<T extends Beneficiarios$autosArgs<ExtArgs> = {}>(args?: Subset<T, Beneficiarios$autosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AutosPayload<ExtArgs>, T, "findMany"> | Null>
     reservas<T extends Beneficiarios$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Beneficiarios$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservasPayload<ExtArgs>, T, "findMany"> | Null>
+    depositos<T extends Beneficiarios$depositosArgs<ExtArgs> = {}>(args?: Subset<T, Beneficiarios$depositosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8718,6 +8839,8 @@ export namespace Prisma {
     readonly beneficiarioCuentaNo: FieldRef<"Beneficiarios", 'String'>
     readonly beneficiarioFecha: FieldRef<"Beneficiarios", 'DateTime'>
     readonly beneficiarioCorreo: FieldRef<"Beneficiarios", 'String'>
+    readonly beneficiarioTelefono: FieldRef<"Beneficiarios", 'String'>
+    readonly imagenBase64: FieldRef<"Beneficiarios", 'String'>
   }
     
 
@@ -9093,6 +9216,26 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ReservasScalarFieldEnum | ReservasScalarFieldEnum[]
+  }
+
+  /**
+   * Beneficiarios.depositos
+   */
+  export type Beneficiarios$depositosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    where?: DepositosBeneficiariosWhereInput
+    orderBy?: DepositosBeneficiariosOrderByWithRelationInput | DepositosBeneficiariosOrderByWithRelationInput[]
+    cursor?: DepositosBeneficiariosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DepositosBeneficiariosScalarFieldEnum | DepositosBeneficiariosScalarFieldEnum[]
   }
 
   /**
@@ -18003,7 +18146,6 @@ export namespace Prisma {
     paisId: number | null
     provinciaId: number | null
     ciudadId: number | null
-    precioId: number | null
     autoEstatus: number | null
     valoracion: Decimal | null
     valoracionAcumulacion: Decimal | null
@@ -18012,6 +18154,7 @@ export namespace Prisma {
     transmisionId: number | null
     modeloVersionId: number | null
     combustibleId: number | null
+    precio: Decimal | null
   }
 
   export type AutosSumAggregateOutputType = {
@@ -18033,7 +18176,6 @@ export namespace Prisma {
     paisId: number | null
     provinciaId: number | null
     ciudadId: number | null
-    precioId: number | null
     autoEstatus: number | null
     valoracion: Decimal | null
     valoracionAcumulacion: Decimal | null
@@ -18042,6 +18184,7 @@ export namespace Prisma {
     transmisionId: number | null
     modeloVersionId: number | null
     combustibleId: number | null
+    precio: Decimal | null
   }
 
   export type AutosMinAggregateOutputType = {
@@ -18067,10 +18210,7 @@ export namespace Prisma {
     paisId: number | null
     provinciaId: number | null
     ciudadId: number | null
-    precioId: number | null
     autoEstatus: number | null
-    fechaDeViajeInicial: Date | null
-    fechaDeViajeFinal: Date | null
     valoracion: Decimal | null
     valoracionAcumulacion: Decimal | null
     cantidadValoracion: Decimal | null
@@ -18078,6 +18218,7 @@ export namespace Prisma {
     transmisionId: number | null
     modeloVersionId: number | null
     combustibleId: number | null
+    precio: Decimal | null
   }
 
   export type AutosMaxAggregateOutputType = {
@@ -18103,10 +18244,7 @@ export namespace Prisma {
     paisId: number | null
     provinciaId: number | null
     ciudadId: number | null
-    precioId: number | null
     autoEstatus: number | null
-    fechaDeViajeInicial: Date | null
-    fechaDeViajeFinal: Date | null
     valoracion: Decimal | null
     valoracionAcumulacion: Decimal | null
     cantidadValoracion: Decimal | null
@@ -18114,6 +18252,7 @@ export namespace Prisma {
     transmisionId: number | null
     modeloVersionId: number | null
     combustibleId: number | null
+    precio: Decimal | null
   }
 
   export type AutosCountAggregateOutputType = {
@@ -18139,10 +18278,7 @@ export namespace Prisma {
     paisId: number
     provinciaId: number
     ciudadId: number
-    precioId: number
     autoEstatus: number
-    fechaDeViajeInicial: number
-    fechaDeViajeFinal: number
     valoracion: number
     valoracionAcumulacion: number
     cantidadValoracion: number
@@ -18150,6 +18286,7 @@ export namespace Prisma {
     transmisionId: number
     modeloVersionId: number
     combustibleId: number
+    precio: number
     _all: number
   }
 
@@ -18173,7 +18310,6 @@ export namespace Prisma {
     paisId?: true
     provinciaId?: true
     ciudadId?: true
-    precioId?: true
     autoEstatus?: true
     valoracion?: true
     valoracionAcumulacion?: true
@@ -18182,6 +18318,7 @@ export namespace Prisma {
     transmisionId?: true
     modeloVersionId?: true
     combustibleId?: true
+    precio?: true
   }
 
   export type AutosSumAggregateInputType = {
@@ -18203,7 +18340,6 @@ export namespace Prisma {
     paisId?: true
     provinciaId?: true
     ciudadId?: true
-    precioId?: true
     autoEstatus?: true
     valoracion?: true
     valoracionAcumulacion?: true
@@ -18212,6 +18348,7 @@ export namespace Prisma {
     transmisionId?: true
     modeloVersionId?: true
     combustibleId?: true
+    precio?: true
   }
 
   export type AutosMinAggregateInputType = {
@@ -18237,10 +18374,7 @@ export namespace Prisma {
     paisId?: true
     provinciaId?: true
     ciudadId?: true
-    precioId?: true
     autoEstatus?: true
-    fechaDeViajeInicial?: true
-    fechaDeViajeFinal?: true
     valoracion?: true
     valoracionAcumulacion?: true
     cantidadValoracion?: true
@@ -18248,6 +18382,7 @@ export namespace Prisma {
     transmisionId?: true
     modeloVersionId?: true
     combustibleId?: true
+    precio?: true
   }
 
   export type AutosMaxAggregateInputType = {
@@ -18273,10 +18408,7 @@ export namespace Prisma {
     paisId?: true
     provinciaId?: true
     ciudadId?: true
-    precioId?: true
     autoEstatus?: true
-    fechaDeViajeInicial?: true
-    fechaDeViajeFinal?: true
     valoracion?: true
     valoracionAcumulacion?: true
     cantidadValoracion?: true
@@ -18284,6 +18416,7 @@ export namespace Prisma {
     transmisionId?: true
     modeloVersionId?: true
     combustibleId?: true
+    precio?: true
   }
 
   export type AutosCountAggregateInputType = {
@@ -18309,10 +18442,7 @@ export namespace Prisma {
     paisId?: true
     provinciaId?: true
     ciudadId?: true
-    precioId?: true
     autoEstatus?: true
-    fechaDeViajeInicial?: true
-    fechaDeViajeFinal?: true
     valoracion?: true
     valoracionAcumulacion?: true
     cantidadValoracion?: true
@@ -18320,6 +18450,7 @@ export namespace Prisma {
     transmisionId?: true
     modeloVersionId?: true
     combustibleId?: true
+    precio?: true
     _all?: true
   }
 
@@ -18432,10 +18563,7 @@ export namespace Prisma {
     paisId: number
     provinciaId: number | null
     ciudadId: number
-    precioId: number
     autoEstatus: number | null
-    fechaDeViajeInicial: Date | null
-    fechaDeViajeFinal: Date | null
     valoracion: Decimal
     valoracionAcumulacion: Decimal
     cantidadValoracion: Decimal
@@ -18443,6 +18571,7 @@ export namespace Prisma {
     transmisionId: number | null
     modeloVersionId: number | null
     combustibleId: number | null
+    precio: Decimal
     _count: AutosCountAggregateOutputType | null
     _avg: AutosAvgAggregateOutputType | null
     _sum: AutosSumAggregateOutputType | null
@@ -18487,10 +18616,7 @@ export namespace Prisma {
     paisId?: boolean
     provinciaId?: boolean
     ciudadId?: boolean
-    precioId?: boolean
     autoEstatus?: boolean
-    fechaDeViajeInicial?: boolean
-    fechaDeViajeFinal?: boolean
     valoracion?: boolean
     valoracionAcumulacion?: boolean
     cantidadValoracion?: boolean
@@ -18498,6 +18624,7 @@ export namespace Prisma {
     transmisionId?: boolean
     modeloVersionId?: boolean
     combustibleId?: boolean
+    precio?: boolean
     tipo?: boolean | TipoAutoDefaultArgs<ExtArgs>
     marca?: boolean | MarcasDefaultArgs<ExtArgs>
     modelo?: boolean | ModelosDefaultArgs<ExtArgs>
@@ -18507,7 +18634,6 @@ export namespace Prisma {
     pais?: boolean | PaisesDefaultArgs<ExtArgs>
     provincia?: boolean | Autos$provinciaArgs<ExtArgs>
     ciudad?: boolean | CiudadesDefaultArgs<ExtArgs>
-    precio?: boolean | PreciosDefaultArgs<ExtArgs>
     reservas?: boolean | Autos$reservasArgs<ExtArgs>
     valoraciones?: boolean | Autos$valoracionesArgs<ExtArgs>
     imagenes?: boolean | Autos$imagenesArgs<ExtArgs>
@@ -18542,10 +18668,7 @@ export namespace Prisma {
     paisId?: boolean
     provinciaId?: boolean
     ciudadId?: boolean
-    precioId?: boolean
     autoEstatus?: boolean
-    fechaDeViajeInicial?: boolean
-    fechaDeViajeFinal?: boolean
     valoracion?: boolean
     valoracionAcumulacion?: boolean
     cantidadValoracion?: boolean
@@ -18553,6 +18676,7 @@ export namespace Prisma {
     transmisionId?: boolean
     modeloVersionId?: boolean
     combustibleId?: boolean
+    precio?: boolean
     tipo?: boolean | TipoAutoDefaultArgs<ExtArgs>
     marca?: boolean | MarcasDefaultArgs<ExtArgs>
     modelo?: boolean | ModelosDefaultArgs<ExtArgs>
@@ -18562,7 +18686,6 @@ export namespace Prisma {
     pais?: boolean | PaisesDefaultArgs<ExtArgs>
     provincia?: boolean | Autos$provinciaArgs<ExtArgs>
     ciudad?: boolean | CiudadesDefaultArgs<ExtArgs>
-    precio?: boolean | PreciosDefaultArgs<ExtArgs>
     estatus?: boolean | Autos$estatusArgs<ExtArgs>
     transmision?: boolean | Autos$transmisionArgs<ExtArgs>
     modeloVersion?: boolean | Autos$modeloVersionArgs<ExtArgs>
@@ -18592,10 +18715,7 @@ export namespace Prisma {
     paisId?: boolean
     provinciaId?: boolean
     ciudadId?: boolean
-    precioId?: boolean
     autoEstatus?: boolean
-    fechaDeViajeInicial?: boolean
-    fechaDeViajeFinal?: boolean
     valoracion?: boolean
     valoracionAcumulacion?: boolean
     cantidadValoracion?: boolean
@@ -18603,6 +18723,7 @@ export namespace Prisma {
     transmisionId?: boolean
     modeloVersionId?: boolean
     combustibleId?: boolean
+    precio?: boolean
   }
 
   export type AutosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -18615,7 +18736,6 @@ export namespace Prisma {
     pais?: boolean | PaisesDefaultArgs<ExtArgs>
     provincia?: boolean | Autos$provinciaArgs<ExtArgs>
     ciudad?: boolean | CiudadesDefaultArgs<ExtArgs>
-    precio?: boolean | PreciosDefaultArgs<ExtArgs>
     reservas?: boolean | Autos$reservasArgs<ExtArgs>
     valoraciones?: boolean | Autos$valoracionesArgs<ExtArgs>
     imagenes?: boolean | Autos$imagenesArgs<ExtArgs>
@@ -18636,7 +18756,6 @@ export namespace Prisma {
     pais?: boolean | PaisesDefaultArgs<ExtArgs>
     provincia?: boolean | Autos$provinciaArgs<ExtArgs>
     ciudad?: boolean | CiudadesDefaultArgs<ExtArgs>
-    precio?: boolean | PreciosDefaultArgs<ExtArgs>
     estatus?: boolean | Autos$estatusArgs<ExtArgs>
     transmision?: boolean | Autos$transmisionArgs<ExtArgs>
     modeloVersion?: boolean | Autos$modeloVersionArgs<ExtArgs>
@@ -18655,7 +18774,6 @@ export namespace Prisma {
       pais: Prisma.$PaisesPayload<ExtArgs>
       provincia: Prisma.$ProvinciasPayload<ExtArgs> | null
       ciudad: Prisma.$CiudadesPayload<ExtArgs>
-      precio: Prisma.$PreciosPayload<ExtArgs>
       reservas: Prisma.$ReservasPayload<ExtArgs>[]
       valoraciones: Prisma.$ValoracionesPayload<ExtArgs>[]
       imagenes: Prisma.$ImagenesPayload<ExtArgs>[]
@@ -18688,10 +18806,7 @@ export namespace Prisma {
       paisId: number
       provinciaId: number | null
       ciudadId: number
-      precioId: number
       autoEstatus: number | null
-      fechaDeViajeInicial: Date | null
-      fechaDeViajeFinal: Date | null
       valoracion: Prisma.Decimal
       valoracionAcumulacion: Prisma.Decimal
       cantidadValoracion: Prisma.Decimal
@@ -18699,6 +18814,7 @@ export namespace Prisma {
       transmisionId: number | null
       modeloVersionId: number | null
       combustibleId: number | null
+      precio: Prisma.Decimal
     }, ExtArgs["result"]["autos"]>
     composites: {}
   }
@@ -19072,7 +19188,6 @@ export namespace Prisma {
     pais<T extends PaisesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PaisesDefaultArgs<ExtArgs>>): Prisma__PaisesClient<$Result.GetResult<Prisma.$PaisesPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     provincia<T extends Autos$provinciaArgs<ExtArgs> = {}>(args?: Subset<T, Autos$provinciaArgs<ExtArgs>>): Prisma__ProvinciasClient<$Result.GetResult<Prisma.$ProvinciasPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     ciudad<T extends CiudadesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CiudadesDefaultArgs<ExtArgs>>): Prisma__CiudadesClient<$Result.GetResult<Prisma.$CiudadesPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    precio<T extends PreciosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PreciosDefaultArgs<ExtArgs>>): Prisma__PreciosClient<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     reservas<T extends Autos$reservasArgs<ExtArgs> = {}>(args?: Subset<T, Autos$reservasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReservasPayload<ExtArgs>, T, "findMany"> | Null>
     valoraciones<T extends Autos$valoracionesArgs<ExtArgs> = {}>(args?: Subset<T, Autos$valoracionesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ValoracionesPayload<ExtArgs>, T, "findMany"> | Null>
     imagenes<T extends Autos$imagenesArgs<ExtArgs> = {}>(args?: Subset<T, Autos$imagenesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagenesPayload<ExtArgs>, T, "findMany"> | Null>
@@ -19132,10 +19247,7 @@ export namespace Prisma {
     readonly paisId: FieldRef<"Autos", 'Int'>
     readonly provinciaId: FieldRef<"Autos", 'Int'>
     readonly ciudadId: FieldRef<"Autos", 'Int'>
-    readonly precioId: FieldRef<"Autos", 'Int'>
     readonly autoEstatus: FieldRef<"Autos", 'Int'>
-    readonly fechaDeViajeInicial: FieldRef<"Autos", 'DateTime'>
-    readonly fechaDeViajeFinal: FieldRef<"Autos", 'DateTime'>
     readonly valoracion: FieldRef<"Autos", 'Decimal'>
     readonly valoracionAcumulacion: FieldRef<"Autos", 'Decimal'>
     readonly cantidadValoracion: FieldRef<"Autos", 'Decimal'>
@@ -19143,6 +19255,7 @@ export namespace Prisma {
     readonly transmisionId: FieldRef<"Autos", 'Int'>
     readonly modeloVersionId: FieldRef<"Autos", 'Int'>
     readonly combustibleId: FieldRef<"Autos", 'Int'>
+    readonly precio: FieldRef<"Autos", 'Decimal'>
   }
     
 
@@ -20667,6 +20780,7 @@ export namespace Prisma {
     documentoEstatus: number | null
     documentoTipo: number | null
     usuarioId: number | null
+    documentoFormatoId: number | null
   }
 
   export type DocumentosSumAggregateOutputType = {
@@ -20674,6 +20788,7 @@ export namespace Prisma {
     documentoEstatus: number | null
     documentoTipo: number | null
     usuarioId: number | null
+    documentoFormatoId: number | null
   }
 
   export type DocumentosMinAggregateOutputType = {
@@ -20684,6 +20799,7 @@ export namespace Prisma {
     fhCreacion: Date | null
     usuarioId: number | null
     imagenArchivo: string | null
+    documentoFormatoId: number | null
   }
 
   export type DocumentosMaxAggregateOutputType = {
@@ -20694,6 +20810,7 @@ export namespace Prisma {
     fhCreacion: Date | null
     usuarioId: number | null
     imagenArchivo: string | null
+    documentoFormatoId: number | null
   }
 
   export type DocumentosCountAggregateOutputType = {
@@ -20704,6 +20821,7 @@ export namespace Prisma {
     fhCreacion: number
     usuarioId: number
     imagenArchivo: number
+    documentoFormatoId: number
     _all: number
   }
 
@@ -20713,6 +20831,7 @@ export namespace Prisma {
     documentoEstatus?: true
     documentoTipo?: true
     usuarioId?: true
+    documentoFormatoId?: true
   }
 
   export type DocumentosSumAggregateInputType = {
@@ -20720,6 +20839,7 @@ export namespace Prisma {
     documentoEstatus?: true
     documentoTipo?: true
     usuarioId?: true
+    documentoFormatoId?: true
   }
 
   export type DocumentosMinAggregateInputType = {
@@ -20730,6 +20850,7 @@ export namespace Prisma {
     fhCreacion?: true
     usuarioId?: true
     imagenArchivo?: true
+    documentoFormatoId?: true
   }
 
   export type DocumentosMaxAggregateInputType = {
@@ -20740,6 +20861,7 @@ export namespace Prisma {
     fhCreacion?: true
     usuarioId?: true
     imagenArchivo?: true
+    documentoFormatoId?: true
   }
 
   export type DocumentosCountAggregateInputType = {
@@ -20750,6 +20872,7 @@ export namespace Prisma {
     fhCreacion?: true
     usuarioId?: true
     imagenArchivo?: true
+    documentoFormatoId?: true
     _all?: true
   }
 
@@ -20847,6 +20970,7 @@ export namespace Prisma {
     fhCreacion: Date
     usuarioId: number
     imagenArchivo: string | null
+    documentoFormatoId: number | null
     _count: DocumentosCountAggregateOutputType | null
     _avg: DocumentosAvgAggregateOutputType | null
     _sum: DocumentosSumAggregateOutputType | null
@@ -20876,9 +21000,11 @@ export namespace Prisma {
     fhCreacion?: boolean
     usuarioId?: boolean
     imagenArchivo?: boolean
+    documentoFormatoId?: boolean
     estatus?: boolean | DocumentoEstatusDefaultArgs<ExtArgs>
     tipo?: boolean | TipoDocumentoDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    documentoFormato?: boolean | Documentos$documentoFormatoArgs<ExtArgs>
   }, ExtArgs["result"]["documentos"]>
 
   export type DocumentosSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -20889,9 +21015,11 @@ export namespace Prisma {
     fhCreacion?: boolean
     usuarioId?: boolean
     imagenArchivo?: boolean
+    documentoFormatoId?: boolean
     estatus?: boolean | DocumentoEstatusDefaultArgs<ExtArgs>
     tipo?: boolean | TipoDocumentoDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    documentoFormato?: boolean | Documentos$documentoFormatoArgs<ExtArgs>
   }, ExtArgs["result"]["documentos"]>
 
   export type DocumentosSelectScalar = {
@@ -20902,17 +21030,20 @@ export namespace Prisma {
     fhCreacion?: boolean
     usuarioId?: boolean
     imagenArchivo?: boolean
+    documentoFormatoId?: boolean
   }
 
   export type DocumentosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     estatus?: boolean | DocumentoEstatusDefaultArgs<ExtArgs>
     tipo?: boolean | TipoDocumentoDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    documentoFormato?: boolean | Documentos$documentoFormatoArgs<ExtArgs>
   }
   export type DocumentosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     estatus?: boolean | DocumentoEstatusDefaultArgs<ExtArgs>
     tipo?: boolean | TipoDocumentoDefaultArgs<ExtArgs>
     usuario?: boolean | UsuariosDefaultArgs<ExtArgs>
+    documentoFormato?: boolean | Documentos$documentoFormatoArgs<ExtArgs>
   }
 
   export type $DocumentosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20921,6 +21052,7 @@ export namespace Prisma {
       estatus: Prisma.$DocumentoEstatusPayload<ExtArgs>
       tipo: Prisma.$TipoDocumentoPayload<ExtArgs>
       usuario: Prisma.$UsuariosPayload<ExtArgs>
+      documentoFormato: Prisma.$DocumentoFormatoPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       documentoId: number
@@ -20930,6 +21062,7 @@ export namespace Prisma {
       fhCreacion: Date
       usuarioId: number
       imagenArchivo: string | null
+      documentoFormatoId: number | null
     }, ExtArgs["result"]["documentos"]>
     composites: {}
   }
@@ -21297,6 +21430,7 @@ export namespace Prisma {
     estatus<T extends DocumentoEstatusDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DocumentoEstatusDefaultArgs<ExtArgs>>): Prisma__DocumentoEstatusClient<$Result.GetResult<Prisma.$DocumentoEstatusPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     tipo<T extends TipoDocumentoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TipoDocumentoDefaultArgs<ExtArgs>>): Prisma__TipoDocumentoClient<$Result.GetResult<Prisma.$TipoDocumentoPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     usuario<T extends UsuariosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuariosDefaultArgs<ExtArgs>>): Prisma__UsuariosClient<$Result.GetResult<Prisma.$UsuariosPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    documentoFormato<T extends Documentos$documentoFormatoArgs<ExtArgs> = {}>(args?: Subset<T, Documentos$documentoFormatoArgs<ExtArgs>>): Prisma__DocumentoFormatoClient<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -21333,6 +21467,7 @@ export namespace Prisma {
     readonly fhCreacion: FieldRef<"Documentos", 'DateTime'>
     readonly usuarioId: FieldRef<"Documentos", 'Int'>
     readonly imagenArchivo: FieldRef<"Documentos", 'String'>
+    readonly documentoFormatoId: FieldRef<"Documentos", 'Int'>
   }
     
 
@@ -21648,6 +21783,21 @@ export namespace Prisma {
      * Filter which Documentos to delete
      */
     where?: DocumentosWhereInput
+  }
+
+  /**
+   * Documentos.documentoFormato
+   */
+  export type Documentos$documentoFormatoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    where?: DocumentoFormatoWhereInput
   }
 
   /**
@@ -26598,6 +26748,7 @@ export namespace Prisma {
     autoId: number | null
     tarjetaId: number | null
     reservaEstatus: number | null
+    codigoVerificacionEntrega: number | null
   }
 
   export type ReservasSumAggregateOutputType = {
@@ -26619,6 +26770,7 @@ export namespace Prisma {
     autoId: number | null
     tarjetaId: number | null
     reservaEstatus: number | null
+    codigoVerificacionEntrega: number | null
   }
 
   export type ReservasMinAggregateOutputType = {
@@ -26648,6 +26800,8 @@ export namespace Prisma {
     tarjetaId: number | null
     reservaEstatus: number | null
     tarjetaNumero: string | null
+    codigoVerificacionEntrega: number | null
+    entregaVerificada: boolean | null
   }
 
   export type ReservasMaxAggregateOutputType = {
@@ -26677,6 +26831,8 @@ export namespace Prisma {
     tarjetaId: number | null
     reservaEstatus: number | null
     tarjetaNumero: string | null
+    codigoVerificacionEntrega: number | null
+    entregaVerificada: boolean | null
   }
 
   export type ReservasCountAggregateOutputType = {
@@ -26706,6 +26862,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero: number
+    codigoVerificacionEntrega: number
+    entregaVerificada: number
     _all: number
   }
 
@@ -26729,6 +26887,7 @@ export namespace Prisma {
     autoId?: true
     tarjetaId?: true
     reservaEstatus?: true
+    codigoVerificacionEntrega?: true
   }
 
   export type ReservasSumAggregateInputType = {
@@ -26750,6 +26909,7 @@ export namespace Prisma {
     autoId?: true
     tarjetaId?: true
     reservaEstatus?: true
+    codigoVerificacionEntrega?: true
   }
 
   export type ReservasMinAggregateInputType = {
@@ -26779,6 +26939,8 @@ export namespace Prisma {
     tarjetaId?: true
     reservaEstatus?: true
     tarjetaNumero?: true
+    codigoVerificacionEntrega?: true
+    entregaVerificada?: true
   }
 
   export type ReservasMaxAggregateInputType = {
@@ -26808,6 +26970,8 @@ export namespace Prisma {
     tarjetaId?: true
     reservaEstatus?: true
     tarjetaNumero?: true
+    codigoVerificacionEntrega?: true
+    entregaVerificada?: true
   }
 
   export type ReservasCountAggregateInputType = {
@@ -26837,6 +27001,8 @@ export namespace Prisma {
     tarjetaId?: true
     reservaEstatus?: true
     tarjetaNumero?: true
+    codigoVerificacionEntrega?: true
+    entregaVerificada?: true
     _all?: true
   }
 
@@ -26953,6 +27119,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero: string | null
+    codigoVerificacionEntrega: number | null
+    entregaVerificada: boolean
     _count: ReservasCountAggregateOutputType | null
     _avg: ReservasAvgAggregateOutputType | null
     _sum: ReservasSumAggregateOutputType | null
@@ -27001,6 +27169,8 @@ export namespace Prisma {
     tarjetaId?: boolean
     reservaEstatus?: boolean
     tarjetaNumero?: boolean
+    codigoVerificacionEntrega?: boolean
+    entregaVerificada?: boolean
     cliente?: boolean | ClientesDefaultArgs<ExtArgs>
     beneficiario?: boolean | BeneficiariosDefaultArgs<ExtArgs>
     auto?: boolean | AutosDefaultArgs<ExtArgs>
@@ -27037,6 +27207,8 @@ export namespace Prisma {
     tarjetaId?: boolean
     reservaEstatus?: boolean
     tarjetaNumero?: boolean
+    codigoVerificacionEntrega?: boolean
+    entregaVerificada?: boolean
     cliente?: boolean | ClientesDefaultArgs<ExtArgs>
     beneficiario?: boolean | BeneficiariosDefaultArgs<ExtArgs>
     auto?: boolean | AutosDefaultArgs<ExtArgs>
@@ -27071,6 +27243,8 @@ export namespace Prisma {
     tarjetaId?: boolean
     reservaEstatus?: boolean
     tarjetaNumero?: boolean
+    codigoVerificacionEntrega?: boolean
+    entregaVerificada?: boolean
   }
 
   export type ReservasInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -27127,6 +27301,8 @@ export namespace Prisma {
       tarjetaId: number
       reservaEstatus: number
       tarjetaNumero: string | null
+      codigoVerificacionEntrega: number | null
+      entregaVerificada: boolean
     }, ExtArgs["result"]["reservas"]>
     composites: {}
   }
@@ -27552,6 +27728,8 @@ export namespace Prisma {
     readonly tarjetaId: FieldRef<"Reservas", 'Int'>
     readonly reservaEstatus: FieldRef<"Reservas", 'Int'>
     readonly tarjetaNumero: FieldRef<"Reservas", 'String'>
+    readonly codigoVerificacionEntrega: FieldRef<"Reservas", 'Int'>
+    readonly entregaVerificada: FieldRef<"Reservas", 'Boolean'>
   }
     
 
@@ -29793,984 +29971,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: BancoCuentaTipoInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Precios
-   */
-
-  export type AggregatePrecios = {
-    _count: PreciosCountAggregateOutputType | null
-    _avg: PreciosAvgAggregateOutputType | null
-    _sum: PreciosSumAggregateOutputType | null
-    _min: PreciosMinAggregateOutputType | null
-    _max: PreciosMaxAggregateOutputType | null
-  }
-
-  export type PreciosAvgAggregateOutputType = {
-    precioId: number | null
-    precioCliente: Decimal | null
-    precioBeneficiario: Decimal | null
-  }
-
-  export type PreciosSumAggregateOutputType = {
-    precioId: number | null
-    precioCliente: Decimal | null
-    precioBeneficiario: Decimal | null
-  }
-
-  export type PreciosMinAggregateOutputType = {
-    precioId: number | null
-    precioNombre: string | null
-    precioCliente: Decimal | null
-    precioBeneficiario: Decimal | null
-  }
-
-  export type PreciosMaxAggregateOutputType = {
-    precioId: number | null
-    precioNombre: string | null
-    precioCliente: Decimal | null
-    precioBeneficiario: Decimal | null
-  }
-
-  export type PreciosCountAggregateOutputType = {
-    precioId: number
-    precioNombre: number
-    precioCliente: number
-    precioBeneficiario: number
-    _all: number
-  }
-
-
-  export type PreciosAvgAggregateInputType = {
-    precioId?: true
-    precioCliente?: true
-    precioBeneficiario?: true
-  }
-
-  export type PreciosSumAggregateInputType = {
-    precioId?: true
-    precioCliente?: true
-    precioBeneficiario?: true
-  }
-
-  export type PreciosMinAggregateInputType = {
-    precioId?: true
-    precioNombre?: true
-    precioCliente?: true
-    precioBeneficiario?: true
-  }
-
-  export type PreciosMaxAggregateInputType = {
-    precioId?: true
-    precioNombre?: true
-    precioCliente?: true
-    precioBeneficiario?: true
-  }
-
-  export type PreciosCountAggregateInputType = {
-    precioId?: true
-    precioNombre?: true
-    precioCliente?: true
-    precioBeneficiario?: true
-    _all?: true
-  }
-
-  export type PreciosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Precios to aggregate.
-     */
-    where?: PreciosWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Precios to fetch.
-     */
-    orderBy?: PreciosOrderByWithRelationInput | PreciosOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PreciosWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Precios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Precios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Precios
-    **/
-    _count?: true | PreciosCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PreciosAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PreciosSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PreciosMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PreciosMaxAggregateInputType
-  }
-
-  export type GetPreciosAggregateType<T extends PreciosAggregateArgs> = {
-        [P in keyof T & keyof AggregatePrecios]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePrecios[P]>
-      : GetScalarType<T[P], AggregatePrecios[P]>
-  }
-
-
-
-
-  export type PreciosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PreciosWhereInput
-    orderBy?: PreciosOrderByWithAggregationInput | PreciosOrderByWithAggregationInput[]
-    by: PreciosScalarFieldEnum[] | PreciosScalarFieldEnum
-    having?: PreciosScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PreciosCountAggregateInputType | true
-    _avg?: PreciosAvgAggregateInputType
-    _sum?: PreciosSumAggregateInputType
-    _min?: PreciosMinAggregateInputType
-    _max?: PreciosMaxAggregateInputType
-  }
-
-  export type PreciosGroupByOutputType = {
-    precioId: number
-    precioNombre: string
-    precioCliente: Decimal
-    precioBeneficiario: Decimal
-    _count: PreciosCountAggregateOutputType | null
-    _avg: PreciosAvgAggregateOutputType | null
-    _sum: PreciosSumAggregateOutputType | null
-    _min: PreciosMinAggregateOutputType | null
-    _max: PreciosMaxAggregateOutputType | null
-  }
-
-  type GetPreciosGroupByPayload<T extends PreciosGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PreciosGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PreciosGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PreciosGroupByOutputType[P]>
-            : GetScalarType<T[P], PreciosGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PreciosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    precioId?: boolean
-    precioNombre?: boolean
-    precioCliente?: boolean
-    precioBeneficiario?: boolean
-    autos?: boolean | Precios$autosArgs<ExtArgs>
-    _count?: boolean | PreciosCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["precios"]>
-
-  export type PreciosSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    precioId?: boolean
-    precioNombre?: boolean
-    precioCliente?: boolean
-    precioBeneficiario?: boolean
-  }, ExtArgs["result"]["precios"]>
-
-  export type PreciosSelectScalar = {
-    precioId?: boolean
-    precioNombre?: boolean
-    precioCliente?: boolean
-    precioBeneficiario?: boolean
-  }
-
-  export type PreciosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    autos?: boolean | Precios$autosArgs<ExtArgs>
-    _count?: boolean | PreciosCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type PreciosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $PreciosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Precios"
-    objects: {
-      autos: Prisma.$AutosPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      precioId: number
-      precioNombre: string
-      precioCliente: Prisma.Decimal
-      precioBeneficiario: Prisma.Decimal
-    }, ExtArgs["result"]["precios"]>
-    composites: {}
-  }
-
-  type PreciosGetPayload<S extends boolean | null | undefined | PreciosDefaultArgs> = $Result.GetResult<Prisma.$PreciosPayload, S>
-
-  type PreciosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<PreciosFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: PreciosCountAggregateInputType | true
-    }
-
-  export interface PreciosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Precios'], meta: { name: 'Precios' } }
-    /**
-     * Find zero or one Precios that matches the filter.
-     * @param {PreciosFindUniqueArgs} args - Arguments to find a Precios
-     * @example
-     * // Get one Precios
-     * const precios = await prisma.precios.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PreciosFindUniqueArgs>(args: SelectSubset<T, PreciosFindUniqueArgs<ExtArgs>>): Prisma__PreciosClient<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
-
-    /**
-     * Find one Precios that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {PreciosFindUniqueOrThrowArgs} args - Arguments to find a Precios
-     * @example
-     * // Get one Precios
-     * const precios = await prisma.precios.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PreciosFindUniqueOrThrowArgs>(args: SelectSubset<T, PreciosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PreciosClient<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
-
-    /**
-     * Find the first Precios that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PreciosFindFirstArgs} args - Arguments to find a Precios
-     * @example
-     * // Get one Precios
-     * const precios = await prisma.precios.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PreciosFindFirstArgs>(args?: SelectSubset<T, PreciosFindFirstArgs<ExtArgs>>): Prisma__PreciosClient<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
-
-    /**
-     * Find the first Precios that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PreciosFindFirstOrThrowArgs} args - Arguments to find a Precios
-     * @example
-     * // Get one Precios
-     * const precios = await prisma.precios.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PreciosFindFirstOrThrowArgs>(args?: SelectSubset<T, PreciosFindFirstOrThrowArgs<ExtArgs>>): Prisma__PreciosClient<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
-
-    /**
-     * Find zero or more Precios that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PreciosFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Precios
-     * const precios = await prisma.precios.findMany()
-     * 
-     * // Get first 10 Precios
-     * const precios = await prisma.precios.findMany({ take: 10 })
-     * 
-     * // Only select the `precioId`
-     * const preciosWithPrecioIdOnly = await prisma.precios.findMany({ select: { precioId: true } })
-     * 
-     */
-    findMany<T extends PreciosFindManyArgs>(args?: SelectSubset<T, PreciosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "findMany">>
-
-    /**
-     * Create a Precios.
-     * @param {PreciosCreateArgs} args - Arguments to create a Precios.
-     * @example
-     * // Create one Precios
-     * const Precios = await prisma.precios.create({
-     *   data: {
-     *     // ... data to create a Precios
-     *   }
-     * })
-     * 
-     */
-    create<T extends PreciosCreateArgs>(args: SelectSubset<T, PreciosCreateArgs<ExtArgs>>): Prisma__PreciosClient<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "create">, never, ExtArgs>
-
-    /**
-     * Create many Precios.
-     * @param {PreciosCreateManyArgs} args - Arguments to create many Precios.
-     * @example
-     * // Create many Precios
-     * const precios = await prisma.precios.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PreciosCreateManyArgs>(args?: SelectSubset<T, PreciosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Precios and returns the data saved in the database.
-     * @param {PreciosCreateManyAndReturnArgs} args - Arguments to create many Precios.
-     * @example
-     * // Create many Precios
-     * const precios = await prisma.precios.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Precios and only return the `precioId`
-     * const preciosWithPrecioIdOnly = await prisma.precios.createManyAndReturn({ 
-     *   select: { precioId: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends PreciosCreateManyAndReturnArgs>(args?: SelectSubset<T, PreciosCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "createManyAndReturn">>
-
-    /**
-     * Delete a Precios.
-     * @param {PreciosDeleteArgs} args - Arguments to delete one Precios.
-     * @example
-     * // Delete one Precios
-     * const Precios = await prisma.precios.delete({
-     *   where: {
-     *     // ... filter to delete one Precios
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PreciosDeleteArgs>(args: SelectSubset<T, PreciosDeleteArgs<ExtArgs>>): Prisma__PreciosClient<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "delete">, never, ExtArgs>
-
-    /**
-     * Update one Precios.
-     * @param {PreciosUpdateArgs} args - Arguments to update one Precios.
-     * @example
-     * // Update one Precios
-     * const precios = await prisma.precios.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PreciosUpdateArgs>(args: SelectSubset<T, PreciosUpdateArgs<ExtArgs>>): Prisma__PreciosClient<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "update">, never, ExtArgs>
-
-    /**
-     * Delete zero or more Precios.
-     * @param {PreciosDeleteManyArgs} args - Arguments to filter Precios to delete.
-     * @example
-     * // Delete a few Precios
-     * const { count } = await prisma.precios.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PreciosDeleteManyArgs>(args?: SelectSubset<T, PreciosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Precios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PreciosUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Precios
-     * const precios = await prisma.precios.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PreciosUpdateManyArgs>(args: SelectSubset<T, PreciosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Precios.
-     * @param {PreciosUpsertArgs} args - Arguments to update or create a Precios.
-     * @example
-     * // Update or create a Precios
-     * const precios = await prisma.precios.upsert({
-     *   create: {
-     *     // ... data to create a Precios
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Precios we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PreciosUpsertArgs>(args: SelectSubset<T, PreciosUpsertArgs<ExtArgs>>): Prisma__PreciosClient<$Result.GetResult<Prisma.$PreciosPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
-
-
-    /**
-     * Count the number of Precios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PreciosCountArgs} args - Arguments to filter Precios to count.
-     * @example
-     * // Count the number of Precios
-     * const count = await prisma.precios.count({
-     *   where: {
-     *     // ... the filter for the Precios we want to count
-     *   }
-     * })
-    **/
-    count<T extends PreciosCountArgs>(
-      args?: Subset<T, PreciosCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PreciosCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Precios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PreciosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PreciosAggregateArgs>(args: Subset<T, PreciosAggregateArgs>): Prisma.PrismaPromise<GetPreciosAggregateType<T>>
-
-    /**
-     * Group by Precios.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PreciosGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PreciosGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PreciosGroupByArgs['orderBy'] }
-        : { orderBy?: PreciosGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PreciosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPreciosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Precios model
-   */
-  readonly fields: PreciosFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Precios.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PreciosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    autos<T extends Precios$autosArgs<ExtArgs> = {}>(args?: Subset<T, Precios$autosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AutosPayload<ExtArgs>, T, "findMany"> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Precios model
-   */ 
-  interface PreciosFieldRefs {
-    readonly precioId: FieldRef<"Precios", 'Int'>
-    readonly precioNombre: FieldRef<"Precios", 'String'>
-    readonly precioCliente: FieldRef<"Precios", 'Decimal'>
-    readonly precioBeneficiario: FieldRef<"Precios", 'Decimal'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Precios findUnique
-   */
-  export type PreciosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
-    /**
-     * Filter, which Precios to fetch.
-     */
-    where: PreciosWhereUniqueInput
-  }
-
-  /**
-   * Precios findUniqueOrThrow
-   */
-  export type PreciosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
-    /**
-     * Filter, which Precios to fetch.
-     */
-    where: PreciosWhereUniqueInput
-  }
-
-  /**
-   * Precios findFirst
-   */
-  export type PreciosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
-    /**
-     * Filter, which Precios to fetch.
-     */
-    where?: PreciosWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Precios to fetch.
-     */
-    orderBy?: PreciosOrderByWithRelationInput | PreciosOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Precios.
-     */
-    cursor?: PreciosWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Precios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Precios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Precios.
-     */
-    distinct?: PreciosScalarFieldEnum | PreciosScalarFieldEnum[]
-  }
-
-  /**
-   * Precios findFirstOrThrow
-   */
-  export type PreciosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
-    /**
-     * Filter, which Precios to fetch.
-     */
-    where?: PreciosWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Precios to fetch.
-     */
-    orderBy?: PreciosOrderByWithRelationInput | PreciosOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Precios.
-     */
-    cursor?: PreciosWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Precios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Precios.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Precios.
-     */
-    distinct?: PreciosScalarFieldEnum | PreciosScalarFieldEnum[]
-  }
-
-  /**
-   * Precios findMany
-   */
-  export type PreciosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
-    /**
-     * Filter, which Precios to fetch.
-     */
-    where?: PreciosWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Precios to fetch.
-     */
-    orderBy?: PreciosOrderByWithRelationInput | PreciosOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Precios.
-     */
-    cursor?: PreciosWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Precios from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Precios.
-     */
-    skip?: number
-    distinct?: PreciosScalarFieldEnum | PreciosScalarFieldEnum[]
-  }
-
-  /**
-   * Precios create
-   */
-  export type PreciosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Precios.
-     */
-    data: XOR<PreciosCreateInput, PreciosUncheckedCreateInput>
-  }
-
-  /**
-   * Precios createMany
-   */
-  export type PreciosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Precios.
-     */
-    data: PreciosCreateManyInput | PreciosCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Precios createManyAndReturn
-   */
-  export type PreciosCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many Precios.
-     */
-    data: PreciosCreateManyInput | PreciosCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Precios update
-   */
-  export type PreciosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Precios.
-     */
-    data: XOR<PreciosUpdateInput, PreciosUncheckedUpdateInput>
-    /**
-     * Choose, which Precios to update.
-     */
-    where: PreciosWhereUniqueInput
-  }
-
-  /**
-   * Precios updateMany
-   */
-  export type PreciosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Precios.
-     */
-    data: XOR<PreciosUpdateManyMutationInput, PreciosUncheckedUpdateManyInput>
-    /**
-     * Filter which Precios to update
-     */
-    where?: PreciosWhereInput
-  }
-
-  /**
-   * Precios upsert
-   */
-  export type PreciosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Precios to update in case it exists.
-     */
-    where: PreciosWhereUniqueInput
-    /**
-     * In case the Precios found by the `where` argument doesn't exist, create a new Precios with this data.
-     */
-    create: XOR<PreciosCreateInput, PreciosUncheckedCreateInput>
-    /**
-     * In case the Precios was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PreciosUpdateInput, PreciosUncheckedUpdateInput>
-  }
-
-  /**
-   * Precios delete
-   */
-  export type PreciosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
-    /**
-     * Filter which Precios to delete.
-     */
-    where: PreciosWhereUniqueInput
-  }
-
-  /**
-   * Precios deleteMany
-   */
-  export type PreciosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Precios to delete
-     */
-    where?: PreciosWhereInput
-  }
-
-  /**
-   * Precios.autos
-   */
-  export type Precios$autosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Autos
-     */
-    select?: AutosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AutosInclude<ExtArgs> | null
-    where?: AutosWhereInput
-    orderBy?: AutosOrderByWithRelationInput | AutosOrderByWithRelationInput[]
-    cursor?: AutosWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: AutosScalarFieldEnum | AutosScalarFieldEnum[]
-  }
-
-  /**
-   * Precios without action
-   */
-  export type PreciosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Precios
-     */
-    select?: PreciosSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PreciosInclude<ExtArgs> | null
   }
 
 
@@ -39382,6 +38582,1927 @@ export namespace Prisma {
 
 
   /**
+   * Model DocumentoFormato
+   */
+
+  export type AggregateDocumentoFormato = {
+    _count: DocumentoFormatoCountAggregateOutputType | null
+    _avg: DocumentoFormatoAvgAggregateOutputType | null
+    _sum: DocumentoFormatoSumAggregateOutputType | null
+    _min: DocumentoFormatoMinAggregateOutputType | null
+    _max: DocumentoFormatoMaxAggregateOutputType | null
+  }
+
+  export type DocumentoFormatoAvgAggregateOutputType = {
+    formatoId: number | null
+  }
+
+  export type DocumentoFormatoSumAggregateOutputType = {
+    formatoId: number | null
+  }
+
+  export type DocumentoFormatoMinAggregateOutputType = {
+    formatoId: number | null
+    formatoNombre: string | null
+  }
+
+  export type DocumentoFormatoMaxAggregateOutputType = {
+    formatoId: number | null
+    formatoNombre: string | null
+  }
+
+  export type DocumentoFormatoCountAggregateOutputType = {
+    formatoId: number
+    formatoNombre: number
+    _all: number
+  }
+
+
+  export type DocumentoFormatoAvgAggregateInputType = {
+    formatoId?: true
+  }
+
+  export type DocumentoFormatoSumAggregateInputType = {
+    formatoId?: true
+  }
+
+  export type DocumentoFormatoMinAggregateInputType = {
+    formatoId?: true
+    formatoNombre?: true
+  }
+
+  export type DocumentoFormatoMaxAggregateInputType = {
+    formatoId?: true
+    formatoNombre?: true
+  }
+
+  export type DocumentoFormatoCountAggregateInputType = {
+    formatoId?: true
+    formatoNombre?: true
+    _all?: true
+  }
+
+  export type DocumentoFormatoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DocumentoFormato to aggregate.
+     */
+    where?: DocumentoFormatoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DocumentoFormatoes to fetch.
+     */
+    orderBy?: DocumentoFormatoOrderByWithRelationInput | DocumentoFormatoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DocumentoFormatoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DocumentoFormatoes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DocumentoFormatoes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DocumentoFormatoes
+    **/
+    _count?: true | DocumentoFormatoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DocumentoFormatoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DocumentoFormatoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DocumentoFormatoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DocumentoFormatoMaxAggregateInputType
+  }
+
+  export type GetDocumentoFormatoAggregateType<T extends DocumentoFormatoAggregateArgs> = {
+        [P in keyof T & keyof AggregateDocumentoFormato]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDocumentoFormato[P]>
+      : GetScalarType<T[P], AggregateDocumentoFormato[P]>
+  }
+
+
+
+
+  export type DocumentoFormatoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DocumentoFormatoWhereInput
+    orderBy?: DocumentoFormatoOrderByWithAggregationInput | DocumentoFormatoOrderByWithAggregationInput[]
+    by: DocumentoFormatoScalarFieldEnum[] | DocumentoFormatoScalarFieldEnum
+    having?: DocumentoFormatoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DocumentoFormatoCountAggregateInputType | true
+    _avg?: DocumentoFormatoAvgAggregateInputType
+    _sum?: DocumentoFormatoSumAggregateInputType
+    _min?: DocumentoFormatoMinAggregateInputType
+    _max?: DocumentoFormatoMaxAggregateInputType
+  }
+
+  export type DocumentoFormatoGroupByOutputType = {
+    formatoId: number
+    formatoNombre: string
+    _count: DocumentoFormatoCountAggregateOutputType | null
+    _avg: DocumentoFormatoAvgAggregateOutputType | null
+    _sum: DocumentoFormatoSumAggregateOutputType | null
+    _min: DocumentoFormatoMinAggregateOutputType | null
+    _max: DocumentoFormatoMaxAggregateOutputType | null
+  }
+
+  type GetDocumentoFormatoGroupByPayload<T extends DocumentoFormatoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DocumentoFormatoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DocumentoFormatoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DocumentoFormatoGroupByOutputType[P]>
+            : GetScalarType<T[P], DocumentoFormatoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DocumentoFormatoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    formatoId?: boolean
+    formatoNombre?: boolean
+    documentos?: boolean | DocumentoFormato$documentosArgs<ExtArgs>
+    _count?: boolean | DocumentoFormatoCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["documentoFormato"]>
+
+  export type DocumentoFormatoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    formatoId?: boolean
+    formatoNombre?: boolean
+  }, ExtArgs["result"]["documentoFormato"]>
+
+  export type DocumentoFormatoSelectScalar = {
+    formatoId?: boolean
+    formatoNombre?: boolean
+  }
+
+  export type DocumentoFormatoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    documentos?: boolean | DocumentoFormato$documentosArgs<ExtArgs>
+    _count?: boolean | DocumentoFormatoCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DocumentoFormatoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $DocumentoFormatoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DocumentoFormato"
+    objects: {
+      documentos: Prisma.$DocumentosPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      formatoId: number
+      formatoNombre: string
+    }, ExtArgs["result"]["documentoFormato"]>
+    composites: {}
+  }
+
+  type DocumentoFormatoGetPayload<S extends boolean | null | undefined | DocumentoFormatoDefaultArgs> = $Result.GetResult<Prisma.$DocumentoFormatoPayload, S>
+
+  type DocumentoFormatoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<DocumentoFormatoFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: DocumentoFormatoCountAggregateInputType | true
+    }
+
+  export interface DocumentoFormatoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DocumentoFormato'], meta: { name: 'DocumentoFormato' } }
+    /**
+     * Find zero or one DocumentoFormato that matches the filter.
+     * @param {DocumentoFormatoFindUniqueArgs} args - Arguments to find a DocumentoFormato
+     * @example
+     * // Get one DocumentoFormato
+     * const documentoFormato = await prisma.documentoFormato.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DocumentoFormatoFindUniqueArgs>(args: SelectSubset<T, DocumentoFormatoFindUniqueArgs<ExtArgs>>): Prisma__DocumentoFormatoClient<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one DocumentoFormato that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {DocumentoFormatoFindUniqueOrThrowArgs} args - Arguments to find a DocumentoFormato
+     * @example
+     * // Get one DocumentoFormato
+     * const documentoFormato = await prisma.documentoFormato.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DocumentoFormatoFindUniqueOrThrowArgs>(args: SelectSubset<T, DocumentoFormatoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DocumentoFormatoClient<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first DocumentoFormato that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentoFormatoFindFirstArgs} args - Arguments to find a DocumentoFormato
+     * @example
+     * // Get one DocumentoFormato
+     * const documentoFormato = await prisma.documentoFormato.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DocumentoFormatoFindFirstArgs>(args?: SelectSubset<T, DocumentoFormatoFindFirstArgs<ExtArgs>>): Prisma__DocumentoFormatoClient<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first DocumentoFormato that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentoFormatoFindFirstOrThrowArgs} args - Arguments to find a DocumentoFormato
+     * @example
+     * // Get one DocumentoFormato
+     * const documentoFormato = await prisma.documentoFormato.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DocumentoFormatoFindFirstOrThrowArgs>(args?: SelectSubset<T, DocumentoFormatoFindFirstOrThrowArgs<ExtArgs>>): Prisma__DocumentoFormatoClient<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more DocumentoFormatoes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentoFormatoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DocumentoFormatoes
+     * const documentoFormatoes = await prisma.documentoFormato.findMany()
+     * 
+     * // Get first 10 DocumentoFormatoes
+     * const documentoFormatoes = await prisma.documentoFormato.findMany({ take: 10 })
+     * 
+     * // Only select the `formatoId`
+     * const documentoFormatoWithFormatoIdOnly = await prisma.documentoFormato.findMany({ select: { formatoId: true } })
+     * 
+     */
+    findMany<T extends DocumentoFormatoFindManyArgs>(args?: SelectSubset<T, DocumentoFormatoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a DocumentoFormato.
+     * @param {DocumentoFormatoCreateArgs} args - Arguments to create a DocumentoFormato.
+     * @example
+     * // Create one DocumentoFormato
+     * const DocumentoFormato = await prisma.documentoFormato.create({
+     *   data: {
+     *     // ... data to create a DocumentoFormato
+     *   }
+     * })
+     * 
+     */
+    create<T extends DocumentoFormatoCreateArgs>(args: SelectSubset<T, DocumentoFormatoCreateArgs<ExtArgs>>): Prisma__DocumentoFormatoClient<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many DocumentoFormatoes.
+     * @param {DocumentoFormatoCreateManyArgs} args - Arguments to create many DocumentoFormatoes.
+     * @example
+     * // Create many DocumentoFormatoes
+     * const documentoFormato = await prisma.documentoFormato.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DocumentoFormatoCreateManyArgs>(args?: SelectSubset<T, DocumentoFormatoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DocumentoFormatoes and returns the data saved in the database.
+     * @param {DocumentoFormatoCreateManyAndReturnArgs} args - Arguments to create many DocumentoFormatoes.
+     * @example
+     * // Create many DocumentoFormatoes
+     * const documentoFormato = await prisma.documentoFormato.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DocumentoFormatoes and only return the `formatoId`
+     * const documentoFormatoWithFormatoIdOnly = await prisma.documentoFormato.createManyAndReturn({ 
+     *   select: { formatoId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DocumentoFormatoCreateManyAndReturnArgs>(args?: SelectSubset<T, DocumentoFormatoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a DocumentoFormato.
+     * @param {DocumentoFormatoDeleteArgs} args - Arguments to delete one DocumentoFormato.
+     * @example
+     * // Delete one DocumentoFormato
+     * const DocumentoFormato = await prisma.documentoFormato.delete({
+     *   where: {
+     *     // ... filter to delete one DocumentoFormato
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DocumentoFormatoDeleteArgs>(args: SelectSubset<T, DocumentoFormatoDeleteArgs<ExtArgs>>): Prisma__DocumentoFormatoClient<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one DocumentoFormato.
+     * @param {DocumentoFormatoUpdateArgs} args - Arguments to update one DocumentoFormato.
+     * @example
+     * // Update one DocumentoFormato
+     * const documentoFormato = await prisma.documentoFormato.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DocumentoFormatoUpdateArgs>(args: SelectSubset<T, DocumentoFormatoUpdateArgs<ExtArgs>>): Prisma__DocumentoFormatoClient<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more DocumentoFormatoes.
+     * @param {DocumentoFormatoDeleteManyArgs} args - Arguments to filter DocumentoFormatoes to delete.
+     * @example
+     * // Delete a few DocumentoFormatoes
+     * const { count } = await prisma.documentoFormato.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DocumentoFormatoDeleteManyArgs>(args?: SelectSubset<T, DocumentoFormatoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DocumentoFormatoes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentoFormatoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DocumentoFormatoes
+     * const documentoFormato = await prisma.documentoFormato.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DocumentoFormatoUpdateManyArgs>(args: SelectSubset<T, DocumentoFormatoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one DocumentoFormato.
+     * @param {DocumentoFormatoUpsertArgs} args - Arguments to update or create a DocumentoFormato.
+     * @example
+     * // Update or create a DocumentoFormato
+     * const documentoFormato = await prisma.documentoFormato.upsert({
+     *   create: {
+     *     // ... data to create a DocumentoFormato
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DocumentoFormato we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DocumentoFormatoUpsertArgs>(args: SelectSubset<T, DocumentoFormatoUpsertArgs<ExtArgs>>): Prisma__DocumentoFormatoClient<$Result.GetResult<Prisma.$DocumentoFormatoPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of DocumentoFormatoes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentoFormatoCountArgs} args - Arguments to filter DocumentoFormatoes to count.
+     * @example
+     * // Count the number of DocumentoFormatoes
+     * const count = await prisma.documentoFormato.count({
+     *   where: {
+     *     // ... the filter for the DocumentoFormatoes we want to count
+     *   }
+     * })
+    **/
+    count<T extends DocumentoFormatoCountArgs>(
+      args?: Subset<T, DocumentoFormatoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DocumentoFormatoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DocumentoFormato.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentoFormatoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DocumentoFormatoAggregateArgs>(args: Subset<T, DocumentoFormatoAggregateArgs>): Prisma.PrismaPromise<GetDocumentoFormatoAggregateType<T>>
+
+    /**
+     * Group by DocumentoFormato.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentoFormatoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DocumentoFormatoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DocumentoFormatoGroupByArgs['orderBy'] }
+        : { orderBy?: DocumentoFormatoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DocumentoFormatoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDocumentoFormatoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DocumentoFormato model
+   */
+  readonly fields: DocumentoFormatoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DocumentoFormato.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DocumentoFormatoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    documentos<T extends DocumentoFormato$documentosArgs<ExtArgs> = {}>(args?: Subset<T, DocumentoFormato$documentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentosPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DocumentoFormato model
+   */ 
+  interface DocumentoFormatoFieldRefs {
+    readonly formatoId: FieldRef<"DocumentoFormato", 'Int'>
+    readonly formatoNombre: FieldRef<"DocumentoFormato", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DocumentoFormato findUnique
+   */
+  export type DocumentoFormatoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentoFormato to fetch.
+     */
+    where: DocumentoFormatoWhereUniqueInput
+  }
+
+  /**
+   * DocumentoFormato findUniqueOrThrow
+   */
+  export type DocumentoFormatoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentoFormato to fetch.
+     */
+    where: DocumentoFormatoWhereUniqueInput
+  }
+
+  /**
+   * DocumentoFormato findFirst
+   */
+  export type DocumentoFormatoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentoFormato to fetch.
+     */
+    where?: DocumentoFormatoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DocumentoFormatoes to fetch.
+     */
+    orderBy?: DocumentoFormatoOrderByWithRelationInput | DocumentoFormatoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DocumentoFormatoes.
+     */
+    cursor?: DocumentoFormatoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DocumentoFormatoes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DocumentoFormatoes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DocumentoFormatoes.
+     */
+    distinct?: DocumentoFormatoScalarFieldEnum | DocumentoFormatoScalarFieldEnum[]
+  }
+
+  /**
+   * DocumentoFormato findFirstOrThrow
+   */
+  export type DocumentoFormatoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentoFormato to fetch.
+     */
+    where?: DocumentoFormatoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DocumentoFormatoes to fetch.
+     */
+    orderBy?: DocumentoFormatoOrderByWithRelationInput | DocumentoFormatoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DocumentoFormatoes.
+     */
+    cursor?: DocumentoFormatoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DocumentoFormatoes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DocumentoFormatoes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DocumentoFormatoes.
+     */
+    distinct?: DocumentoFormatoScalarFieldEnum | DocumentoFormatoScalarFieldEnum[]
+  }
+
+  /**
+   * DocumentoFormato findMany
+   */
+  export type DocumentoFormatoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentoFormatoes to fetch.
+     */
+    where?: DocumentoFormatoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DocumentoFormatoes to fetch.
+     */
+    orderBy?: DocumentoFormatoOrderByWithRelationInput | DocumentoFormatoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DocumentoFormatoes.
+     */
+    cursor?: DocumentoFormatoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DocumentoFormatoes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DocumentoFormatoes.
+     */
+    skip?: number
+    distinct?: DocumentoFormatoScalarFieldEnum | DocumentoFormatoScalarFieldEnum[]
+  }
+
+  /**
+   * DocumentoFormato create
+   */
+  export type DocumentoFormatoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DocumentoFormato.
+     */
+    data: XOR<DocumentoFormatoCreateInput, DocumentoFormatoUncheckedCreateInput>
+  }
+
+  /**
+   * DocumentoFormato createMany
+   */
+  export type DocumentoFormatoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DocumentoFormatoes.
+     */
+    data: DocumentoFormatoCreateManyInput | DocumentoFormatoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DocumentoFormato createManyAndReturn
+   */
+  export type DocumentoFormatoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many DocumentoFormatoes.
+     */
+    data: DocumentoFormatoCreateManyInput | DocumentoFormatoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DocumentoFormato update
+   */
+  export type DocumentoFormatoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DocumentoFormato.
+     */
+    data: XOR<DocumentoFormatoUpdateInput, DocumentoFormatoUncheckedUpdateInput>
+    /**
+     * Choose, which DocumentoFormato to update.
+     */
+    where: DocumentoFormatoWhereUniqueInput
+  }
+
+  /**
+   * DocumentoFormato updateMany
+   */
+  export type DocumentoFormatoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DocumentoFormatoes.
+     */
+    data: XOR<DocumentoFormatoUpdateManyMutationInput, DocumentoFormatoUncheckedUpdateManyInput>
+    /**
+     * Filter which DocumentoFormatoes to update
+     */
+    where?: DocumentoFormatoWhereInput
+  }
+
+  /**
+   * DocumentoFormato upsert
+   */
+  export type DocumentoFormatoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DocumentoFormato to update in case it exists.
+     */
+    where: DocumentoFormatoWhereUniqueInput
+    /**
+     * In case the DocumentoFormato found by the `where` argument doesn't exist, create a new DocumentoFormato with this data.
+     */
+    create: XOR<DocumentoFormatoCreateInput, DocumentoFormatoUncheckedCreateInput>
+    /**
+     * In case the DocumentoFormato was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DocumentoFormatoUpdateInput, DocumentoFormatoUncheckedUpdateInput>
+  }
+
+  /**
+   * DocumentoFormato delete
+   */
+  export type DocumentoFormatoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+    /**
+     * Filter which DocumentoFormato to delete.
+     */
+    where: DocumentoFormatoWhereUniqueInput
+  }
+
+  /**
+   * DocumentoFormato deleteMany
+   */
+  export type DocumentoFormatoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DocumentoFormatoes to delete
+     */
+    where?: DocumentoFormatoWhereInput
+  }
+
+  /**
+   * DocumentoFormato.documentos
+   */
+  export type DocumentoFormato$documentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Documentos
+     */
+    select?: DocumentosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentosInclude<ExtArgs> | null
+    where?: DocumentosWhereInput
+    orderBy?: DocumentosOrderByWithRelationInput | DocumentosOrderByWithRelationInput[]
+    cursor?: DocumentosWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DocumentosScalarFieldEnum | DocumentosScalarFieldEnum[]
+  }
+
+  /**
+   * DocumentoFormato without action
+   */
+  export type DocumentoFormatoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentoFormato
+     */
+    select?: DocumentoFormatoSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentoFormatoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DepositosBeneficiarios
+   */
+
+  export type AggregateDepositosBeneficiarios = {
+    _count: DepositosBeneficiariosCountAggregateOutputType | null
+    _avg: DepositosBeneficiariosAvgAggregateOutputType | null
+    _sum: DepositosBeneficiariosSumAggregateOutputType | null
+    _min: DepositosBeneficiariosMinAggregateOutputType | null
+    _max: DepositosBeneficiariosMaxAggregateOutputType | null
+  }
+
+  export type DepositosBeneficiariosAvgAggregateOutputType = {
+    depositoId: number | null
+    beneficiarioId: number | null
+    monto: Decimal | null
+  }
+
+  export type DepositosBeneficiariosSumAggregateOutputType = {
+    depositoId: number | null
+    beneficiarioId: number | null
+    monto: Decimal | null
+  }
+
+  export type DepositosBeneficiariosMinAggregateOutputType = {
+    depositoId: number | null
+    beneficiarioId: number | null
+    imagenBase64: string | null
+    fhCreacion: Date | null
+    monto: Decimal | null
+  }
+
+  export type DepositosBeneficiariosMaxAggregateOutputType = {
+    depositoId: number | null
+    beneficiarioId: number | null
+    imagenBase64: string | null
+    fhCreacion: Date | null
+    monto: Decimal | null
+  }
+
+  export type DepositosBeneficiariosCountAggregateOutputType = {
+    depositoId: number
+    beneficiarioId: number
+    imagenBase64: number
+    fhCreacion: number
+    monto: number
+    _all: number
+  }
+
+
+  export type DepositosBeneficiariosAvgAggregateInputType = {
+    depositoId?: true
+    beneficiarioId?: true
+    monto?: true
+  }
+
+  export type DepositosBeneficiariosSumAggregateInputType = {
+    depositoId?: true
+    beneficiarioId?: true
+    monto?: true
+  }
+
+  export type DepositosBeneficiariosMinAggregateInputType = {
+    depositoId?: true
+    beneficiarioId?: true
+    imagenBase64?: true
+    fhCreacion?: true
+    monto?: true
+  }
+
+  export type DepositosBeneficiariosMaxAggregateInputType = {
+    depositoId?: true
+    beneficiarioId?: true
+    imagenBase64?: true
+    fhCreacion?: true
+    monto?: true
+  }
+
+  export type DepositosBeneficiariosCountAggregateInputType = {
+    depositoId?: true
+    beneficiarioId?: true
+    imagenBase64?: true
+    fhCreacion?: true
+    monto?: true
+    _all?: true
+  }
+
+  export type DepositosBeneficiariosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DepositosBeneficiarios to aggregate.
+     */
+    where?: DepositosBeneficiariosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DepositosBeneficiarios to fetch.
+     */
+    orderBy?: DepositosBeneficiariosOrderByWithRelationInput | DepositosBeneficiariosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DepositosBeneficiariosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DepositosBeneficiarios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DepositosBeneficiarios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DepositosBeneficiarios
+    **/
+    _count?: true | DepositosBeneficiariosCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DepositosBeneficiariosAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DepositosBeneficiariosSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DepositosBeneficiariosMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DepositosBeneficiariosMaxAggregateInputType
+  }
+
+  export type GetDepositosBeneficiariosAggregateType<T extends DepositosBeneficiariosAggregateArgs> = {
+        [P in keyof T & keyof AggregateDepositosBeneficiarios]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDepositosBeneficiarios[P]>
+      : GetScalarType<T[P], AggregateDepositosBeneficiarios[P]>
+  }
+
+
+
+
+  export type DepositosBeneficiariosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DepositosBeneficiariosWhereInput
+    orderBy?: DepositosBeneficiariosOrderByWithAggregationInput | DepositosBeneficiariosOrderByWithAggregationInput[]
+    by: DepositosBeneficiariosScalarFieldEnum[] | DepositosBeneficiariosScalarFieldEnum
+    having?: DepositosBeneficiariosScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DepositosBeneficiariosCountAggregateInputType | true
+    _avg?: DepositosBeneficiariosAvgAggregateInputType
+    _sum?: DepositosBeneficiariosSumAggregateInputType
+    _min?: DepositosBeneficiariosMinAggregateInputType
+    _max?: DepositosBeneficiariosMaxAggregateInputType
+  }
+
+  export type DepositosBeneficiariosGroupByOutputType = {
+    depositoId: number
+    beneficiarioId: number
+    imagenBase64: string
+    fhCreacion: Date
+    monto: Decimal
+    _count: DepositosBeneficiariosCountAggregateOutputType | null
+    _avg: DepositosBeneficiariosAvgAggregateOutputType | null
+    _sum: DepositosBeneficiariosSumAggregateOutputType | null
+    _min: DepositosBeneficiariosMinAggregateOutputType | null
+    _max: DepositosBeneficiariosMaxAggregateOutputType | null
+  }
+
+  type GetDepositosBeneficiariosGroupByPayload<T extends DepositosBeneficiariosGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DepositosBeneficiariosGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DepositosBeneficiariosGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DepositosBeneficiariosGroupByOutputType[P]>
+            : GetScalarType<T[P], DepositosBeneficiariosGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DepositosBeneficiariosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    depositoId?: boolean
+    beneficiarioId?: boolean
+    imagenBase64?: boolean
+    fhCreacion?: boolean
+    monto?: boolean
+    beneficiario?: boolean | BeneficiariosDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["depositosBeneficiarios"]>
+
+  export type DepositosBeneficiariosSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    depositoId?: boolean
+    beneficiarioId?: boolean
+    imagenBase64?: boolean
+    fhCreacion?: boolean
+    monto?: boolean
+    beneficiario?: boolean | BeneficiariosDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["depositosBeneficiarios"]>
+
+  export type DepositosBeneficiariosSelectScalar = {
+    depositoId?: boolean
+    beneficiarioId?: boolean
+    imagenBase64?: boolean
+    fhCreacion?: boolean
+    monto?: boolean
+  }
+
+  export type DepositosBeneficiariosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    beneficiario?: boolean | BeneficiariosDefaultArgs<ExtArgs>
+  }
+  export type DepositosBeneficiariosIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    beneficiario?: boolean | BeneficiariosDefaultArgs<ExtArgs>
+  }
+
+  export type $DepositosBeneficiariosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DepositosBeneficiarios"
+    objects: {
+      beneficiario: Prisma.$BeneficiariosPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      depositoId: number
+      beneficiarioId: number
+      imagenBase64: string
+      fhCreacion: Date
+      monto: Prisma.Decimal
+    }, ExtArgs["result"]["depositosBeneficiarios"]>
+    composites: {}
+  }
+
+  type DepositosBeneficiariosGetPayload<S extends boolean | null | undefined | DepositosBeneficiariosDefaultArgs> = $Result.GetResult<Prisma.$DepositosBeneficiariosPayload, S>
+
+  type DepositosBeneficiariosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<DepositosBeneficiariosFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: DepositosBeneficiariosCountAggregateInputType | true
+    }
+
+  export interface DepositosBeneficiariosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DepositosBeneficiarios'], meta: { name: 'DepositosBeneficiarios' } }
+    /**
+     * Find zero or one DepositosBeneficiarios that matches the filter.
+     * @param {DepositosBeneficiariosFindUniqueArgs} args - Arguments to find a DepositosBeneficiarios
+     * @example
+     * // Get one DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DepositosBeneficiariosFindUniqueArgs>(args: SelectSubset<T, DepositosBeneficiariosFindUniqueArgs<ExtArgs>>): Prisma__DepositosBeneficiariosClient<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one DepositosBeneficiarios that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {DepositosBeneficiariosFindUniqueOrThrowArgs} args - Arguments to find a DepositosBeneficiarios
+     * @example
+     * // Get one DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DepositosBeneficiariosFindUniqueOrThrowArgs>(args: SelectSubset<T, DepositosBeneficiariosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DepositosBeneficiariosClient<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first DepositosBeneficiarios that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepositosBeneficiariosFindFirstArgs} args - Arguments to find a DepositosBeneficiarios
+     * @example
+     * // Get one DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DepositosBeneficiariosFindFirstArgs>(args?: SelectSubset<T, DepositosBeneficiariosFindFirstArgs<ExtArgs>>): Prisma__DepositosBeneficiariosClient<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first DepositosBeneficiarios that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepositosBeneficiariosFindFirstOrThrowArgs} args - Arguments to find a DepositosBeneficiarios
+     * @example
+     * // Get one DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DepositosBeneficiariosFindFirstOrThrowArgs>(args?: SelectSubset<T, DepositosBeneficiariosFindFirstOrThrowArgs<ExtArgs>>): Prisma__DepositosBeneficiariosClient<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more DepositosBeneficiarios that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepositosBeneficiariosFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.findMany()
+     * 
+     * // Get first 10 DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.findMany({ take: 10 })
+     * 
+     * // Only select the `depositoId`
+     * const depositosBeneficiariosWithDepositoIdOnly = await prisma.depositosBeneficiarios.findMany({ select: { depositoId: true } })
+     * 
+     */
+    findMany<T extends DepositosBeneficiariosFindManyArgs>(args?: SelectSubset<T, DepositosBeneficiariosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a DepositosBeneficiarios.
+     * @param {DepositosBeneficiariosCreateArgs} args - Arguments to create a DepositosBeneficiarios.
+     * @example
+     * // Create one DepositosBeneficiarios
+     * const DepositosBeneficiarios = await prisma.depositosBeneficiarios.create({
+     *   data: {
+     *     // ... data to create a DepositosBeneficiarios
+     *   }
+     * })
+     * 
+     */
+    create<T extends DepositosBeneficiariosCreateArgs>(args: SelectSubset<T, DepositosBeneficiariosCreateArgs<ExtArgs>>): Prisma__DepositosBeneficiariosClient<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many DepositosBeneficiarios.
+     * @param {DepositosBeneficiariosCreateManyArgs} args - Arguments to create many DepositosBeneficiarios.
+     * @example
+     * // Create many DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DepositosBeneficiariosCreateManyArgs>(args?: SelectSubset<T, DepositosBeneficiariosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DepositosBeneficiarios and returns the data saved in the database.
+     * @param {DepositosBeneficiariosCreateManyAndReturnArgs} args - Arguments to create many DepositosBeneficiarios.
+     * @example
+     * // Create many DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DepositosBeneficiarios and only return the `depositoId`
+     * const depositosBeneficiariosWithDepositoIdOnly = await prisma.depositosBeneficiarios.createManyAndReturn({ 
+     *   select: { depositoId: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DepositosBeneficiariosCreateManyAndReturnArgs>(args?: SelectSubset<T, DepositosBeneficiariosCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a DepositosBeneficiarios.
+     * @param {DepositosBeneficiariosDeleteArgs} args - Arguments to delete one DepositosBeneficiarios.
+     * @example
+     * // Delete one DepositosBeneficiarios
+     * const DepositosBeneficiarios = await prisma.depositosBeneficiarios.delete({
+     *   where: {
+     *     // ... filter to delete one DepositosBeneficiarios
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DepositosBeneficiariosDeleteArgs>(args: SelectSubset<T, DepositosBeneficiariosDeleteArgs<ExtArgs>>): Prisma__DepositosBeneficiariosClient<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one DepositosBeneficiarios.
+     * @param {DepositosBeneficiariosUpdateArgs} args - Arguments to update one DepositosBeneficiarios.
+     * @example
+     * // Update one DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DepositosBeneficiariosUpdateArgs>(args: SelectSubset<T, DepositosBeneficiariosUpdateArgs<ExtArgs>>): Prisma__DepositosBeneficiariosClient<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more DepositosBeneficiarios.
+     * @param {DepositosBeneficiariosDeleteManyArgs} args - Arguments to filter DepositosBeneficiarios to delete.
+     * @example
+     * // Delete a few DepositosBeneficiarios
+     * const { count } = await prisma.depositosBeneficiarios.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DepositosBeneficiariosDeleteManyArgs>(args?: SelectSubset<T, DepositosBeneficiariosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DepositosBeneficiarios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepositosBeneficiariosUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DepositosBeneficiariosUpdateManyArgs>(args: SelectSubset<T, DepositosBeneficiariosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one DepositosBeneficiarios.
+     * @param {DepositosBeneficiariosUpsertArgs} args - Arguments to update or create a DepositosBeneficiarios.
+     * @example
+     * // Update or create a DepositosBeneficiarios
+     * const depositosBeneficiarios = await prisma.depositosBeneficiarios.upsert({
+     *   create: {
+     *     // ... data to create a DepositosBeneficiarios
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DepositosBeneficiarios we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DepositosBeneficiariosUpsertArgs>(args: SelectSubset<T, DepositosBeneficiariosUpsertArgs<ExtArgs>>): Prisma__DepositosBeneficiariosClient<$Result.GetResult<Prisma.$DepositosBeneficiariosPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of DepositosBeneficiarios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepositosBeneficiariosCountArgs} args - Arguments to filter DepositosBeneficiarios to count.
+     * @example
+     * // Count the number of DepositosBeneficiarios
+     * const count = await prisma.depositosBeneficiarios.count({
+     *   where: {
+     *     // ... the filter for the DepositosBeneficiarios we want to count
+     *   }
+     * })
+    **/
+    count<T extends DepositosBeneficiariosCountArgs>(
+      args?: Subset<T, DepositosBeneficiariosCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DepositosBeneficiariosCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DepositosBeneficiarios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepositosBeneficiariosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DepositosBeneficiariosAggregateArgs>(args: Subset<T, DepositosBeneficiariosAggregateArgs>): Prisma.PrismaPromise<GetDepositosBeneficiariosAggregateType<T>>
+
+    /**
+     * Group by DepositosBeneficiarios.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DepositosBeneficiariosGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DepositosBeneficiariosGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DepositosBeneficiariosGroupByArgs['orderBy'] }
+        : { orderBy?: DepositosBeneficiariosGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DepositosBeneficiariosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDepositosBeneficiariosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DepositosBeneficiarios model
+   */
+  readonly fields: DepositosBeneficiariosFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DepositosBeneficiarios.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DepositosBeneficiariosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    beneficiario<T extends BeneficiariosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BeneficiariosDefaultArgs<ExtArgs>>): Prisma__BeneficiariosClient<$Result.GetResult<Prisma.$BeneficiariosPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DepositosBeneficiarios model
+   */ 
+  interface DepositosBeneficiariosFieldRefs {
+    readonly depositoId: FieldRef<"DepositosBeneficiarios", 'Int'>
+    readonly beneficiarioId: FieldRef<"DepositosBeneficiarios", 'Int'>
+    readonly imagenBase64: FieldRef<"DepositosBeneficiarios", 'String'>
+    readonly fhCreacion: FieldRef<"DepositosBeneficiarios", 'DateTime'>
+    readonly monto: FieldRef<"DepositosBeneficiarios", 'Decimal'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DepositosBeneficiarios findUnique
+   */
+  export type DepositosBeneficiariosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    /**
+     * Filter, which DepositosBeneficiarios to fetch.
+     */
+    where: DepositosBeneficiariosWhereUniqueInput
+  }
+
+  /**
+   * DepositosBeneficiarios findUniqueOrThrow
+   */
+  export type DepositosBeneficiariosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    /**
+     * Filter, which DepositosBeneficiarios to fetch.
+     */
+    where: DepositosBeneficiariosWhereUniqueInput
+  }
+
+  /**
+   * DepositosBeneficiarios findFirst
+   */
+  export type DepositosBeneficiariosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    /**
+     * Filter, which DepositosBeneficiarios to fetch.
+     */
+    where?: DepositosBeneficiariosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DepositosBeneficiarios to fetch.
+     */
+    orderBy?: DepositosBeneficiariosOrderByWithRelationInput | DepositosBeneficiariosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DepositosBeneficiarios.
+     */
+    cursor?: DepositosBeneficiariosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DepositosBeneficiarios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DepositosBeneficiarios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DepositosBeneficiarios.
+     */
+    distinct?: DepositosBeneficiariosScalarFieldEnum | DepositosBeneficiariosScalarFieldEnum[]
+  }
+
+  /**
+   * DepositosBeneficiarios findFirstOrThrow
+   */
+  export type DepositosBeneficiariosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    /**
+     * Filter, which DepositosBeneficiarios to fetch.
+     */
+    where?: DepositosBeneficiariosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DepositosBeneficiarios to fetch.
+     */
+    orderBy?: DepositosBeneficiariosOrderByWithRelationInput | DepositosBeneficiariosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DepositosBeneficiarios.
+     */
+    cursor?: DepositosBeneficiariosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DepositosBeneficiarios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DepositosBeneficiarios.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DepositosBeneficiarios.
+     */
+    distinct?: DepositosBeneficiariosScalarFieldEnum | DepositosBeneficiariosScalarFieldEnum[]
+  }
+
+  /**
+   * DepositosBeneficiarios findMany
+   */
+  export type DepositosBeneficiariosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    /**
+     * Filter, which DepositosBeneficiarios to fetch.
+     */
+    where?: DepositosBeneficiariosWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DepositosBeneficiarios to fetch.
+     */
+    orderBy?: DepositosBeneficiariosOrderByWithRelationInput | DepositosBeneficiariosOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DepositosBeneficiarios.
+     */
+    cursor?: DepositosBeneficiariosWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DepositosBeneficiarios from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DepositosBeneficiarios.
+     */
+    skip?: number
+    distinct?: DepositosBeneficiariosScalarFieldEnum | DepositosBeneficiariosScalarFieldEnum[]
+  }
+
+  /**
+   * DepositosBeneficiarios create
+   */
+  export type DepositosBeneficiariosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DepositosBeneficiarios.
+     */
+    data: XOR<DepositosBeneficiariosCreateInput, DepositosBeneficiariosUncheckedCreateInput>
+  }
+
+  /**
+   * DepositosBeneficiarios createMany
+   */
+  export type DepositosBeneficiariosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DepositosBeneficiarios.
+     */
+    data: DepositosBeneficiariosCreateManyInput | DepositosBeneficiariosCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DepositosBeneficiarios createManyAndReturn
+   */
+  export type DepositosBeneficiariosCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many DepositosBeneficiarios.
+     */
+    data: DepositosBeneficiariosCreateManyInput | DepositosBeneficiariosCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DepositosBeneficiarios update
+   */
+  export type DepositosBeneficiariosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DepositosBeneficiarios.
+     */
+    data: XOR<DepositosBeneficiariosUpdateInput, DepositosBeneficiariosUncheckedUpdateInput>
+    /**
+     * Choose, which DepositosBeneficiarios to update.
+     */
+    where: DepositosBeneficiariosWhereUniqueInput
+  }
+
+  /**
+   * DepositosBeneficiarios updateMany
+   */
+  export type DepositosBeneficiariosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DepositosBeneficiarios.
+     */
+    data: XOR<DepositosBeneficiariosUpdateManyMutationInput, DepositosBeneficiariosUncheckedUpdateManyInput>
+    /**
+     * Filter which DepositosBeneficiarios to update
+     */
+    where?: DepositosBeneficiariosWhereInput
+  }
+
+  /**
+   * DepositosBeneficiarios upsert
+   */
+  export type DepositosBeneficiariosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DepositosBeneficiarios to update in case it exists.
+     */
+    where: DepositosBeneficiariosWhereUniqueInput
+    /**
+     * In case the DepositosBeneficiarios found by the `where` argument doesn't exist, create a new DepositosBeneficiarios with this data.
+     */
+    create: XOR<DepositosBeneficiariosCreateInput, DepositosBeneficiariosUncheckedCreateInput>
+    /**
+     * In case the DepositosBeneficiarios was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DepositosBeneficiariosUpdateInput, DepositosBeneficiariosUncheckedUpdateInput>
+  }
+
+  /**
+   * DepositosBeneficiarios delete
+   */
+  export type DepositosBeneficiariosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+    /**
+     * Filter which DepositosBeneficiarios to delete.
+     */
+    where: DepositosBeneficiariosWhereUniqueInput
+  }
+
+  /**
+   * DepositosBeneficiarios deleteMany
+   */
+  export type DepositosBeneficiariosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DepositosBeneficiarios to delete
+     */
+    where?: DepositosBeneficiariosWhereInput
+  }
+
+  /**
+   * DepositosBeneficiarios without action
+   */
+  export type DepositosBeneficiariosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DepositosBeneficiarios
+     */
+    select?: DepositosBeneficiariosSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepositosBeneficiariosInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -39445,7 +40566,9 @@ export namespace Prisma {
     beneficiarioCuentaTipo: 'beneficiarioCuentaTipo',
     beneficiarioCuentaNo: 'beneficiarioCuentaNo',
     beneficiarioFecha: 'beneficiarioFecha',
-    beneficiarioCorreo: 'beneficiarioCorreo'
+    beneficiarioCorreo: 'beneficiarioCorreo',
+    beneficiarioTelefono: 'beneficiarioTelefono',
+    imagenBase64: 'imagenBase64'
   };
 
   export type BeneficiariosScalarFieldEnum = (typeof BeneficiariosScalarFieldEnum)[keyof typeof BeneficiariosScalarFieldEnum]
@@ -39566,17 +40689,15 @@ export namespace Prisma {
     paisId: 'paisId',
     provinciaId: 'provinciaId',
     ciudadId: 'ciudadId',
-    precioId: 'precioId',
     autoEstatus: 'autoEstatus',
-    fechaDeViajeInicial: 'fechaDeViajeInicial',
-    fechaDeViajeFinal: 'fechaDeViajeFinal',
     valoracion: 'valoracion',
     valoracionAcumulacion: 'valoracionAcumulacion',
     cantidadValoracion: 'cantidadValoracion',
     cantidadMeGustas: 'cantidadMeGustas',
     transmisionId: 'transmisionId',
     modeloVersionId: 'modeloVersionId',
-    combustibleId: 'combustibleId'
+    combustibleId: 'combustibleId',
+    precio: 'precio'
   };
 
   export type AutosScalarFieldEnum = (typeof AutosScalarFieldEnum)[keyof typeof AutosScalarFieldEnum]
@@ -39602,7 +40723,8 @@ export namespace Prisma {
     documentoTipo: 'documentoTipo',
     fhCreacion: 'fhCreacion',
     usuarioId: 'usuarioId',
-    imagenArchivo: 'imagenArchivo'
+    imagenArchivo: 'imagenArchivo',
+    documentoFormatoId: 'documentoFormatoId'
   };
 
   export type DocumentosScalarFieldEnum = (typeof DocumentosScalarFieldEnum)[keyof typeof DocumentosScalarFieldEnum]
@@ -39677,7 +40799,9 @@ export namespace Prisma {
     autoId: 'autoId',
     tarjetaId: 'tarjetaId',
     reservaEstatus: 'reservaEstatus',
-    tarjetaNumero: 'tarjetaNumero'
+    tarjetaNumero: 'tarjetaNumero',
+    codigoVerificacionEntrega: 'codigoVerificacionEntrega',
+    entregaVerificada: 'entregaVerificada'
   };
 
   export type ReservasScalarFieldEnum = (typeof ReservasScalarFieldEnum)[keyof typeof ReservasScalarFieldEnum]
@@ -39697,16 +40821,6 @@ export namespace Prisma {
   };
 
   export type BancoCuentaTipoScalarFieldEnum = (typeof BancoCuentaTipoScalarFieldEnum)[keyof typeof BancoCuentaTipoScalarFieldEnum]
-
-
-  export const PreciosScalarFieldEnum: {
-    precioId: 'precioId',
-    precioNombre: 'precioNombre',
-    precioCliente: 'precioCliente',
-    precioBeneficiario: 'precioBeneficiario'
-  };
-
-  export type PreciosScalarFieldEnum = (typeof PreciosScalarFieldEnum)[keyof typeof PreciosScalarFieldEnum]
 
 
   export const AutoEstatusScalarFieldEnum: {
@@ -39792,6 +40906,25 @@ export namespace Prisma {
   };
 
   export type CombustiblesScalarFieldEnum = (typeof CombustiblesScalarFieldEnum)[keyof typeof CombustiblesScalarFieldEnum]
+
+
+  export const DocumentoFormatoScalarFieldEnum: {
+    formatoId: 'formatoId',
+    formatoNombre: 'formatoNombre'
+  };
+
+  export type DocumentoFormatoScalarFieldEnum = (typeof DocumentoFormatoScalarFieldEnum)[keyof typeof DocumentoFormatoScalarFieldEnum]
+
+
+  export const DepositosBeneficiariosScalarFieldEnum: {
+    depositoId: 'depositoId',
+    beneficiarioId: 'beneficiarioId',
+    imagenBase64: 'imagenBase64',
+    fhCreacion: 'fhCreacion',
+    monto: 'monto'
+  };
+
+  export type DepositosBeneficiariosScalarFieldEnum = (typeof DepositosBeneficiariosScalarFieldEnum)[keyof typeof DepositosBeneficiariosScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -40152,11 +41285,14 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFilter<"Beneficiarios"> | string
     beneficiarioFecha?: DateTimeNullableFilter<"Beneficiarios"> | Date | string | null
     beneficiarioCorreo?: StringNullableFilter<"Beneficiarios"> | string | null
+    beneficiarioTelefono?: StringNullableFilter<"Beneficiarios"> | string | null
+    imagenBase64?: StringNullableFilter<"Beneficiarios"> | string | null
     banco?: XOR<BancosRelationFilter, BancosWhereInput>
     bancoCuentaTipo?: XOR<BancoCuentaTipoRelationFilter, BancoCuentaTipoWhereInput>
     usuarios?: UsuariosListRelationFilter
     autos?: AutosListRelationFilter
     reservas?: ReservasListRelationFilter
+    depositos?: DepositosBeneficiariosListRelationFilter
   }
 
   export type BeneficiariosOrderByWithRelationInput = {
@@ -40171,11 +41307,14 @@ export namespace Prisma {
     beneficiarioCuentaNo?: SortOrder
     beneficiarioFecha?: SortOrderInput | SortOrder
     beneficiarioCorreo?: SortOrderInput | SortOrder
+    beneficiarioTelefono?: SortOrderInput | SortOrder
+    imagenBase64?: SortOrderInput | SortOrder
     banco?: BancosOrderByWithRelationInput
     bancoCuentaTipo?: BancoCuentaTipoOrderByWithRelationInput
     usuarios?: UsuariosOrderByRelationAggregateInput
     autos?: AutosOrderByRelationAggregateInput
     reservas?: ReservasOrderByRelationAggregateInput
+    depositos?: DepositosBeneficiariosOrderByRelationAggregateInput
   }
 
   export type BeneficiariosWhereUniqueInput = Prisma.AtLeast<{
@@ -40193,11 +41332,14 @@ export namespace Prisma {
     beneficiarioCuentaTipo?: IntFilter<"Beneficiarios"> | number
     beneficiarioFecha?: DateTimeNullableFilter<"Beneficiarios"> | Date | string | null
     beneficiarioCorreo?: StringNullableFilter<"Beneficiarios"> | string | null
+    beneficiarioTelefono?: StringNullableFilter<"Beneficiarios"> | string | null
+    imagenBase64?: StringNullableFilter<"Beneficiarios"> | string | null
     banco?: XOR<BancosRelationFilter, BancosWhereInput>
     bancoCuentaTipo?: XOR<BancoCuentaTipoRelationFilter, BancoCuentaTipoWhereInput>
     usuarios?: UsuariosListRelationFilter
     autos?: AutosListRelationFilter
     reservas?: ReservasListRelationFilter
+    depositos?: DepositosBeneficiariosListRelationFilter
   }, "beneficiarioId" | "beneficiarioId" | "beneficiarioIdentificacion" | "beneficiarioCuentaNo">
 
   export type BeneficiariosOrderByWithAggregationInput = {
@@ -40212,6 +41354,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: SortOrder
     beneficiarioFecha?: SortOrderInput | SortOrder
     beneficiarioCorreo?: SortOrderInput | SortOrder
+    beneficiarioTelefono?: SortOrderInput | SortOrder
+    imagenBase64?: SortOrderInput | SortOrder
     _count?: BeneficiariosCountOrderByAggregateInput
     _avg?: BeneficiariosAvgOrderByAggregateInput
     _max?: BeneficiariosMaxOrderByAggregateInput
@@ -40234,6 +41378,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringWithAggregatesFilter<"Beneficiarios"> | string
     beneficiarioFecha?: DateTimeNullableWithAggregatesFilter<"Beneficiarios"> | Date | string | null
     beneficiarioCorreo?: StringNullableWithAggregatesFilter<"Beneficiarios"> | string | null
+    beneficiarioTelefono?: StringNullableWithAggregatesFilter<"Beneficiarios"> | string | null
+    imagenBase64?: StringNullableWithAggregatesFilter<"Beneficiarios"> | string | null
   }
 
   export type DireccionesWhereInput = {
@@ -40758,10 +41904,7 @@ export namespace Prisma {
     paisId?: IntFilter<"Autos"> | number
     provinciaId?: IntNullableFilter<"Autos"> | number | null
     ciudadId?: IntFilter<"Autos"> | number
-    precioId?: IntFilter<"Autos"> | number
     autoEstatus?: IntNullableFilter<"Autos"> | number | null
-    fechaDeViajeInicial?: DateTimeNullableFilter<"Autos"> | Date | string | null
-    fechaDeViajeFinal?: DateTimeNullableFilter<"Autos"> | Date | string | null
     valoracion?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
@@ -40769,6 +41912,7 @@ export namespace Prisma {
     transmisionId?: IntNullableFilter<"Autos"> | number | null
     modeloVersionId?: IntNullableFilter<"Autos"> | number | null
     combustibleId?: IntNullableFilter<"Autos"> | number | null
+    precio?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     tipo?: XOR<TipoAutoRelationFilter, TipoAutoWhereInput>
     marca?: XOR<MarcasRelationFilter, MarcasWhereInput>
     modelo?: XOR<ModelosRelationFilter, ModelosWhereInput>
@@ -40778,7 +41922,6 @@ export namespace Prisma {
     pais?: XOR<PaisesRelationFilter, PaisesWhereInput>
     provincia?: XOR<ProvinciasNullableRelationFilter, ProvinciasWhereInput> | null
     ciudad?: XOR<CiudadesRelationFilter, CiudadesWhereInput>
-    precio?: XOR<PreciosRelationFilter, PreciosWhereInput>
     reservas?: ReservasListRelationFilter
     valoraciones?: ValoracionesListRelationFilter
     imagenes?: ImagenesListRelationFilter
@@ -40812,10 +41955,7 @@ export namespace Prisma {
     paisId?: SortOrder
     provinciaId?: SortOrderInput | SortOrder
     ciudadId?: SortOrder
-    precioId?: SortOrder
     autoEstatus?: SortOrderInput | SortOrder
-    fechaDeViajeInicial?: SortOrderInput | SortOrder
-    fechaDeViajeFinal?: SortOrderInput | SortOrder
     valoracion?: SortOrder
     valoracionAcumulacion?: SortOrder
     cantidadValoracion?: SortOrder
@@ -40823,6 +41963,7 @@ export namespace Prisma {
     transmisionId?: SortOrderInput | SortOrder
     modeloVersionId?: SortOrderInput | SortOrder
     combustibleId?: SortOrderInput | SortOrder
+    precio?: SortOrder
     tipo?: TipoAutoOrderByWithRelationInput
     marca?: MarcasOrderByWithRelationInput
     modelo?: ModelosOrderByWithRelationInput
@@ -40832,7 +41973,6 @@ export namespace Prisma {
     pais?: PaisesOrderByWithRelationInput
     provincia?: ProvinciasOrderByWithRelationInput
     ciudad?: CiudadesOrderByWithRelationInput
-    precio?: PreciosOrderByWithRelationInput
     reservas?: ReservasOrderByRelationAggregateInput
     valoraciones?: ValoracionesOrderByRelationAggregateInput
     imagenes?: ImagenesOrderByRelationAggregateInput
@@ -40869,10 +42009,7 @@ export namespace Prisma {
     paisId?: IntFilter<"Autos"> | number
     provinciaId?: IntNullableFilter<"Autos"> | number | null
     ciudadId?: IntFilter<"Autos"> | number
-    precioId?: IntFilter<"Autos"> | number
     autoEstatus?: IntNullableFilter<"Autos"> | number | null
-    fechaDeViajeInicial?: DateTimeNullableFilter<"Autos"> | Date | string | null
-    fechaDeViajeFinal?: DateTimeNullableFilter<"Autos"> | Date | string | null
     valoracion?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
@@ -40880,6 +42017,7 @@ export namespace Prisma {
     transmisionId?: IntNullableFilter<"Autos"> | number | null
     modeloVersionId?: IntNullableFilter<"Autos"> | number | null
     combustibleId?: IntNullableFilter<"Autos"> | number | null
+    precio?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     tipo?: XOR<TipoAutoRelationFilter, TipoAutoWhereInput>
     marca?: XOR<MarcasRelationFilter, MarcasWhereInput>
     modelo?: XOR<ModelosRelationFilter, ModelosWhereInput>
@@ -40889,7 +42027,6 @@ export namespace Prisma {
     pais?: XOR<PaisesRelationFilter, PaisesWhereInput>
     provincia?: XOR<ProvinciasNullableRelationFilter, ProvinciasWhereInput> | null
     ciudad?: XOR<CiudadesRelationFilter, CiudadesWhereInput>
-    precio?: XOR<PreciosRelationFilter, PreciosWhereInput>
     reservas?: ReservasListRelationFilter
     valoraciones?: ValoracionesListRelationFilter
     imagenes?: ImagenesListRelationFilter
@@ -40923,10 +42060,7 @@ export namespace Prisma {
     paisId?: SortOrder
     provinciaId?: SortOrderInput | SortOrder
     ciudadId?: SortOrder
-    precioId?: SortOrder
     autoEstatus?: SortOrderInput | SortOrder
-    fechaDeViajeInicial?: SortOrderInput | SortOrder
-    fechaDeViajeFinal?: SortOrderInput | SortOrder
     valoracion?: SortOrder
     valoracionAcumulacion?: SortOrder
     cantidadValoracion?: SortOrder
@@ -40934,6 +42068,7 @@ export namespace Prisma {
     transmisionId?: SortOrderInput | SortOrder
     modeloVersionId?: SortOrderInput | SortOrder
     combustibleId?: SortOrderInput | SortOrder
+    precio?: SortOrder
     _count?: AutosCountOrderByAggregateInput
     _avg?: AutosAvgOrderByAggregateInput
     _max?: AutosMaxOrderByAggregateInput
@@ -40967,10 +42102,7 @@ export namespace Prisma {
     paisId?: IntWithAggregatesFilter<"Autos"> | number
     provinciaId?: IntNullableWithAggregatesFilter<"Autos"> | number | null
     ciudadId?: IntWithAggregatesFilter<"Autos"> | number
-    precioId?: IntWithAggregatesFilter<"Autos"> | number
     autoEstatus?: IntNullableWithAggregatesFilter<"Autos"> | number | null
-    fechaDeViajeInicial?: DateTimeNullableWithAggregatesFilter<"Autos"> | Date | string | null
-    fechaDeViajeFinal?: DateTimeNullableWithAggregatesFilter<"Autos"> | Date | string | null
     valoracion?: DecimalWithAggregatesFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalWithAggregatesFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalWithAggregatesFilter<"Autos"> | Decimal | DecimalJsLike | number | string
@@ -40978,6 +42110,7 @@ export namespace Prisma {
     transmisionId?: IntNullableWithAggregatesFilter<"Autos"> | number | null
     modeloVersionId?: IntNullableWithAggregatesFilter<"Autos"> | number | null
     combustibleId?: IntNullableWithAggregatesFilter<"Autos"> | number | null
+    precio?: DecimalWithAggregatesFilter<"Autos"> | Decimal | DecimalJsLike | number | string
   }
 
   export type ImagenesWhereInput = {
@@ -41061,9 +42194,11 @@ export namespace Prisma {
     fhCreacion?: DateTimeFilter<"Documentos"> | Date | string
     usuarioId?: IntFilter<"Documentos"> | number
     imagenArchivo?: StringNullableFilter<"Documentos"> | string | null
+    documentoFormatoId?: IntNullableFilter<"Documentos"> | number | null
     estatus?: XOR<DocumentoEstatusRelationFilter, DocumentoEstatusWhereInput>
     tipo?: XOR<TipoDocumentoRelationFilter, TipoDocumentoWhereInput>
     usuario?: XOR<UsuariosRelationFilter, UsuariosWhereInput>
+    documentoFormato?: XOR<DocumentoFormatoNullableRelationFilter, DocumentoFormatoWhereInput> | null
   }
 
   export type DocumentosOrderByWithRelationInput = {
@@ -41074,9 +42209,11 @@ export namespace Prisma {
     fhCreacion?: SortOrder
     usuarioId?: SortOrder
     imagenArchivo?: SortOrderInput | SortOrder
+    documentoFormatoId?: SortOrderInput | SortOrder
     estatus?: DocumentoEstatusOrderByWithRelationInput
     tipo?: TipoDocumentoOrderByWithRelationInput
     usuario?: UsuariosOrderByWithRelationInput
+    documentoFormato?: DocumentoFormatoOrderByWithRelationInput
   }
 
   export type DocumentosWhereUniqueInput = Prisma.AtLeast<{
@@ -41090,9 +42227,11 @@ export namespace Prisma {
     fhCreacion?: DateTimeFilter<"Documentos"> | Date | string
     usuarioId?: IntFilter<"Documentos"> | number
     imagenArchivo?: StringNullableFilter<"Documentos"> | string | null
+    documentoFormatoId?: IntNullableFilter<"Documentos"> | number | null
     estatus?: XOR<DocumentoEstatusRelationFilter, DocumentoEstatusWhereInput>
     tipo?: XOR<TipoDocumentoRelationFilter, TipoDocumentoWhereInput>
     usuario?: XOR<UsuariosRelationFilter, UsuariosWhereInput>
+    documentoFormato?: XOR<DocumentoFormatoNullableRelationFilter, DocumentoFormatoWhereInput> | null
   }, "documentoId" | "documentoId">
 
   export type DocumentosOrderByWithAggregationInput = {
@@ -41103,6 +42242,7 @@ export namespace Prisma {
     fhCreacion?: SortOrder
     usuarioId?: SortOrder
     imagenArchivo?: SortOrderInput | SortOrder
+    documentoFormatoId?: SortOrderInput | SortOrder
     _count?: DocumentosCountOrderByAggregateInput
     _avg?: DocumentosAvgOrderByAggregateInput
     _max?: DocumentosMaxOrderByAggregateInput
@@ -41121,6 +42261,7 @@ export namespace Prisma {
     fhCreacion?: DateTimeWithAggregatesFilter<"Documentos"> | Date | string
     usuarioId?: IntWithAggregatesFilter<"Documentos"> | number
     imagenArchivo?: StringNullableWithAggregatesFilter<"Documentos"> | string | null
+    documentoFormatoId?: IntNullableWithAggregatesFilter<"Documentos"> | number | null
   }
 
   export type TipoDocumentoWhereInput = {
@@ -41399,6 +42540,8 @@ export namespace Prisma {
     tarjetaId?: IntFilter<"Reservas"> | number
     reservaEstatus?: IntFilter<"Reservas"> | number
     tarjetaNumero?: StringNullableFilter<"Reservas"> | string | null
+    codigoVerificacionEntrega?: IntNullableFilter<"Reservas"> | number | null
+    entregaVerificada?: BoolFilter<"Reservas"> | boolean
     cliente?: XOR<ClientesRelationFilter, ClientesWhereInput>
     beneficiario?: XOR<BeneficiariosRelationFilter, BeneficiariosWhereInput>
     auto?: XOR<AutosRelationFilter, AutosWhereInput>
@@ -41434,6 +42577,8 @@ export namespace Prisma {
     tarjetaId?: SortOrder
     reservaEstatus?: SortOrder
     tarjetaNumero?: SortOrderInput | SortOrder
+    codigoVerificacionEntrega?: SortOrderInput | SortOrder
+    entregaVerificada?: SortOrder
     cliente?: ClientesOrderByWithRelationInput
     beneficiario?: BeneficiariosOrderByWithRelationInput
     auto?: AutosOrderByWithRelationInput
@@ -41472,6 +42617,8 @@ export namespace Prisma {
     tarjetaId?: IntFilter<"Reservas"> | number
     reservaEstatus?: IntFilter<"Reservas"> | number
     tarjetaNumero?: StringNullableFilter<"Reservas"> | string | null
+    codigoVerificacionEntrega?: IntNullableFilter<"Reservas"> | number | null
+    entregaVerificada?: BoolFilter<"Reservas"> | boolean
     cliente?: XOR<ClientesRelationFilter, ClientesWhereInput>
     beneficiario?: XOR<BeneficiariosRelationFilter, BeneficiariosWhereInput>
     auto?: XOR<AutosRelationFilter, AutosWhereInput>
@@ -41507,6 +42654,8 @@ export namespace Prisma {
     tarjetaId?: SortOrder
     reservaEstatus?: SortOrder
     tarjetaNumero?: SortOrderInput | SortOrder
+    codigoVerificacionEntrega?: SortOrderInput | SortOrder
+    entregaVerificada?: SortOrder
     _count?: ReservasCountOrderByAggregateInput
     _avg?: ReservasAvgOrderByAggregateInput
     _max?: ReservasMaxOrderByAggregateInput
@@ -41544,6 +42693,8 @@ export namespace Prisma {
     tarjetaId?: IntWithAggregatesFilter<"Reservas"> | number
     reservaEstatus?: IntWithAggregatesFilter<"Reservas"> | number
     tarjetaNumero?: StringNullableWithAggregatesFilter<"Reservas"> | string | null
+    codigoVerificacionEntrega?: IntNullableWithAggregatesFilter<"Reservas"> | number | null
+    entregaVerificada?: BoolWithAggregatesFilter<"Reservas"> | boolean
   }
 
   export type ReservaEstatusWhereInput = {
@@ -41628,58 +42779,6 @@ export namespace Prisma {
     NOT?: BancoCuentaTipoScalarWhereWithAggregatesInput | BancoCuentaTipoScalarWhereWithAggregatesInput[]
     bancoCuentaTipoId?: IntWithAggregatesFilter<"BancoCuentaTipo"> | number
     name?: StringWithAggregatesFilter<"BancoCuentaTipo"> | string
-  }
-
-  export type PreciosWhereInput = {
-    AND?: PreciosWhereInput | PreciosWhereInput[]
-    OR?: PreciosWhereInput[]
-    NOT?: PreciosWhereInput | PreciosWhereInput[]
-    precioId?: IntFilter<"Precios"> | number
-    precioNombre?: StringFilter<"Precios"> | string
-    precioCliente?: DecimalFilter<"Precios"> | Decimal | DecimalJsLike | number | string
-    precioBeneficiario?: DecimalFilter<"Precios"> | Decimal | DecimalJsLike | number | string
-    autos?: AutosListRelationFilter
-  }
-
-  export type PreciosOrderByWithRelationInput = {
-    precioId?: SortOrder
-    precioNombre?: SortOrder
-    precioCliente?: SortOrder
-    precioBeneficiario?: SortOrder
-    autos?: AutosOrderByRelationAggregateInput
-  }
-
-  export type PreciosWhereUniqueInput = Prisma.AtLeast<{
-    precioId?: number
-    precioNombre?: string
-    AND?: PreciosWhereInput | PreciosWhereInput[]
-    OR?: PreciosWhereInput[]
-    NOT?: PreciosWhereInput | PreciosWhereInput[]
-    precioCliente?: DecimalFilter<"Precios"> | Decimal | DecimalJsLike | number | string
-    precioBeneficiario?: DecimalFilter<"Precios"> | Decimal | DecimalJsLike | number | string
-    autos?: AutosListRelationFilter
-  }, "precioId" | "precioId" | "precioNombre">
-
-  export type PreciosOrderByWithAggregationInput = {
-    precioId?: SortOrder
-    precioNombre?: SortOrder
-    precioCliente?: SortOrder
-    precioBeneficiario?: SortOrder
-    _count?: PreciosCountOrderByAggregateInput
-    _avg?: PreciosAvgOrderByAggregateInput
-    _max?: PreciosMaxOrderByAggregateInput
-    _min?: PreciosMinOrderByAggregateInput
-    _sum?: PreciosSumOrderByAggregateInput
-  }
-
-  export type PreciosScalarWhereWithAggregatesInput = {
-    AND?: PreciosScalarWhereWithAggregatesInput | PreciosScalarWhereWithAggregatesInput[]
-    OR?: PreciosScalarWhereWithAggregatesInput[]
-    NOT?: PreciosScalarWhereWithAggregatesInput | PreciosScalarWhereWithAggregatesInput[]
-    precioId?: IntWithAggregatesFilter<"Precios"> | number
-    precioNombre?: StringWithAggregatesFilter<"Precios"> | string
-    precioCliente?: DecimalWithAggregatesFilter<"Precios"> | Decimal | DecimalJsLike | number | string
-    precioBeneficiario?: DecimalWithAggregatesFilter<"Precios"> | Decimal | DecimalJsLike | number | string
   }
 
   export type AutoEstatusWhereInput = {
@@ -42128,6 +43227,105 @@ export namespace Prisma {
     combustibleNombre?: StringWithAggregatesFilter<"Combustibles"> | string
   }
 
+  export type DocumentoFormatoWhereInput = {
+    AND?: DocumentoFormatoWhereInput | DocumentoFormatoWhereInput[]
+    OR?: DocumentoFormatoWhereInput[]
+    NOT?: DocumentoFormatoWhereInput | DocumentoFormatoWhereInput[]
+    formatoId?: IntFilter<"DocumentoFormato"> | number
+    formatoNombre?: StringFilter<"DocumentoFormato"> | string
+    documentos?: DocumentosListRelationFilter
+  }
+
+  export type DocumentoFormatoOrderByWithRelationInput = {
+    formatoId?: SortOrder
+    formatoNombre?: SortOrder
+    documentos?: DocumentosOrderByRelationAggregateInput
+  }
+
+  export type DocumentoFormatoWhereUniqueInput = Prisma.AtLeast<{
+    formatoId?: number
+    AND?: DocumentoFormatoWhereInput | DocumentoFormatoWhereInput[]
+    OR?: DocumentoFormatoWhereInput[]
+    NOT?: DocumentoFormatoWhereInput | DocumentoFormatoWhereInput[]
+    formatoNombre?: StringFilter<"DocumentoFormato"> | string
+    documentos?: DocumentosListRelationFilter
+  }, "formatoId">
+
+  export type DocumentoFormatoOrderByWithAggregationInput = {
+    formatoId?: SortOrder
+    formatoNombre?: SortOrder
+    _count?: DocumentoFormatoCountOrderByAggregateInput
+    _avg?: DocumentoFormatoAvgOrderByAggregateInput
+    _max?: DocumentoFormatoMaxOrderByAggregateInput
+    _min?: DocumentoFormatoMinOrderByAggregateInput
+    _sum?: DocumentoFormatoSumOrderByAggregateInput
+  }
+
+  export type DocumentoFormatoScalarWhereWithAggregatesInput = {
+    AND?: DocumentoFormatoScalarWhereWithAggregatesInput | DocumentoFormatoScalarWhereWithAggregatesInput[]
+    OR?: DocumentoFormatoScalarWhereWithAggregatesInput[]
+    NOT?: DocumentoFormatoScalarWhereWithAggregatesInput | DocumentoFormatoScalarWhereWithAggregatesInput[]
+    formatoId?: IntWithAggregatesFilter<"DocumentoFormato"> | number
+    formatoNombre?: StringWithAggregatesFilter<"DocumentoFormato"> | string
+  }
+
+  export type DepositosBeneficiariosWhereInput = {
+    AND?: DepositosBeneficiariosWhereInput | DepositosBeneficiariosWhereInput[]
+    OR?: DepositosBeneficiariosWhereInput[]
+    NOT?: DepositosBeneficiariosWhereInput | DepositosBeneficiariosWhereInput[]
+    depositoId?: IntFilter<"DepositosBeneficiarios"> | number
+    beneficiarioId?: IntFilter<"DepositosBeneficiarios"> | number
+    imagenBase64?: StringFilter<"DepositosBeneficiarios"> | string
+    fhCreacion?: DateTimeFilter<"DepositosBeneficiarios"> | Date | string
+    monto?: DecimalFilter<"DepositosBeneficiarios"> | Decimal | DecimalJsLike | number | string
+    beneficiario?: XOR<BeneficiariosRelationFilter, BeneficiariosWhereInput>
+  }
+
+  export type DepositosBeneficiariosOrderByWithRelationInput = {
+    depositoId?: SortOrder
+    beneficiarioId?: SortOrder
+    imagenBase64?: SortOrder
+    fhCreacion?: SortOrder
+    monto?: SortOrder
+    beneficiario?: BeneficiariosOrderByWithRelationInput
+  }
+
+  export type DepositosBeneficiariosWhereUniqueInput = Prisma.AtLeast<{
+    depositoId?: number
+    AND?: DepositosBeneficiariosWhereInput | DepositosBeneficiariosWhereInput[]
+    OR?: DepositosBeneficiariosWhereInput[]
+    NOT?: DepositosBeneficiariosWhereInput | DepositosBeneficiariosWhereInput[]
+    beneficiarioId?: IntFilter<"DepositosBeneficiarios"> | number
+    imagenBase64?: StringFilter<"DepositosBeneficiarios"> | string
+    fhCreacion?: DateTimeFilter<"DepositosBeneficiarios"> | Date | string
+    monto?: DecimalFilter<"DepositosBeneficiarios"> | Decimal | DecimalJsLike | number | string
+    beneficiario?: XOR<BeneficiariosRelationFilter, BeneficiariosWhereInput>
+  }, "depositoId">
+
+  export type DepositosBeneficiariosOrderByWithAggregationInput = {
+    depositoId?: SortOrder
+    beneficiarioId?: SortOrder
+    imagenBase64?: SortOrder
+    fhCreacion?: SortOrder
+    monto?: SortOrder
+    _count?: DepositosBeneficiariosCountOrderByAggregateInput
+    _avg?: DepositosBeneficiariosAvgOrderByAggregateInput
+    _max?: DepositosBeneficiariosMaxOrderByAggregateInput
+    _min?: DepositosBeneficiariosMinOrderByAggregateInput
+    _sum?: DepositosBeneficiariosSumOrderByAggregateInput
+  }
+
+  export type DepositosBeneficiariosScalarWhereWithAggregatesInput = {
+    AND?: DepositosBeneficiariosScalarWhereWithAggregatesInput | DepositosBeneficiariosScalarWhereWithAggregatesInput[]
+    OR?: DepositosBeneficiariosScalarWhereWithAggregatesInput[]
+    NOT?: DepositosBeneficiariosScalarWhereWithAggregatesInput | DepositosBeneficiariosScalarWhereWithAggregatesInput[]
+    depositoId?: IntWithAggregatesFilter<"DepositosBeneficiarios"> | number
+    beneficiarioId?: IntWithAggregatesFilter<"DepositosBeneficiarios"> | number
+    imagenBase64?: StringWithAggregatesFilter<"DepositosBeneficiarios"> | string
+    fhCreacion?: DateTimeWithAggregatesFilter<"DepositosBeneficiarios"> | Date | string
+    monto?: DecimalWithAggregatesFilter<"DepositosBeneficiarios"> | Decimal | DecimalJsLike | number | string
+  }
+
   export type UsuariosCreateInput = {
     usuarioLogin: string
     usuarioClave: string
@@ -42364,11 +43562,14 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     banco: BancosCreateNestedOneWithoutBeneficiariosInput
     bancoCuentaTipo: BancoCuentaTipoCreateNestedOneWithoutBeneficiariosInput
     usuarios?: UsuariosCreateNestedManyWithoutBeneficiarioInput
     autos?: AutosCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosUncheckedCreateInput = {
@@ -42383,9 +43584,12 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     usuarios?: UsuariosUncheckedCreateNestedManyWithoutBeneficiarioInput
     autos?: AutosUncheckedCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasUncheckedCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosUncheckedCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosUpdateInput = {
@@ -42397,11 +43601,14 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     banco?: BancosUpdateOneRequiredWithoutBeneficiariosNestedInput
     bancoCuentaTipo?: BancoCuentaTipoUpdateOneRequiredWithoutBeneficiariosNestedInput
     usuarios?: UsuariosUpdateManyWithoutBeneficiarioNestedInput
     autos?: AutosUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type BeneficiariosUncheckedUpdateInput = {
@@ -42416,9 +43623,12 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     usuarios?: UsuariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
     autos?: AutosUncheckedUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUncheckedUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type BeneficiariosCreateManyInput = {
@@ -42433,6 +43643,8 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
   }
 
   export type BeneficiariosUpdateManyMutationInput = {
@@ -42444,6 +43656,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type BeneficiariosUncheckedUpdateManyInput = {
@@ -42458,6 +43672,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type DireccionesCreateInput = {
@@ -42936,12 +44152,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -42951,7 +44166,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -42985,10 +44199,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -42996,6 +44207,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -43015,12 +44227,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -43030,7 +44241,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -43064,10 +44274,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -43075,6 +44282,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -43104,10 +44312,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -43115,6 +44320,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUpdateManyMutationInput = {
@@ -43130,12 +44336,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUncheckedUpdateManyInput = {
@@ -43161,10 +44366,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -43172,6 +44374,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ImagenesCreateInput = {
@@ -43246,6 +44449,7 @@ export namespace Prisma {
     estatus: DocumentoEstatusCreateNestedOneWithoutDocumentosInput
     tipo: TipoDocumentoCreateNestedOneWithoutDocumentosInput
     usuario: UsuariosCreateNestedOneWithoutDocumentosInput
+    documentoFormato?: DocumentoFormatoCreateNestedOneWithoutDocumentosInput
   }
 
   export type DocumentosUncheckedCreateInput = {
@@ -43256,6 +44460,7 @@ export namespace Prisma {
     fhCreacion?: Date | string
     usuarioId: number
     imagenArchivo?: string | null
+    documentoFormatoId?: number | null
   }
 
   export type DocumentosUpdateInput = {
@@ -43265,6 +44470,7 @@ export namespace Prisma {
     estatus?: DocumentoEstatusUpdateOneRequiredWithoutDocumentosNestedInput
     tipo?: TipoDocumentoUpdateOneRequiredWithoutDocumentosNestedInput
     usuario?: UsuariosUpdateOneRequiredWithoutDocumentosNestedInput
+    documentoFormato?: DocumentoFormatoUpdateOneWithoutDocumentosNestedInput
   }
 
   export type DocumentosUncheckedUpdateInput = {
@@ -43275,6 +44481,7 @@ export namespace Prisma {
     fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarioId?: IntFieldUpdateOperationsInput | number
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+    documentoFormatoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type DocumentosCreateManyInput = {
@@ -43285,6 +44492,7 @@ export namespace Prisma {
     fhCreacion?: Date | string
     usuarioId: number
     imagenArchivo?: string | null
+    documentoFormatoId?: number | null
   }
 
   export type DocumentosUpdateManyMutationInput = {
@@ -43301,6 +44509,7 @@ export namespace Prisma {
     fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarioId?: IntFieldUpdateOperationsInput | number
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+    documentoFormatoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type TipoDocumentoCreateInput = {
@@ -43541,6 +44750,8 @@ export namespace Prisma {
     reservaCreado?: Date | string
     reservaNumero?: number | null
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     cliente: ClientesCreateNestedOneWithoutReservasInput
     beneficiario: BeneficiariosCreateNestedOneWithoutReservasInput
     auto: AutosCreateNestedOneWithoutReservasInput
@@ -43576,6 +44787,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     Pagos?: PagosUncheckedCreateNestedManyWithoutReservaInput
   }
 
@@ -43600,6 +44813,8 @@ export namespace Prisma {
     reservaCreado?: DateTimeFieldUpdateOperationsInput | Date | string
     reservaNumero?: NullableIntFieldUpdateOperationsInput | number | null
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     cliente?: ClientesUpdateOneRequiredWithoutReservasNestedInput
     beneficiario?: BeneficiariosUpdateOneRequiredWithoutReservasNestedInput
     auto?: AutosUpdateOneRequiredWithoutReservasNestedInput
@@ -43635,6 +44850,8 @@ export namespace Prisma {
     tarjetaId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     Pagos?: PagosUncheckedUpdateManyWithoutReservaNestedInput
   }
 
@@ -43665,6 +44882,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
   }
 
   export type ReservasUpdateManyMutationInput = {
@@ -43688,6 +44907,8 @@ export namespace Prisma {
     reservaCreado?: DateTimeFieldUpdateOperationsInput | Date | string
     reservaNumero?: NullableIntFieldUpdateOperationsInput | number | null
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReservasUncheckedUpdateManyInput = {
@@ -43717,6 +44938,8 @@ export namespace Prisma {
     tarjetaId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ReservaEstatusCreateInput = {
@@ -43789,56 +45012,6 @@ export namespace Prisma {
   export type BancoCuentaTipoUncheckedUpdateManyInput = {
     bancoCuentaTipoId?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type PreciosCreateInput = {
-    precioNombre: string
-    precioCliente: Decimal | DecimalJsLike | number | string
-    precioBeneficiario: Decimal | DecimalJsLike | number | string
-    autos?: AutosCreateNestedManyWithoutPrecioInput
-  }
-
-  export type PreciosUncheckedCreateInput = {
-    precioId?: number
-    precioNombre: string
-    precioCliente: Decimal | DecimalJsLike | number | string
-    precioBeneficiario: Decimal | DecimalJsLike | number | string
-    autos?: AutosUncheckedCreateNestedManyWithoutPrecioInput
-  }
-
-  export type PreciosUpdateInput = {
-    precioNombre?: StringFieldUpdateOperationsInput | string
-    precioCliente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    precioBeneficiario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    autos?: AutosUpdateManyWithoutPrecioNestedInput
-  }
-
-  export type PreciosUncheckedUpdateInput = {
-    precioId?: IntFieldUpdateOperationsInput | number
-    precioNombre?: StringFieldUpdateOperationsInput | string
-    precioCliente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    precioBeneficiario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    autos?: AutosUncheckedUpdateManyWithoutPrecioNestedInput
-  }
-
-  export type PreciosCreateManyInput = {
-    precioId?: number
-    precioNombre: string
-    precioCliente: Decimal | DecimalJsLike | number | string
-    precioBeneficiario: Decimal | DecimalJsLike | number | string
-  }
-
-  export type PreciosUpdateManyMutationInput = {
-    precioNombre?: StringFieldUpdateOperationsInput | string
-    precioCliente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    precioBeneficiario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-  }
-
-  export type PreciosUncheckedUpdateManyInput = {
-    precioId?: IntFieldUpdateOperationsInput | number
-    precioNombre?: StringFieldUpdateOperationsInput | string
-    precioCliente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    precioBeneficiario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type AutoEstatusCreateInput = {
@@ -44238,6 +45411,94 @@ export namespace Prisma {
   export type CombustiblesUncheckedUpdateManyInput = {
     combustibleId?: IntFieldUpdateOperationsInput | number
     combustibleNombre?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DocumentoFormatoCreateInput = {
+    formatoNombre: string
+    documentos?: DocumentosCreateNestedManyWithoutDocumentoFormatoInput
+  }
+
+  export type DocumentoFormatoUncheckedCreateInput = {
+    formatoId?: number
+    formatoNombre: string
+    documentos?: DocumentosUncheckedCreateNestedManyWithoutDocumentoFormatoInput
+  }
+
+  export type DocumentoFormatoUpdateInput = {
+    formatoNombre?: StringFieldUpdateOperationsInput | string
+    documentos?: DocumentosUpdateManyWithoutDocumentoFormatoNestedInput
+  }
+
+  export type DocumentoFormatoUncheckedUpdateInput = {
+    formatoId?: IntFieldUpdateOperationsInput | number
+    formatoNombre?: StringFieldUpdateOperationsInput | string
+    documentos?: DocumentosUncheckedUpdateManyWithoutDocumentoFormatoNestedInput
+  }
+
+  export type DocumentoFormatoCreateManyInput = {
+    formatoId?: number
+    formatoNombre: string
+  }
+
+  export type DocumentoFormatoUpdateManyMutationInput = {
+    formatoNombre?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DocumentoFormatoUncheckedUpdateManyInput = {
+    formatoId?: IntFieldUpdateOperationsInput | number
+    formatoNombre?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DepositosBeneficiariosCreateInput = {
+    imagenBase64: string
+    fhCreacion?: Date | string
+    monto?: Decimal | DecimalJsLike | number | string
+    beneficiario: BeneficiariosCreateNestedOneWithoutDepositosInput
+  }
+
+  export type DepositosBeneficiariosUncheckedCreateInput = {
+    depositoId?: number
+    beneficiarioId: number
+    imagenBase64: string
+    fhCreacion?: Date | string
+    monto?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type DepositosBeneficiariosUpdateInput = {
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    beneficiario?: BeneficiariosUpdateOneRequiredWithoutDepositosNestedInput
+  }
+
+  export type DepositosBeneficiariosUncheckedUpdateInput = {
+    depositoId?: IntFieldUpdateOperationsInput | number
+    beneficiarioId?: IntFieldUpdateOperationsInput | number
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type DepositosBeneficiariosCreateManyInput = {
+    depositoId?: number
+    beneficiarioId: number
+    imagenBase64: string
+    fhCreacion?: Date | string
+    monto?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type DepositosBeneficiariosUpdateManyMutationInput = {
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type DepositosBeneficiariosUncheckedUpdateManyInput = {
+    depositoId?: IntFieldUpdateOperationsInput | number
+    beneficiarioId?: IntFieldUpdateOperationsInput | number
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -44656,7 +45917,17 @@ export namespace Prisma {
     none?: AutosWhereInput
   }
 
+  export type DepositosBeneficiariosListRelationFilter = {
+    every?: DepositosBeneficiariosWhereInput
+    some?: DepositosBeneficiariosWhereInput
+    none?: DepositosBeneficiariosWhereInput
+  }
+
   export type AutosOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DepositosBeneficiariosOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -44672,6 +45943,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: SortOrder
     beneficiarioFecha?: SortOrder
     beneficiarioCorreo?: SortOrder
+    beneficiarioTelefono?: SortOrder
+    imagenBase64?: SortOrder
   }
 
   export type BeneficiariosAvgOrderByAggregateInput = {
@@ -44694,6 +45967,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: SortOrder
     beneficiarioFecha?: SortOrder
     beneficiarioCorreo?: SortOrder
+    beneficiarioTelefono?: SortOrder
+    imagenBase64?: SortOrder
   }
 
   export type BeneficiariosMinOrderByAggregateInput = {
@@ -44708,6 +45983,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: SortOrder
     beneficiarioFecha?: SortOrder
     beneficiarioCorreo?: SortOrder
+    beneficiarioTelefono?: SortOrder
+    imagenBase64?: SortOrder
   }
 
   export type BeneficiariosSumOrderByAggregateInput = {
@@ -45171,11 +46448,6 @@ export namespace Prisma {
     isNot?: CiudadesWhereInput
   }
 
-  export type PreciosRelationFilter = {
-    is?: PreciosWhereInput
-    isNot?: PreciosWhereInput
-  }
-
   export type ImagenesListRelationFilter = {
     every?: ImagenesWhereInput
     some?: ImagenesWhereInput
@@ -45229,10 +46501,7 @@ export namespace Prisma {
     paisId?: SortOrder
     provinciaId?: SortOrder
     ciudadId?: SortOrder
-    precioId?: SortOrder
     autoEstatus?: SortOrder
-    fechaDeViajeInicial?: SortOrder
-    fechaDeViajeFinal?: SortOrder
     valoracion?: SortOrder
     valoracionAcumulacion?: SortOrder
     cantidadValoracion?: SortOrder
@@ -45240,6 +46509,7 @@ export namespace Prisma {
     transmisionId?: SortOrder
     modeloVersionId?: SortOrder
     combustibleId?: SortOrder
+    precio?: SortOrder
   }
 
   export type AutosAvgOrderByAggregateInput = {
@@ -45261,7 +46531,6 @@ export namespace Prisma {
     paisId?: SortOrder
     provinciaId?: SortOrder
     ciudadId?: SortOrder
-    precioId?: SortOrder
     autoEstatus?: SortOrder
     valoracion?: SortOrder
     valoracionAcumulacion?: SortOrder
@@ -45270,6 +46539,7 @@ export namespace Prisma {
     transmisionId?: SortOrder
     modeloVersionId?: SortOrder
     combustibleId?: SortOrder
+    precio?: SortOrder
   }
 
   export type AutosMaxOrderByAggregateInput = {
@@ -45295,10 +46565,7 @@ export namespace Prisma {
     paisId?: SortOrder
     provinciaId?: SortOrder
     ciudadId?: SortOrder
-    precioId?: SortOrder
     autoEstatus?: SortOrder
-    fechaDeViajeInicial?: SortOrder
-    fechaDeViajeFinal?: SortOrder
     valoracion?: SortOrder
     valoracionAcumulacion?: SortOrder
     cantidadValoracion?: SortOrder
@@ -45306,6 +46573,7 @@ export namespace Prisma {
     transmisionId?: SortOrder
     modeloVersionId?: SortOrder
     combustibleId?: SortOrder
+    precio?: SortOrder
   }
 
   export type AutosMinOrderByAggregateInput = {
@@ -45331,10 +46599,7 @@ export namespace Prisma {
     paisId?: SortOrder
     provinciaId?: SortOrder
     ciudadId?: SortOrder
-    precioId?: SortOrder
     autoEstatus?: SortOrder
-    fechaDeViajeInicial?: SortOrder
-    fechaDeViajeFinal?: SortOrder
     valoracion?: SortOrder
     valoracionAcumulacion?: SortOrder
     cantidadValoracion?: SortOrder
@@ -45342,6 +46607,7 @@ export namespace Prisma {
     transmisionId?: SortOrder
     modeloVersionId?: SortOrder
     combustibleId?: SortOrder
+    precio?: SortOrder
   }
 
   export type AutosSumOrderByAggregateInput = {
@@ -45363,7 +46629,6 @@ export namespace Prisma {
     paisId?: SortOrder
     provinciaId?: SortOrder
     ciudadId?: SortOrder
-    precioId?: SortOrder
     autoEstatus?: SortOrder
     valoracion?: SortOrder
     valoracionAcumulacion?: SortOrder
@@ -45372,6 +46637,7 @@ export namespace Prisma {
     transmisionId?: SortOrder
     modeloVersionId?: SortOrder
     combustibleId?: SortOrder
+    precio?: SortOrder
   }
 
   export type DocumentoEstatusRelationFilter = {
@@ -45426,6 +46692,11 @@ export namespace Prisma {
     isNot?: TipoDocumentoWhereInput
   }
 
+  export type DocumentoFormatoNullableRelationFilter = {
+    is?: DocumentoFormatoWhereInput | null
+    isNot?: DocumentoFormatoWhereInput | null
+  }
+
   export type DocumentosCountOrderByAggregateInput = {
     documentoId?: SortOrder
     imagenBase64?: SortOrder
@@ -45434,6 +46705,7 @@ export namespace Prisma {
     fhCreacion?: SortOrder
     usuarioId?: SortOrder
     imagenArchivo?: SortOrder
+    documentoFormatoId?: SortOrder
   }
 
   export type DocumentosAvgOrderByAggregateInput = {
@@ -45441,6 +46713,7 @@ export namespace Prisma {
     documentoEstatus?: SortOrder
     documentoTipo?: SortOrder
     usuarioId?: SortOrder
+    documentoFormatoId?: SortOrder
   }
 
   export type DocumentosMaxOrderByAggregateInput = {
@@ -45451,6 +46724,7 @@ export namespace Prisma {
     fhCreacion?: SortOrder
     usuarioId?: SortOrder
     imagenArchivo?: SortOrder
+    documentoFormatoId?: SortOrder
   }
 
   export type DocumentosMinOrderByAggregateInput = {
@@ -45461,6 +46735,7 @@ export namespace Prisma {
     fhCreacion?: SortOrder
     usuarioId?: SortOrder
     imagenArchivo?: SortOrder
+    documentoFormatoId?: SortOrder
   }
 
   export type DocumentosSumOrderByAggregateInput = {
@@ -45468,6 +46743,7 @@ export namespace Prisma {
     documentoEstatus?: SortOrder
     documentoTipo?: SortOrder
     usuarioId?: SortOrder
+    documentoFormatoId?: SortOrder
   }
 
   export type TipoDocumentoCountOrderByAggregateInput = {
@@ -45672,6 +46948,8 @@ export namespace Prisma {
     tarjetaId?: SortOrder
     reservaEstatus?: SortOrder
     tarjetaNumero?: SortOrder
+    codigoVerificacionEntrega?: SortOrder
+    entregaVerificada?: SortOrder
   }
 
   export type ReservasAvgOrderByAggregateInput = {
@@ -45693,6 +46971,7 @@ export namespace Prisma {
     autoId?: SortOrder
     tarjetaId?: SortOrder
     reservaEstatus?: SortOrder
+    codigoVerificacionEntrega?: SortOrder
   }
 
   export type ReservasMaxOrderByAggregateInput = {
@@ -45722,6 +47001,8 @@ export namespace Prisma {
     tarjetaId?: SortOrder
     reservaEstatus?: SortOrder
     tarjetaNumero?: SortOrder
+    codigoVerificacionEntrega?: SortOrder
+    entregaVerificada?: SortOrder
   }
 
   export type ReservasMinOrderByAggregateInput = {
@@ -45751,6 +47032,8 @@ export namespace Prisma {
     tarjetaId?: SortOrder
     reservaEstatus?: SortOrder
     tarjetaNumero?: SortOrder
+    codigoVerificacionEntrega?: SortOrder
+    entregaVerificada?: SortOrder
   }
 
   export type ReservasSumOrderByAggregateInput = {
@@ -45772,6 +47055,7 @@ export namespace Prisma {
     autoId?: SortOrder
     tarjetaId?: SortOrder
     reservaEstatus?: SortOrder
+    codigoVerificacionEntrega?: SortOrder
   }
 
   export type ReservaEstatusCountOrderByAggregateInput = {
@@ -45818,39 +47102,6 @@ export namespace Prisma {
 
   export type BancoCuentaTipoSumOrderByAggregateInput = {
     bancoCuentaTipoId?: SortOrder
-  }
-
-  export type PreciosCountOrderByAggregateInput = {
-    precioId?: SortOrder
-    precioNombre?: SortOrder
-    precioCliente?: SortOrder
-    precioBeneficiario?: SortOrder
-  }
-
-  export type PreciosAvgOrderByAggregateInput = {
-    precioId?: SortOrder
-    precioCliente?: SortOrder
-    precioBeneficiario?: SortOrder
-  }
-
-  export type PreciosMaxOrderByAggregateInput = {
-    precioId?: SortOrder
-    precioNombre?: SortOrder
-    precioCliente?: SortOrder
-    precioBeneficiario?: SortOrder
-  }
-
-  export type PreciosMinOrderByAggregateInput = {
-    precioId?: SortOrder
-    precioNombre?: SortOrder
-    precioCliente?: SortOrder
-    precioBeneficiario?: SortOrder
-  }
-
-  export type PreciosSumOrderByAggregateInput = {
-    precioId?: SortOrder
-    precioCliente?: SortOrder
-    precioBeneficiario?: SortOrder
   }
 
   export type AutoEstatusCountOrderByAggregateInput = {
@@ -46112,6 +47363,65 @@ export namespace Prisma {
 
   export type CombustiblesSumOrderByAggregateInput = {
     combustibleId?: SortOrder
+  }
+
+  export type DocumentoFormatoCountOrderByAggregateInput = {
+    formatoId?: SortOrder
+    formatoNombre?: SortOrder
+  }
+
+  export type DocumentoFormatoAvgOrderByAggregateInput = {
+    formatoId?: SortOrder
+  }
+
+  export type DocumentoFormatoMaxOrderByAggregateInput = {
+    formatoId?: SortOrder
+    formatoNombre?: SortOrder
+  }
+
+  export type DocumentoFormatoMinOrderByAggregateInput = {
+    formatoId?: SortOrder
+    formatoNombre?: SortOrder
+  }
+
+  export type DocumentoFormatoSumOrderByAggregateInput = {
+    formatoId?: SortOrder
+  }
+
+  export type DepositosBeneficiariosCountOrderByAggregateInput = {
+    depositoId?: SortOrder
+    beneficiarioId?: SortOrder
+    imagenBase64?: SortOrder
+    fhCreacion?: SortOrder
+    monto?: SortOrder
+  }
+
+  export type DepositosBeneficiariosAvgOrderByAggregateInput = {
+    depositoId?: SortOrder
+    beneficiarioId?: SortOrder
+    monto?: SortOrder
+  }
+
+  export type DepositosBeneficiariosMaxOrderByAggregateInput = {
+    depositoId?: SortOrder
+    beneficiarioId?: SortOrder
+    imagenBase64?: SortOrder
+    fhCreacion?: SortOrder
+    monto?: SortOrder
+  }
+
+  export type DepositosBeneficiariosMinOrderByAggregateInput = {
+    depositoId?: SortOrder
+    beneficiarioId?: SortOrder
+    imagenBase64?: SortOrder
+    fhCreacion?: SortOrder
+    monto?: SortOrder
+  }
+
+  export type DepositosBeneficiariosSumOrderByAggregateInput = {
+    depositoId?: SortOrder
+    beneficiarioId?: SortOrder
+    monto?: SortOrder
   }
 
   export type ClientesCreateNestedOneWithoutUsuariosInput = {
@@ -46609,6 +47919,13 @@ export namespace Prisma {
     connect?: ReservasWhereUniqueInput | ReservasWhereUniqueInput[]
   }
 
+  export type DepositosBeneficiariosCreateNestedManyWithoutBeneficiarioInput = {
+    create?: XOR<DepositosBeneficiariosCreateWithoutBeneficiarioInput, DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput> | DepositosBeneficiariosCreateWithoutBeneficiarioInput[] | DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput[]
+    connectOrCreate?: DepositosBeneficiariosCreateOrConnectWithoutBeneficiarioInput | DepositosBeneficiariosCreateOrConnectWithoutBeneficiarioInput[]
+    createMany?: DepositosBeneficiariosCreateManyBeneficiarioInputEnvelope
+    connect?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
+  }
+
   export type UsuariosUncheckedCreateNestedManyWithoutBeneficiarioInput = {
     create?: XOR<UsuariosCreateWithoutBeneficiarioInput, UsuariosUncheckedCreateWithoutBeneficiarioInput> | UsuariosCreateWithoutBeneficiarioInput[] | UsuariosUncheckedCreateWithoutBeneficiarioInput[]
     connectOrCreate?: UsuariosCreateOrConnectWithoutBeneficiarioInput | UsuariosCreateOrConnectWithoutBeneficiarioInput[]
@@ -46628,6 +47945,13 @@ export namespace Prisma {
     connectOrCreate?: ReservasCreateOrConnectWithoutBeneficiarioInput | ReservasCreateOrConnectWithoutBeneficiarioInput[]
     createMany?: ReservasCreateManyBeneficiarioInputEnvelope
     connect?: ReservasWhereUniqueInput | ReservasWhereUniqueInput[]
+  }
+
+  export type DepositosBeneficiariosUncheckedCreateNestedManyWithoutBeneficiarioInput = {
+    create?: XOR<DepositosBeneficiariosCreateWithoutBeneficiarioInput, DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput> | DepositosBeneficiariosCreateWithoutBeneficiarioInput[] | DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput[]
+    connectOrCreate?: DepositosBeneficiariosCreateOrConnectWithoutBeneficiarioInput | DepositosBeneficiariosCreateOrConnectWithoutBeneficiarioInput[]
+    createMany?: DepositosBeneficiariosCreateManyBeneficiarioInputEnvelope
+    connect?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
   }
 
   export type DecimalFieldUpdateOperationsInput = {
@@ -46696,6 +48020,20 @@ export namespace Prisma {
     deleteMany?: ReservasScalarWhereInput | ReservasScalarWhereInput[]
   }
 
+  export type DepositosBeneficiariosUpdateManyWithoutBeneficiarioNestedInput = {
+    create?: XOR<DepositosBeneficiariosCreateWithoutBeneficiarioInput, DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput> | DepositosBeneficiariosCreateWithoutBeneficiarioInput[] | DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput[]
+    connectOrCreate?: DepositosBeneficiariosCreateOrConnectWithoutBeneficiarioInput | DepositosBeneficiariosCreateOrConnectWithoutBeneficiarioInput[]
+    upsert?: DepositosBeneficiariosUpsertWithWhereUniqueWithoutBeneficiarioInput | DepositosBeneficiariosUpsertWithWhereUniqueWithoutBeneficiarioInput[]
+    createMany?: DepositosBeneficiariosCreateManyBeneficiarioInputEnvelope
+    set?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
+    disconnect?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
+    delete?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
+    connect?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
+    update?: DepositosBeneficiariosUpdateWithWhereUniqueWithoutBeneficiarioInput | DepositosBeneficiariosUpdateWithWhereUniqueWithoutBeneficiarioInput[]
+    updateMany?: DepositosBeneficiariosUpdateManyWithWhereWithoutBeneficiarioInput | DepositosBeneficiariosUpdateManyWithWhereWithoutBeneficiarioInput[]
+    deleteMany?: DepositosBeneficiariosScalarWhereInput | DepositosBeneficiariosScalarWhereInput[]
+  }
+
   export type UsuariosUncheckedUpdateManyWithoutBeneficiarioNestedInput = {
     create?: XOR<UsuariosCreateWithoutBeneficiarioInput, UsuariosUncheckedCreateWithoutBeneficiarioInput> | UsuariosCreateWithoutBeneficiarioInput[] | UsuariosUncheckedCreateWithoutBeneficiarioInput[]
     connectOrCreate?: UsuariosCreateOrConnectWithoutBeneficiarioInput | UsuariosCreateOrConnectWithoutBeneficiarioInput[]
@@ -46736,6 +48074,20 @@ export namespace Prisma {
     update?: ReservasUpdateWithWhereUniqueWithoutBeneficiarioInput | ReservasUpdateWithWhereUniqueWithoutBeneficiarioInput[]
     updateMany?: ReservasUpdateManyWithWhereWithoutBeneficiarioInput | ReservasUpdateManyWithWhereWithoutBeneficiarioInput[]
     deleteMany?: ReservasScalarWhereInput | ReservasScalarWhereInput[]
+  }
+
+  export type DepositosBeneficiariosUncheckedUpdateManyWithoutBeneficiarioNestedInput = {
+    create?: XOR<DepositosBeneficiariosCreateWithoutBeneficiarioInput, DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput> | DepositosBeneficiariosCreateWithoutBeneficiarioInput[] | DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput[]
+    connectOrCreate?: DepositosBeneficiariosCreateOrConnectWithoutBeneficiarioInput | DepositosBeneficiariosCreateOrConnectWithoutBeneficiarioInput[]
+    upsert?: DepositosBeneficiariosUpsertWithWhereUniqueWithoutBeneficiarioInput | DepositosBeneficiariosUpsertWithWhereUniqueWithoutBeneficiarioInput[]
+    createMany?: DepositosBeneficiariosCreateManyBeneficiarioInputEnvelope
+    set?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
+    disconnect?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
+    delete?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
+    connect?: DepositosBeneficiariosWhereUniqueInput | DepositosBeneficiariosWhereUniqueInput[]
+    update?: DepositosBeneficiariosUpdateWithWhereUniqueWithoutBeneficiarioInput | DepositosBeneficiariosUpdateWithWhereUniqueWithoutBeneficiarioInput[]
+    updateMany?: DepositosBeneficiariosUpdateManyWithWhereWithoutBeneficiarioInput | DepositosBeneficiariosUpdateManyWithWhereWithoutBeneficiarioInput[]
+    deleteMany?: DepositosBeneficiariosScalarWhereInput | DepositosBeneficiariosScalarWhereInput[]
   }
 
   export type ClientesCreateNestedOneWithoutDireccionesInput = {
@@ -47294,12 +48646,6 @@ export namespace Prisma {
     connect?: CiudadesWhereUniqueInput
   }
 
-  export type PreciosCreateNestedOneWithoutAutosInput = {
-    create?: XOR<PreciosCreateWithoutAutosInput, PreciosUncheckedCreateWithoutAutosInput>
-    connectOrCreate?: PreciosCreateOrConnectWithoutAutosInput
-    connect?: PreciosWhereUniqueInput
-  }
-
   export type ReservasCreateNestedManyWithoutAutoInput = {
     create?: XOR<ReservasCreateWithoutAutoInput, ReservasUncheckedCreateWithoutAutoInput> | ReservasCreateWithoutAutoInput[] | ReservasUncheckedCreateWithoutAutoInput[]
     connectOrCreate?: ReservasCreateOrConnectWithoutAutoInput | ReservasCreateOrConnectWithoutAutoInput[]
@@ -47454,14 +48800,6 @@ export namespace Prisma {
     upsert?: CiudadesUpsertWithoutAutosInput
     connect?: CiudadesWhereUniqueInput
     update?: XOR<XOR<CiudadesUpdateToOneWithWhereWithoutAutosInput, CiudadesUpdateWithoutAutosInput>, CiudadesUncheckedUpdateWithoutAutosInput>
-  }
-
-  export type PreciosUpdateOneRequiredWithoutAutosNestedInput = {
-    create?: XOR<PreciosCreateWithoutAutosInput, PreciosUncheckedCreateWithoutAutosInput>
-    connectOrCreate?: PreciosCreateOrConnectWithoutAutosInput
-    upsert?: PreciosUpsertWithoutAutosInput
-    connect?: PreciosWhereUniqueInput
-    update?: XOR<XOR<PreciosUpdateToOneWithWhereWithoutAutosInput, PreciosUpdateWithoutAutosInput>, PreciosUncheckedUpdateWithoutAutosInput>
   }
 
   export type ReservasUpdateManyWithoutAutoNestedInput = {
@@ -47662,6 +49000,12 @@ export namespace Prisma {
     connect?: UsuariosWhereUniqueInput
   }
 
+  export type DocumentoFormatoCreateNestedOneWithoutDocumentosInput = {
+    create?: XOR<DocumentoFormatoCreateWithoutDocumentosInput, DocumentoFormatoUncheckedCreateWithoutDocumentosInput>
+    connectOrCreate?: DocumentoFormatoCreateOrConnectWithoutDocumentosInput
+    connect?: DocumentoFormatoWhereUniqueInput
+  }
+
   export type DocumentoEstatusUpdateOneRequiredWithoutDocumentosNestedInput = {
     create?: XOR<DocumentoEstatusCreateWithoutDocumentosInput, DocumentoEstatusUncheckedCreateWithoutDocumentosInput>
     connectOrCreate?: DocumentoEstatusCreateOrConnectWithoutDocumentosInput
@@ -47684,6 +49028,16 @@ export namespace Prisma {
     upsert?: UsuariosUpsertWithoutDocumentosInput
     connect?: UsuariosWhereUniqueInput
     update?: XOR<XOR<UsuariosUpdateToOneWithWhereWithoutDocumentosInput, UsuariosUpdateWithoutDocumentosInput>, UsuariosUncheckedUpdateWithoutDocumentosInput>
+  }
+
+  export type DocumentoFormatoUpdateOneWithoutDocumentosNestedInput = {
+    create?: XOR<DocumentoFormatoCreateWithoutDocumentosInput, DocumentoFormatoUncheckedCreateWithoutDocumentosInput>
+    connectOrCreate?: DocumentoFormatoCreateOrConnectWithoutDocumentosInput
+    upsert?: DocumentoFormatoUpsertWithoutDocumentosInput
+    disconnect?: DocumentoFormatoWhereInput | boolean
+    delete?: DocumentoFormatoWhereInput | boolean
+    connect?: DocumentoFormatoWhereUniqueInput
+    update?: XOR<XOR<DocumentoFormatoUpdateToOneWithWhereWithoutDocumentosInput, DocumentoFormatoUpdateWithoutDocumentosInput>, DocumentoFormatoUncheckedUpdateWithoutDocumentosInput>
   }
 
   export type DocumentosCreateNestedManyWithoutTipoInput = {
@@ -48302,48 +49656,6 @@ export namespace Prisma {
     deleteMany?: BeneficiariosScalarWhereInput | BeneficiariosScalarWhereInput[]
   }
 
-  export type AutosCreateNestedManyWithoutPrecioInput = {
-    create?: XOR<AutosCreateWithoutPrecioInput, AutosUncheckedCreateWithoutPrecioInput> | AutosCreateWithoutPrecioInput[] | AutosUncheckedCreateWithoutPrecioInput[]
-    connectOrCreate?: AutosCreateOrConnectWithoutPrecioInput | AutosCreateOrConnectWithoutPrecioInput[]
-    createMany?: AutosCreateManyPrecioInputEnvelope
-    connect?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-  }
-
-  export type AutosUncheckedCreateNestedManyWithoutPrecioInput = {
-    create?: XOR<AutosCreateWithoutPrecioInput, AutosUncheckedCreateWithoutPrecioInput> | AutosCreateWithoutPrecioInput[] | AutosUncheckedCreateWithoutPrecioInput[]
-    connectOrCreate?: AutosCreateOrConnectWithoutPrecioInput | AutosCreateOrConnectWithoutPrecioInput[]
-    createMany?: AutosCreateManyPrecioInputEnvelope
-    connect?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-  }
-
-  export type AutosUpdateManyWithoutPrecioNestedInput = {
-    create?: XOR<AutosCreateWithoutPrecioInput, AutosUncheckedCreateWithoutPrecioInput> | AutosCreateWithoutPrecioInput[] | AutosUncheckedCreateWithoutPrecioInput[]
-    connectOrCreate?: AutosCreateOrConnectWithoutPrecioInput | AutosCreateOrConnectWithoutPrecioInput[]
-    upsert?: AutosUpsertWithWhereUniqueWithoutPrecioInput | AutosUpsertWithWhereUniqueWithoutPrecioInput[]
-    createMany?: AutosCreateManyPrecioInputEnvelope
-    set?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-    disconnect?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-    delete?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-    connect?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-    update?: AutosUpdateWithWhereUniqueWithoutPrecioInput | AutosUpdateWithWhereUniqueWithoutPrecioInput[]
-    updateMany?: AutosUpdateManyWithWhereWithoutPrecioInput | AutosUpdateManyWithWhereWithoutPrecioInput[]
-    deleteMany?: AutosScalarWhereInput | AutosScalarWhereInput[]
-  }
-
-  export type AutosUncheckedUpdateManyWithoutPrecioNestedInput = {
-    create?: XOR<AutosCreateWithoutPrecioInput, AutosUncheckedCreateWithoutPrecioInput> | AutosCreateWithoutPrecioInput[] | AutosUncheckedCreateWithoutPrecioInput[]
-    connectOrCreate?: AutosCreateOrConnectWithoutPrecioInput | AutosCreateOrConnectWithoutPrecioInput[]
-    upsert?: AutosUpsertWithWhereUniqueWithoutPrecioInput | AutosUpsertWithWhereUniqueWithoutPrecioInput[]
-    createMany?: AutosCreateManyPrecioInputEnvelope
-    set?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-    disconnect?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-    delete?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-    connect?: AutosWhereUniqueInput | AutosWhereUniqueInput[]
-    update?: AutosUpdateWithWhereUniqueWithoutPrecioInput | AutosUpdateWithWhereUniqueWithoutPrecioInput[]
-    updateMany?: AutosUpdateManyWithWhereWithoutPrecioInput | AutosUpdateManyWithWhereWithoutPrecioInput[]
-    deleteMany?: AutosScalarWhereInput | AutosScalarWhereInput[]
-  }
-
   export type AutosCreateNestedManyWithoutEstatusInput = {
     create?: XOR<AutosCreateWithoutEstatusInput, AutosUncheckedCreateWithoutEstatusInput> | AutosCreateWithoutEstatusInput[] | AutosUncheckedCreateWithoutEstatusInput[]
     connectOrCreate?: AutosCreateOrConnectWithoutEstatusInput | AutosCreateOrConnectWithoutEstatusInput[]
@@ -48652,6 +49964,62 @@ export namespace Prisma {
     deleteMany?: AutosScalarWhereInput | AutosScalarWhereInput[]
   }
 
+  export type DocumentosCreateNestedManyWithoutDocumentoFormatoInput = {
+    create?: XOR<DocumentosCreateWithoutDocumentoFormatoInput, DocumentosUncheckedCreateWithoutDocumentoFormatoInput> | DocumentosCreateWithoutDocumentoFormatoInput[] | DocumentosUncheckedCreateWithoutDocumentoFormatoInput[]
+    connectOrCreate?: DocumentosCreateOrConnectWithoutDocumentoFormatoInput | DocumentosCreateOrConnectWithoutDocumentoFormatoInput[]
+    createMany?: DocumentosCreateManyDocumentoFormatoInputEnvelope
+    connect?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+  }
+
+  export type DocumentosUncheckedCreateNestedManyWithoutDocumentoFormatoInput = {
+    create?: XOR<DocumentosCreateWithoutDocumentoFormatoInput, DocumentosUncheckedCreateWithoutDocumentoFormatoInput> | DocumentosCreateWithoutDocumentoFormatoInput[] | DocumentosUncheckedCreateWithoutDocumentoFormatoInput[]
+    connectOrCreate?: DocumentosCreateOrConnectWithoutDocumentoFormatoInput | DocumentosCreateOrConnectWithoutDocumentoFormatoInput[]
+    createMany?: DocumentosCreateManyDocumentoFormatoInputEnvelope
+    connect?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+  }
+
+  export type DocumentosUpdateManyWithoutDocumentoFormatoNestedInput = {
+    create?: XOR<DocumentosCreateWithoutDocumentoFormatoInput, DocumentosUncheckedCreateWithoutDocumentoFormatoInput> | DocumentosCreateWithoutDocumentoFormatoInput[] | DocumentosUncheckedCreateWithoutDocumentoFormatoInput[]
+    connectOrCreate?: DocumentosCreateOrConnectWithoutDocumentoFormatoInput | DocumentosCreateOrConnectWithoutDocumentoFormatoInput[]
+    upsert?: DocumentosUpsertWithWhereUniqueWithoutDocumentoFormatoInput | DocumentosUpsertWithWhereUniqueWithoutDocumentoFormatoInput[]
+    createMany?: DocumentosCreateManyDocumentoFormatoInputEnvelope
+    set?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+    disconnect?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+    delete?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+    connect?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+    update?: DocumentosUpdateWithWhereUniqueWithoutDocumentoFormatoInput | DocumentosUpdateWithWhereUniqueWithoutDocumentoFormatoInput[]
+    updateMany?: DocumentosUpdateManyWithWhereWithoutDocumentoFormatoInput | DocumentosUpdateManyWithWhereWithoutDocumentoFormatoInput[]
+    deleteMany?: DocumentosScalarWhereInput | DocumentosScalarWhereInput[]
+  }
+
+  export type DocumentosUncheckedUpdateManyWithoutDocumentoFormatoNestedInput = {
+    create?: XOR<DocumentosCreateWithoutDocumentoFormatoInput, DocumentosUncheckedCreateWithoutDocumentoFormatoInput> | DocumentosCreateWithoutDocumentoFormatoInput[] | DocumentosUncheckedCreateWithoutDocumentoFormatoInput[]
+    connectOrCreate?: DocumentosCreateOrConnectWithoutDocumentoFormatoInput | DocumentosCreateOrConnectWithoutDocumentoFormatoInput[]
+    upsert?: DocumentosUpsertWithWhereUniqueWithoutDocumentoFormatoInput | DocumentosUpsertWithWhereUniqueWithoutDocumentoFormatoInput[]
+    createMany?: DocumentosCreateManyDocumentoFormatoInputEnvelope
+    set?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+    disconnect?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+    delete?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+    connect?: DocumentosWhereUniqueInput | DocumentosWhereUniqueInput[]
+    update?: DocumentosUpdateWithWhereUniqueWithoutDocumentoFormatoInput | DocumentosUpdateWithWhereUniqueWithoutDocumentoFormatoInput[]
+    updateMany?: DocumentosUpdateManyWithWhereWithoutDocumentoFormatoInput | DocumentosUpdateManyWithWhereWithoutDocumentoFormatoInput[]
+    deleteMany?: DocumentosScalarWhereInput | DocumentosScalarWhereInput[]
+  }
+
+  export type BeneficiariosCreateNestedOneWithoutDepositosInput = {
+    create?: XOR<BeneficiariosCreateWithoutDepositosInput, BeneficiariosUncheckedCreateWithoutDepositosInput>
+    connectOrCreate?: BeneficiariosCreateOrConnectWithoutDepositosInput
+    connect?: BeneficiariosWhereUniqueInput
+  }
+
+  export type BeneficiariosUpdateOneRequiredWithoutDepositosNestedInput = {
+    create?: XOR<BeneficiariosCreateWithoutDepositosInput, BeneficiariosUncheckedCreateWithoutDepositosInput>
+    connectOrCreate?: BeneficiariosCreateOrConnectWithoutDepositosInput
+    upsert?: BeneficiariosUpsertWithoutDepositosInput
+    connect?: BeneficiariosWhereUniqueInput
+    update?: XOR<XOR<BeneficiariosUpdateToOneWithWhereWithoutDepositosInput, BeneficiariosUpdateWithoutDepositosInput>, BeneficiariosUncheckedUpdateWithoutDepositosInput>
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -48937,10 +50305,13 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     banco: BancosCreateNestedOneWithoutBeneficiariosInput
     bancoCuentaTipo: BancoCuentaTipoCreateNestedOneWithoutBeneficiariosInput
     autos?: AutosCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosUncheckedCreateWithoutUsuariosInput = {
@@ -48955,8 +50326,11 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     autos?: AutosUncheckedCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasUncheckedCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosUncheckedCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosCreateOrConnectWithoutUsuariosInput = {
@@ -48984,6 +50358,7 @@ export namespace Prisma {
     imagenArchivo?: string | null
     estatus: DocumentoEstatusCreateNestedOneWithoutDocumentosInput
     tipo: TipoDocumentoCreateNestedOneWithoutDocumentosInput
+    documentoFormato?: DocumentoFormatoCreateNestedOneWithoutDocumentosInput
   }
 
   export type DocumentosUncheckedCreateWithoutUsuarioInput = {
@@ -48993,6 +50368,7 @@ export namespace Prisma {
     documentoTipo: number
     fhCreacion?: Date | string
     imagenArchivo?: string | null
+    documentoFormatoId?: number | null
   }
 
   export type DocumentosCreateOrConnectWithoutUsuarioInput = {
@@ -49145,10 +50521,13 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     banco?: BancosUpdateOneRequiredWithoutBeneficiariosNestedInput
     bancoCuentaTipo?: BancoCuentaTipoUpdateOneRequiredWithoutBeneficiariosNestedInput
     autos?: AutosUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type BeneficiariosUncheckedUpdateWithoutUsuariosInput = {
@@ -49163,8 +50542,11 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     autos?: AutosUncheckedUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUncheckedUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type UsuarioEstatusUpsertWithoutUsuariosInput = {
@@ -49214,6 +50596,7 @@ export namespace Prisma {
     fhCreacion?: DateTimeFilter<"Documentos"> | Date | string
     usuarioId?: IntFilter<"Documentos"> | number
     imagenArchivo?: StringNullableFilter<"Documentos"> | string | null
+    documentoFormatoId?: IntNullableFilter<"Documentos"> | number | null
   }
 
   export type UsuarioTipoUpsertWithoutUsuariosInput = {
@@ -49481,6 +50864,8 @@ export namespace Prisma {
     reservaCreado?: Date | string
     reservaNumero?: number | null
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     beneficiario: BeneficiariosCreateNestedOneWithoutReservasInput
     auto: AutosCreateNestedOneWithoutReservasInput
     tarjeta: TarjetasCreateNestedOneWithoutReservasInput
@@ -49514,6 +50899,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     Pagos?: PagosUncheckedCreateNestedManyWithoutReservaInput
   }
 
@@ -49674,6 +51061,8 @@ export namespace Prisma {
     tarjetaId?: IntFilter<"Reservas"> | number
     reservaEstatus?: IntFilter<"Reservas"> | number
     tarjetaNumero?: StringNullableFilter<"Reservas"> | string | null
+    codigoVerificacionEntrega?: IntNullableFilter<"Reservas"> | number | null
+    entregaVerificada?: BoolFilter<"Reservas"> | boolean
   }
 
   export type DireccionesUpsertWithoutClientesInput = {
@@ -49824,12 +51213,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -49838,7 +51226,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -49871,10 +51258,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -49882,6 +51266,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -49919,6 +51304,8 @@ export namespace Prisma {
     reservaCreado?: Date | string
     reservaNumero?: number | null
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     cliente: ClientesCreateNestedOneWithoutReservasInput
     auto: AutosCreateNestedOneWithoutReservasInput
     tarjeta: TarjetasCreateNestedOneWithoutReservasInput
@@ -49952,6 +51339,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     Pagos?: PagosUncheckedCreateNestedManyWithoutReservaInput
   }
 
@@ -49962,6 +51351,29 @@ export namespace Prisma {
 
   export type ReservasCreateManyBeneficiarioInputEnvelope = {
     data: ReservasCreateManyBeneficiarioInput | ReservasCreateManyBeneficiarioInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DepositosBeneficiariosCreateWithoutBeneficiarioInput = {
+    imagenBase64: string
+    fhCreacion?: Date | string
+    monto?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput = {
+    depositoId?: number
+    imagenBase64: string
+    fhCreacion?: Date | string
+    monto?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type DepositosBeneficiariosCreateOrConnectWithoutBeneficiarioInput = {
+    where: DepositosBeneficiariosWhereUniqueInput
+    create: XOR<DepositosBeneficiariosCreateWithoutBeneficiarioInput, DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput>
+  }
+
+  export type DepositosBeneficiariosCreateManyBeneficiarioInputEnvelope = {
+    data: DepositosBeneficiariosCreateManyBeneficiarioInput | DepositosBeneficiariosCreateManyBeneficiarioInput[]
     skipDuplicates?: boolean
   }
 
@@ -50067,10 +51479,7 @@ export namespace Prisma {
     paisId?: IntFilter<"Autos"> | number
     provinciaId?: IntNullableFilter<"Autos"> | number | null
     ciudadId?: IntFilter<"Autos"> | number
-    precioId?: IntFilter<"Autos"> | number
     autoEstatus?: IntNullableFilter<"Autos"> | number | null
-    fechaDeViajeInicial?: DateTimeNullableFilter<"Autos"> | Date | string | null
-    fechaDeViajeFinal?: DateTimeNullableFilter<"Autos"> | Date | string | null
     valoracion?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
@@ -50078,6 +51487,7 @@ export namespace Prisma {
     transmisionId?: IntNullableFilter<"Autos"> | number | null
     modeloVersionId?: IntNullableFilter<"Autos"> | number | null
     combustibleId?: IntNullableFilter<"Autos"> | number | null
+    precio?: DecimalFilter<"Autos"> | Decimal | DecimalJsLike | number | string
   }
 
   export type ReservasUpsertWithWhereUniqueWithoutBeneficiarioInput = {
@@ -50094,6 +51504,33 @@ export namespace Prisma {
   export type ReservasUpdateManyWithWhereWithoutBeneficiarioInput = {
     where: ReservasScalarWhereInput
     data: XOR<ReservasUpdateManyMutationInput, ReservasUncheckedUpdateManyWithoutBeneficiarioInput>
+  }
+
+  export type DepositosBeneficiariosUpsertWithWhereUniqueWithoutBeneficiarioInput = {
+    where: DepositosBeneficiariosWhereUniqueInput
+    update: XOR<DepositosBeneficiariosUpdateWithoutBeneficiarioInput, DepositosBeneficiariosUncheckedUpdateWithoutBeneficiarioInput>
+    create: XOR<DepositosBeneficiariosCreateWithoutBeneficiarioInput, DepositosBeneficiariosUncheckedCreateWithoutBeneficiarioInput>
+  }
+
+  export type DepositosBeneficiariosUpdateWithWhereUniqueWithoutBeneficiarioInput = {
+    where: DepositosBeneficiariosWhereUniqueInput
+    data: XOR<DepositosBeneficiariosUpdateWithoutBeneficiarioInput, DepositosBeneficiariosUncheckedUpdateWithoutBeneficiarioInput>
+  }
+
+  export type DepositosBeneficiariosUpdateManyWithWhereWithoutBeneficiarioInput = {
+    where: DepositosBeneficiariosScalarWhereInput
+    data: XOR<DepositosBeneficiariosUpdateManyMutationInput, DepositosBeneficiariosUncheckedUpdateManyWithoutBeneficiarioInput>
+  }
+
+  export type DepositosBeneficiariosScalarWhereInput = {
+    AND?: DepositosBeneficiariosScalarWhereInput | DepositosBeneficiariosScalarWhereInput[]
+    OR?: DepositosBeneficiariosScalarWhereInput[]
+    NOT?: DepositosBeneficiariosScalarWhereInput | DepositosBeneficiariosScalarWhereInput[]
+    depositoId?: IntFilter<"DepositosBeneficiarios"> | number
+    beneficiarioId?: IntFilter<"DepositosBeneficiarios"> | number
+    imagenBase64?: StringFilter<"DepositosBeneficiarios"> | string
+    fhCreacion?: DateTimeFilter<"DepositosBeneficiarios"> | Date | string
+    monto?: DecimalFilter<"DepositosBeneficiarios"> | Decimal | DecimalJsLike | number | string
   }
 
   export type ClientesCreateWithoutDireccionesInput = {
@@ -50242,10 +51679,13 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     bancoCuentaTipo: BancoCuentaTipoCreateNestedOneWithoutBeneficiariosInput
     usuarios?: UsuariosCreateNestedManyWithoutBeneficiarioInput
     autos?: AutosCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosUncheckedCreateWithoutBancoInput = {
@@ -50259,9 +51699,12 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     usuarios?: UsuariosUncheckedCreateNestedManyWithoutBeneficiarioInput
     autos?: AutosUncheckedCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasUncheckedCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosUncheckedCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosCreateOrConnectWithoutBancoInput = {
@@ -50305,6 +51748,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFilter<"Beneficiarios"> | string
     beneficiarioFecha?: DateTimeNullableFilter<"Beneficiarios"> | Date | string | null
     beneficiarioCorreo?: StringNullableFilter<"Beneficiarios"> | string | null
+    beneficiarioTelefono?: StringNullableFilter<"Beneficiarios"> | string | null
+    imagenBase64?: StringNullableFilter<"Beneficiarios"> | string | null
   }
 
   export type AutosCreateWithoutColorInput = {
@@ -50320,12 +51765,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -50334,7 +51778,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -50367,10 +51810,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -50378,6 +51818,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -50446,12 +51887,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
     color: ColoresCreateNestedOneWithoutAutosInput
@@ -50460,7 +51900,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -50493,10 +51932,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -50504,6 +51940,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -50592,12 +52029,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     color: ColoresCreateNestedOneWithoutAutosInput
@@ -50606,7 +52042,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -50639,10 +52074,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -50650,6 +52082,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -50805,6 +52238,8 @@ export namespace Prisma {
     reservaCreado?: Date | string
     reservaNumero?: number | null
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     cliente: ClientesCreateNestedOneWithoutReservasInput
     beneficiario: BeneficiariosCreateNestedOneWithoutReservasInput
     auto: AutosCreateNestedOneWithoutReservasInput
@@ -50838,6 +52273,8 @@ export namespace Prisma {
     autoId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     Pagos?: PagosUncheckedCreateNestedManyWithoutReservaInput
   }
 
@@ -50918,12 +52355,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
     color: ColoresCreateNestedOneWithoutAutosInput
@@ -50932,7 +52368,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -50965,10 +52400,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -50976,6 +52408,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -51021,12 +52454,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -51035,7 +52467,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -51068,10 +52499,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -51079,6 +52507,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -51124,12 +52553,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -51139,7 +52567,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
     estatus?: AutoEstatusCreateNestedOneWithoutAutosInput
@@ -51172,10 +52599,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -51183,6 +52607,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
     autosMeGustas?: AutosMeGustasUncheckedCreateNestedManyWithoutAutoInput
@@ -51253,12 +52678,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -51268,7 +52692,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
     estatus?: AutoEstatusUpdateOneWithoutAutosNestedInput
@@ -51301,10 +52724,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -51312,6 +52732,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
     autosMeGustas?: AutosMeGustasUncheckedUpdateManyWithoutAutoNestedInput
@@ -51434,10 +52855,13 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     banco: BancosCreateNestedOneWithoutBeneficiariosInput
     bancoCuentaTipo: BancoCuentaTipoCreateNestedOneWithoutBeneficiariosInput
     usuarios?: UsuariosCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosUncheckedCreateWithoutAutosInput = {
@@ -51452,8 +52876,11 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     usuarios?: UsuariosUncheckedCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasUncheckedCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosUncheckedCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosCreateOrConnectWithoutAutosInput = {
@@ -51532,24 +52959,6 @@ export namespace Prisma {
     create: XOR<CiudadesCreateWithoutAutosInput, CiudadesUncheckedCreateWithoutAutosInput>
   }
 
-  export type PreciosCreateWithoutAutosInput = {
-    precioNombre: string
-    precioCliente: Decimal | DecimalJsLike | number | string
-    precioBeneficiario: Decimal | DecimalJsLike | number | string
-  }
-
-  export type PreciosUncheckedCreateWithoutAutosInput = {
-    precioId?: number
-    precioNombre: string
-    precioCliente: Decimal | DecimalJsLike | number | string
-    precioBeneficiario: Decimal | DecimalJsLike | number | string
-  }
-
-  export type PreciosCreateOrConnectWithoutAutosInput = {
-    where: PreciosWhereUniqueInput
-    create: XOR<PreciosCreateWithoutAutosInput, PreciosUncheckedCreateWithoutAutosInput>
-  }
-
   export type ReservasCreateWithoutAutoInput = {
     reservaFhInicial: Date | string
     reservaFhFinal: Date | string
@@ -51571,6 +52980,8 @@ export namespace Prisma {
     reservaCreado?: Date | string
     reservaNumero?: number | null
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     cliente: ClientesCreateNestedOneWithoutReservasInput
     beneficiario: BeneficiariosCreateNestedOneWithoutReservasInput
     tarjeta: TarjetasCreateNestedOneWithoutReservasInput
@@ -51604,6 +53015,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     Pagos?: PagosUncheckedCreateNestedManyWithoutReservaInput
   }
 
@@ -51860,10 +53273,13 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     banco?: BancosUpdateOneRequiredWithoutBeneficiariosNestedInput
     bancoCuentaTipo?: BancoCuentaTipoUpdateOneRequiredWithoutBeneficiariosNestedInput
     usuarios?: UsuariosUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type BeneficiariosUncheckedUpdateWithoutAutosInput = {
@@ -51878,8 +53294,11 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     usuarios?: UsuariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUncheckedUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type SegurosUpsertWithoutAutosInput = {
@@ -51975,30 +53394,6 @@ export namespace Prisma {
     ciudadNombre?: StringFieldUpdateOperationsInput | string
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type PreciosUpsertWithoutAutosInput = {
-    update: XOR<PreciosUpdateWithoutAutosInput, PreciosUncheckedUpdateWithoutAutosInput>
-    create: XOR<PreciosCreateWithoutAutosInput, PreciosUncheckedCreateWithoutAutosInput>
-    where?: PreciosWhereInput
-  }
-
-  export type PreciosUpdateToOneWithWhereWithoutAutosInput = {
-    where?: PreciosWhereInput
-    data: XOR<PreciosUpdateWithoutAutosInput, PreciosUncheckedUpdateWithoutAutosInput>
-  }
-
-  export type PreciosUpdateWithoutAutosInput = {
-    precioNombre?: StringFieldUpdateOperationsInput | string
-    precioCliente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    precioBeneficiario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-  }
-
-  export type PreciosUncheckedUpdateWithoutAutosInput = {
-    precioId?: IntFieldUpdateOperationsInput | number
-    precioNombre?: StringFieldUpdateOperationsInput | string
-    precioCliente?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    precioBeneficiario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ReservasUpsertWithWhereUniqueWithoutAutoInput = {
@@ -52175,12 +53570,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -52190,7 +53584,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     estatus?: AutoEstatusCreateNestedOneWithoutAutosInput
@@ -52223,10 +53616,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -52234,6 +53624,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     autosMeGustas?: AutosMeGustasUncheckedCreateNestedManyWithoutAutoInput
@@ -52284,12 +53675,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -52299,7 +53689,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     estatus?: AutoEstatusUpdateOneWithoutAutosNestedInput
@@ -52332,10 +53721,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -52343,6 +53729,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     autosMeGustas?: AutosMeGustasUncheckedUpdateManyWithoutAutoNestedInput
@@ -52436,6 +53823,20 @@ export namespace Prisma {
     create: XOR<UsuariosCreateWithoutDocumentosInput, UsuariosUncheckedCreateWithoutDocumentosInput>
   }
 
+  export type DocumentoFormatoCreateWithoutDocumentosInput = {
+    formatoNombre: string
+  }
+
+  export type DocumentoFormatoUncheckedCreateWithoutDocumentosInput = {
+    formatoId?: number
+    formatoNombre: string
+  }
+
+  export type DocumentoFormatoCreateOrConnectWithoutDocumentosInput = {
+    where: DocumentoFormatoWhereUniqueInput
+    create: XOR<DocumentoFormatoCreateWithoutDocumentosInput, DocumentoFormatoUncheckedCreateWithoutDocumentosInput>
+  }
+
   export type DocumentoEstatusUpsertWithoutDocumentosInput = {
     update: XOR<DocumentoEstatusUpdateWithoutDocumentosInput, DocumentoEstatusUncheckedUpdateWithoutDocumentosInput>
     create: XOR<DocumentoEstatusCreateWithoutDocumentosInput, DocumentoEstatusUncheckedCreateWithoutDocumentosInput>
@@ -52520,12 +53921,33 @@ export namespace Prisma {
     autosMeGustas?: AutosMeGustasUncheckedUpdateManyWithoutUsuarioNestedInput
   }
 
+  export type DocumentoFormatoUpsertWithoutDocumentosInput = {
+    update: XOR<DocumentoFormatoUpdateWithoutDocumentosInput, DocumentoFormatoUncheckedUpdateWithoutDocumentosInput>
+    create: XOR<DocumentoFormatoCreateWithoutDocumentosInput, DocumentoFormatoUncheckedCreateWithoutDocumentosInput>
+    where?: DocumentoFormatoWhereInput
+  }
+
+  export type DocumentoFormatoUpdateToOneWithWhereWithoutDocumentosInput = {
+    where?: DocumentoFormatoWhereInput
+    data: XOR<DocumentoFormatoUpdateWithoutDocumentosInput, DocumentoFormatoUncheckedUpdateWithoutDocumentosInput>
+  }
+
+  export type DocumentoFormatoUpdateWithoutDocumentosInput = {
+    formatoNombre?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type DocumentoFormatoUncheckedUpdateWithoutDocumentosInput = {
+    formatoId?: IntFieldUpdateOperationsInput | number
+    formatoNombre?: StringFieldUpdateOperationsInput | string
+  }
+
   export type DocumentosCreateWithoutTipoInput = {
     imagenBase64: string
     fhCreacion?: Date | string
     imagenArchivo?: string | null
     estatus: DocumentoEstatusCreateNestedOneWithoutDocumentosInput
     usuario: UsuariosCreateNestedOneWithoutDocumentosInput
+    documentoFormato?: DocumentoFormatoCreateNestedOneWithoutDocumentosInput
   }
 
   export type DocumentosUncheckedCreateWithoutTipoInput = {
@@ -52535,6 +53957,7 @@ export namespace Prisma {
     fhCreacion?: Date | string
     usuarioId: number
     imagenArchivo?: string | null
+    documentoFormatoId?: number | null
   }
 
   export type DocumentosCreateOrConnectWithoutTipoInput = {
@@ -52596,6 +54019,7 @@ export namespace Prisma {
     imagenArchivo?: string | null
     tipo: TipoDocumentoCreateNestedOneWithoutDocumentosInput
     usuario: UsuariosCreateNestedOneWithoutDocumentosInput
+    documentoFormato?: DocumentoFormatoCreateNestedOneWithoutDocumentosInput
   }
 
   export type DocumentosUncheckedCreateWithoutEstatusInput = {
@@ -52605,6 +54029,7 @@ export namespace Prisma {
     fhCreacion?: Date | string
     usuarioId: number
     imagenArchivo?: string | null
+    documentoFormatoId?: number | null
   }
 
   export type DocumentosCreateOrConnectWithoutEstatusInput = {
@@ -52704,12 +54129,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -52718,7 +54142,6 @@ export namespace Prisma {
     seguro?: SegurosCreateNestedOneWithoutAutosInput
     pais: PaisesCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -52751,10 +54174,7 @@ export namespace Prisma {
     autoNumeroAsientos?: number
     paisId: number
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -52762,6 +54182,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -52895,12 +54316,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -52909,7 +54329,6 @@ export namespace Prisma {
     seguro?: SegurosCreateNestedOneWithoutAutosInput
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -52942,10 +54361,7 @@ export namespace Prisma {
     autoNumeroAsientos?: number
     paisId: number
     provinciaId?: number | null
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -52953,6 +54369,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -53093,12 +54510,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -53107,7 +54523,6 @@ export namespace Prisma {
     seguro?: SegurosCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -53140,10 +54555,7 @@ export namespace Prisma {
     autoNumeroAsientos?: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -53151,6 +54563,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -53265,10 +54678,13 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     banco: BancosCreateNestedOneWithoutBeneficiariosInput
     bancoCuentaTipo: BancoCuentaTipoCreateNestedOneWithoutBeneficiariosInput
     usuarios?: UsuariosCreateNestedManyWithoutBeneficiarioInput
     autos?: AutosCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosUncheckedCreateWithoutReservasInput = {
@@ -53283,8 +54699,11 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     usuarios?: UsuariosUncheckedCreateNestedManyWithoutBeneficiarioInput
     autos?: AutosUncheckedCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosUncheckedCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosCreateOrConnectWithoutReservasInput = {
@@ -53305,12 +54724,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -53320,7 +54738,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
     estatus?: AutoEstatusCreateNestedOneWithoutAutosInput
@@ -53353,10 +54770,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -53364,6 +54778,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
     autosMeGustas?: AutosMeGustasUncheckedCreateNestedManyWithoutAutoInput
@@ -53489,10 +54904,13 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     banco?: BancosUpdateOneRequiredWithoutBeneficiariosNestedInput
     bancoCuentaTipo?: BancoCuentaTipoUpdateOneRequiredWithoutBeneficiariosNestedInput
     usuarios?: UsuariosUpdateManyWithoutBeneficiarioNestedInput
     autos?: AutosUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type BeneficiariosUncheckedUpdateWithoutReservasInput = {
@@ -53507,8 +54925,11 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     usuarios?: UsuariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
     autos?: AutosUncheckedUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type AutosUpsertWithoutReservasInput = {
@@ -53535,12 +54956,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -53550,7 +54970,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
     estatus?: AutoEstatusUpdateOneWithoutAutosNestedInput
@@ -53583,10 +55002,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -53594,6 +55010,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
     autosMeGustas?: AutosMeGustasUncheckedUpdateManyWithoutAutoNestedInput
@@ -53694,6 +55111,8 @@ export namespace Prisma {
     reservaCreado?: Date | string
     reservaNumero?: number | null
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     cliente: ClientesCreateNestedOneWithoutReservasInput
     beneficiario: BeneficiariosCreateNestedOneWithoutReservasInput
     auto: AutosCreateNestedOneWithoutReservasInput
@@ -53727,6 +55146,8 @@ export namespace Prisma {
     autoId: number
     tarjetaId: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     Pagos?: PagosUncheckedCreateNestedManyWithoutReservaInput
   }
 
@@ -53765,10 +55186,13 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     banco: BancosCreateNestedOneWithoutBeneficiariosInput
     usuarios?: UsuariosCreateNestedManyWithoutBeneficiarioInput
     autos?: AutosCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosUncheckedCreateWithoutBancoCuentaTipoInput = {
@@ -53782,9 +55206,12 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
     usuarios?: UsuariosUncheckedCreateNestedManyWithoutBeneficiarioInput
     autos?: AutosUncheckedCreateNestedManyWithoutBeneficiarioInput
     reservas?: ReservasUncheckedCreateNestedManyWithoutBeneficiarioInput
+    depositos?: DepositosBeneficiariosUncheckedCreateNestedManyWithoutBeneficiarioInput
   }
 
   export type BeneficiariosCreateOrConnectWithoutBancoCuentaTipoInput = {
@@ -53813,109 +55240,6 @@ export namespace Prisma {
     data: XOR<BeneficiariosUpdateManyMutationInput, BeneficiariosUncheckedUpdateManyWithoutBancoCuentaTipoInput>
   }
 
-  export type AutosCreateWithoutPrecioInput = {
-    autoAno: number
-    autoDescripcion: string
-    autoFecha?: Date | string
-    autoDireccion: string
-    autoCoorX: Decimal | DecimalJsLike | number | string
-    autoCoorY: Decimal | DecimalJsLike | number | string
-    autoKmIncluido: Decimal | DecimalJsLike | number | string
-    autoCondiciones: string
-    autoNumeroViajes?: number
-    autoNumeroPersonas?: number
-    autoNumeroPuertas?: number
-    autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
-    valoracion?: Decimal | DecimalJsLike | number | string
-    valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
-    cantidadValoracion?: Decimal | DecimalJsLike | number | string
-    cantidadMeGustas?: number
-    tipo: TipoAutoCreateNestedOneWithoutAutosInput
-    marca: MarcasCreateNestedOneWithoutAutosInput
-    modelo: ModelosCreateNestedOneWithoutAutosInput
-    color: ColoresCreateNestedOneWithoutAutosInput
-    beneficiario: BeneficiariosCreateNestedOneWithoutAutosInput
-    seguro?: SegurosCreateNestedOneWithoutAutosInput
-    pais: PaisesCreateNestedOneWithoutAutosInput
-    provincia?: ProvinciasCreateNestedOneWithoutAutosInput
-    ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    reservas?: ReservasCreateNestedManyWithoutAutoInput
-    valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
-    imagenes?: ImagenesCreateNestedManyWithoutAutoInput
-    estatus?: AutoEstatusCreateNestedOneWithoutAutosInput
-    transmision?: AutoTipoTransmisionCreateNestedOneWithoutAutosInput
-    autosMeGustas?: AutosMeGustasCreateNestedManyWithoutAutoInput
-    modeloVersion?: ModelosVersionesCreateNestedOneWithoutAutosInput
-    combustible?: CombustiblesCreateNestedOneWithoutAutosInput
-  }
-
-  export type AutosUncheckedCreateWithoutPrecioInput = {
-    autoId?: number
-    tipoId: number
-    marcaId: number
-    modeloId: number
-    colorId: number
-    autoAno: number
-    autoDescripcion: string
-    beneficiarioId: number
-    autoFecha?: Date | string
-    autoDireccion: string
-    autoCoorX: Decimal | DecimalJsLike | number | string
-    autoCoorY: Decimal | DecimalJsLike | number | string
-    seguroId?: number | null
-    autoKmIncluido: Decimal | DecimalJsLike | number | string
-    autoCondiciones: string
-    autoNumeroViajes?: number
-    autoNumeroPersonas?: number
-    autoNumeroPuertas?: number
-    autoNumeroAsientos?: number
-    paisId: number
-    provinciaId?: number | null
-    ciudadId: number
-    autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
-    valoracion?: Decimal | DecimalJsLike | number | string
-    valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
-    cantidadValoracion?: Decimal | DecimalJsLike | number | string
-    cantidadMeGustas?: number
-    transmisionId?: number | null
-    modeloVersionId?: number | null
-    combustibleId?: number | null
-    reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
-    valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
-    imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
-    autosMeGustas?: AutosMeGustasUncheckedCreateNestedManyWithoutAutoInput
-  }
-
-  export type AutosCreateOrConnectWithoutPrecioInput = {
-    where: AutosWhereUniqueInput
-    create: XOR<AutosCreateWithoutPrecioInput, AutosUncheckedCreateWithoutPrecioInput>
-  }
-
-  export type AutosCreateManyPrecioInputEnvelope = {
-    data: AutosCreateManyPrecioInput | AutosCreateManyPrecioInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AutosUpsertWithWhereUniqueWithoutPrecioInput = {
-    where: AutosWhereUniqueInput
-    update: XOR<AutosUpdateWithoutPrecioInput, AutosUncheckedUpdateWithoutPrecioInput>
-    create: XOR<AutosCreateWithoutPrecioInput, AutosUncheckedCreateWithoutPrecioInput>
-  }
-
-  export type AutosUpdateWithWhereUniqueWithoutPrecioInput = {
-    where: AutosWhereUniqueInput
-    data: XOR<AutosUpdateWithoutPrecioInput, AutosUncheckedUpdateWithoutPrecioInput>
-  }
-
-  export type AutosUpdateManyWithWhereWithoutPrecioInput = {
-    where: AutosScalarWhereInput
-    data: XOR<AutosUpdateManyMutationInput, AutosUncheckedUpdateManyWithoutPrecioInput>
-  }
-
   export type AutosCreateWithoutEstatusInput = {
     autoAno: number
     autoDescripcion: string
@@ -53929,12 +55253,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -53944,7 +55267,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -53977,9 +55299,6 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -53987,6 +55306,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -54097,6 +55417,8 @@ export namespace Prisma {
     reservaCreado?: Date | string
     reservaNumero?: number | null
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
     cliente: ClientesCreateNestedOneWithoutReservasInput
     beneficiario: BeneficiariosCreateNestedOneWithoutReservasInput
     auto: AutosCreateNestedOneWithoutReservasInput
@@ -54131,6 +55453,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
   }
 
   export type ReservasCreateOrConnectWithoutPagosInput = {
@@ -54170,6 +55494,8 @@ export namespace Prisma {
     reservaCreado?: DateTimeFieldUpdateOperationsInput | Date | string
     reservaNumero?: NullableIntFieldUpdateOperationsInput | number | null
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     cliente?: ClientesUpdateOneRequiredWithoutReservasNestedInput
     beneficiario?: BeneficiariosUpdateOneRequiredWithoutReservasNestedInput
     auto?: AutosUpdateOneRequiredWithoutReservasNestedInput
@@ -54204,6 +55530,8 @@ export namespace Prisma {
     tarjetaId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AutosCreateWithoutTransmisionInput = {
@@ -54219,12 +55547,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -54234,7 +55561,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -54267,16 +55593,14 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -54322,12 +55646,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -54337,7 +55660,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -54370,10 +55692,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -54381,6 +55700,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -54451,12 +55771,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -54466,7 +55785,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -54499,10 +55817,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -54510,6 +55825,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -54645,12 +55961,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -54660,7 +55975,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -54693,16 +56007,14 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
     transmisionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -54772,12 +56084,11 @@ export namespace Prisma {
     autoNumeroPersonas?: number
     autoNumeroPuertas?: number
     autoNumeroAsientos?: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
+    precio?: Decimal | DecimalJsLike | number | string
     tipo: TipoAutoCreateNestedOneWithoutAutosInput
     marca: MarcasCreateNestedOneWithoutAutosInput
     modelo: ModelosCreateNestedOneWithoutAutosInput
@@ -54787,7 +56098,6 @@ export namespace Prisma {
     pais: PaisesCreateNestedOneWithoutAutosInput
     provincia?: ProvinciasCreateNestedOneWithoutAutosInput
     ciudad: CiudadesCreateNestedOneWithoutAutosInput
-    precio: PreciosCreateNestedOneWithoutAutosInput
     reservas?: ReservasCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesCreateNestedManyWithoutAutoInput
@@ -54820,16 +56130,14 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
     transmisionId?: number | null
     modeloVersionId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedCreateNestedManyWithoutAutoInput
     valoraciones?: ValoracionesUncheckedCreateNestedManyWithoutAutoInput
     imagenes?: ImagenesUncheckedCreateNestedManyWithoutAutoInput
@@ -54862,6 +56170,141 @@ export namespace Prisma {
     data: XOR<AutosUpdateManyMutationInput, AutosUncheckedUpdateManyWithoutCombustibleInput>
   }
 
+  export type DocumentosCreateWithoutDocumentoFormatoInput = {
+    imagenBase64: string
+    fhCreacion?: Date | string
+    imagenArchivo?: string | null
+    estatus: DocumentoEstatusCreateNestedOneWithoutDocumentosInput
+    tipo: TipoDocumentoCreateNestedOneWithoutDocumentosInput
+    usuario: UsuariosCreateNestedOneWithoutDocumentosInput
+  }
+
+  export type DocumentosUncheckedCreateWithoutDocumentoFormatoInput = {
+    documentoId?: number
+    imagenBase64: string
+    documentoEstatus: number
+    documentoTipo: number
+    fhCreacion?: Date | string
+    usuarioId: number
+    imagenArchivo?: string | null
+  }
+
+  export type DocumentosCreateOrConnectWithoutDocumentoFormatoInput = {
+    where: DocumentosWhereUniqueInput
+    create: XOR<DocumentosCreateWithoutDocumentoFormatoInput, DocumentosUncheckedCreateWithoutDocumentoFormatoInput>
+  }
+
+  export type DocumentosCreateManyDocumentoFormatoInputEnvelope = {
+    data: DocumentosCreateManyDocumentoFormatoInput | DocumentosCreateManyDocumentoFormatoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DocumentosUpsertWithWhereUniqueWithoutDocumentoFormatoInput = {
+    where: DocumentosWhereUniqueInput
+    update: XOR<DocumentosUpdateWithoutDocumentoFormatoInput, DocumentosUncheckedUpdateWithoutDocumentoFormatoInput>
+    create: XOR<DocumentosCreateWithoutDocumentoFormatoInput, DocumentosUncheckedCreateWithoutDocumentoFormatoInput>
+  }
+
+  export type DocumentosUpdateWithWhereUniqueWithoutDocumentoFormatoInput = {
+    where: DocumentosWhereUniqueInput
+    data: XOR<DocumentosUpdateWithoutDocumentoFormatoInput, DocumentosUncheckedUpdateWithoutDocumentoFormatoInput>
+  }
+
+  export type DocumentosUpdateManyWithWhereWithoutDocumentoFormatoInput = {
+    where: DocumentosScalarWhereInput
+    data: XOR<DocumentosUpdateManyMutationInput, DocumentosUncheckedUpdateManyWithoutDocumentoFormatoInput>
+  }
+
+  export type BeneficiariosCreateWithoutDepositosInput = {
+    beneficiarioNombre: string
+    beneficiarioIdentificacion: string
+    beneficiarioDireccion: string
+    beneficiarioCoorX: Decimal | DecimalJsLike | number | string
+    beneficiarioCoorY: Decimal | DecimalJsLike | number | string
+    beneficiarioCuentaNo: string
+    beneficiarioFecha?: Date | string | null
+    beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
+    banco: BancosCreateNestedOneWithoutBeneficiariosInput
+    bancoCuentaTipo: BancoCuentaTipoCreateNestedOneWithoutBeneficiariosInput
+    usuarios?: UsuariosCreateNestedManyWithoutBeneficiarioInput
+    autos?: AutosCreateNestedManyWithoutBeneficiarioInput
+    reservas?: ReservasCreateNestedManyWithoutBeneficiarioInput
+  }
+
+  export type BeneficiariosUncheckedCreateWithoutDepositosInput = {
+    beneficiarioId?: number
+    beneficiarioNombre: string
+    beneficiarioIdentificacion: string
+    beneficiarioDireccion: string
+    beneficiarioCoorX: Decimal | DecimalJsLike | number | string
+    beneficiarioCoorY: Decimal | DecimalJsLike | number | string
+    bancoId: number
+    beneficiarioCuentaTipo: number
+    beneficiarioCuentaNo: string
+    beneficiarioFecha?: Date | string | null
+    beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
+    usuarios?: UsuariosUncheckedCreateNestedManyWithoutBeneficiarioInput
+    autos?: AutosUncheckedCreateNestedManyWithoutBeneficiarioInput
+    reservas?: ReservasUncheckedCreateNestedManyWithoutBeneficiarioInput
+  }
+
+  export type BeneficiariosCreateOrConnectWithoutDepositosInput = {
+    where: BeneficiariosWhereUniqueInput
+    create: XOR<BeneficiariosCreateWithoutDepositosInput, BeneficiariosUncheckedCreateWithoutDepositosInput>
+  }
+
+  export type BeneficiariosUpsertWithoutDepositosInput = {
+    update: XOR<BeneficiariosUpdateWithoutDepositosInput, BeneficiariosUncheckedUpdateWithoutDepositosInput>
+    create: XOR<BeneficiariosCreateWithoutDepositosInput, BeneficiariosUncheckedCreateWithoutDepositosInput>
+    where?: BeneficiariosWhereInput
+  }
+
+  export type BeneficiariosUpdateToOneWithWhereWithoutDepositosInput = {
+    where?: BeneficiariosWhereInput
+    data: XOR<BeneficiariosUpdateWithoutDepositosInput, BeneficiariosUncheckedUpdateWithoutDepositosInput>
+  }
+
+  export type BeneficiariosUpdateWithoutDepositosInput = {
+    beneficiarioNombre?: StringFieldUpdateOperationsInput | string
+    beneficiarioIdentificacion?: StringFieldUpdateOperationsInput | string
+    beneficiarioDireccion?: StringFieldUpdateOperationsInput | string
+    beneficiarioCoorX?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    beneficiarioCoorY?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
+    beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
+    banco?: BancosUpdateOneRequiredWithoutBeneficiariosNestedInput
+    bancoCuentaTipo?: BancoCuentaTipoUpdateOneRequiredWithoutBeneficiariosNestedInput
+    usuarios?: UsuariosUpdateManyWithoutBeneficiarioNestedInput
+    autos?: AutosUpdateManyWithoutBeneficiarioNestedInput
+    reservas?: ReservasUpdateManyWithoutBeneficiarioNestedInput
+  }
+
+  export type BeneficiariosUncheckedUpdateWithoutDepositosInput = {
+    beneficiarioId?: IntFieldUpdateOperationsInput | number
+    beneficiarioNombre?: StringFieldUpdateOperationsInput | string
+    beneficiarioIdentificacion?: StringFieldUpdateOperationsInput | string
+    beneficiarioDireccion?: StringFieldUpdateOperationsInput | string
+    beneficiarioCoorX?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    beneficiarioCoorY?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    bancoId?: IntFieldUpdateOperationsInput | number
+    beneficiarioCuentaTipo?: IntFieldUpdateOperationsInput | number
+    beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
+    beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
+    usuarios?: UsuariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
+    autos?: AutosUncheckedUpdateManyWithoutBeneficiarioNestedInput
+    reservas?: ReservasUncheckedUpdateManyWithoutBeneficiarioNestedInput
+  }
+
   export type DocumentosCreateManyUsuarioInput = {
     documentoId?: number
     imagenBase64: string
@@ -54869,6 +56312,7 @@ export namespace Prisma {
     documentoTipo: number
     fhCreacion?: Date | string
     imagenArchivo?: string | null
+    documentoFormatoId?: number | null
   }
 
   export type ValoracionesCreateManyUsuarioInput = {
@@ -54891,6 +56335,7 @@ export namespace Prisma {
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
     estatus?: DocumentoEstatusUpdateOneRequiredWithoutDocumentosNestedInput
     tipo?: TipoDocumentoUpdateOneRequiredWithoutDocumentosNestedInput
+    documentoFormato?: DocumentoFormatoUpdateOneWithoutDocumentosNestedInput
   }
 
   export type DocumentosUncheckedUpdateWithoutUsuarioInput = {
@@ -54900,6 +56345,7 @@ export namespace Prisma {
     documentoTipo?: IntFieldUpdateOperationsInput | number
     fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+    documentoFormatoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type DocumentosUncheckedUpdateManyWithoutUsuarioInput = {
@@ -54909,6 +56355,7 @@ export namespace Prisma {
     documentoTipo?: IntFieldUpdateOperationsInput | number
     fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+    documentoFormatoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ValoracionesUpdateWithoutUsuarioInput = {
@@ -55055,6 +56502,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
   }
 
   export type DireccionesCreateManyClienteInput = {
@@ -55157,6 +56606,8 @@ export namespace Prisma {
     reservaCreado?: DateTimeFieldUpdateOperationsInput | Date | string
     reservaNumero?: NullableIntFieldUpdateOperationsInput | number | null
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     beneficiario?: BeneficiariosUpdateOneRequiredWithoutReservasNestedInput
     auto?: AutosUpdateOneRequiredWithoutReservasNestedInput
     tarjeta?: TarjetasUpdateOneRequiredWithoutReservasNestedInput
@@ -55190,6 +56641,8 @@ export namespace Prisma {
     tarjetaId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     Pagos?: PagosUncheckedUpdateManyWithoutReservaNestedInput
   }
 
@@ -55219,6 +56672,8 @@ export namespace Prisma {
     tarjetaId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type DireccionesUpdateWithoutClienteInput = {
@@ -55287,10 +56742,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -55298,6 +56750,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type ReservasCreateManyBeneficiarioInput = {
@@ -55326,6 +56779,15 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
+  }
+
+  export type DepositosBeneficiariosCreateManyBeneficiarioInput = {
+    depositoId?: number
+    imagenBase64: string
+    fhCreacion?: Date | string
+    monto?: Decimal | DecimalJsLike | number | string
   }
 
   export type UsuariosUpdateWithoutBeneficiarioInput = {
@@ -55385,12 +56847,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -55399,7 +56860,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -55432,10 +56892,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -55443,6 +56900,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -55471,10 +56929,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -55482,6 +56937,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ReservasUpdateWithoutBeneficiarioInput = {
@@ -55505,6 +56961,8 @@ export namespace Prisma {
     reservaCreado?: DateTimeFieldUpdateOperationsInput | Date | string
     reservaNumero?: NullableIntFieldUpdateOperationsInput | number | null
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     cliente?: ClientesUpdateOneRequiredWithoutReservasNestedInput
     auto?: AutosUpdateOneRequiredWithoutReservasNestedInput
     tarjeta?: TarjetasUpdateOneRequiredWithoutReservasNestedInput
@@ -55538,6 +56996,8 @@ export namespace Prisma {
     tarjetaId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     Pagos?: PagosUncheckedUpdateManyWithoutReservaNestedInput
   }
 
@@ -55567,6 +57027,28 @@ export namespace Prisma {
     tarjetaId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type DepositosBeneficiariosUpdateWithoutBeneficiarioInput = {
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type DepositosBeneficiariosUncheckedUpdateWithoutBeneficiarioInput = {
+    depositoId?: IntFieldUpdateOperationsInput | number
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type DepositosBeneficiariosUncheckedUpdateManyWithoutBeneficiarioInput = {
+    depositoId?: IntFieldUpdateOperationsInput | number
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    monto?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ClientesCreateManyDireccionInput = {
@@ -55627,6 +57109,8 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
   }
 
   export type BeneficiariosUpdateWithoutBancoInput = {
@@ -55638,10 +57122,13 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     bancoCuentaTipo?: BancoCuentaTipoUpdateOneRequiredWithoutBeneficiariosNestedInput
     usuarios?: UsuariosUpdateManyWithoutBeneficiarioNestedInput
     autos?: AutosUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type BeneficiariosUncheckedUpdateWithoutBancoInput = {
@@ -55655,9 +57142,12 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     usuarios?: UsuariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
     autos?: AutosUncheckedUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUncheckedUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type BeneficiariosUncheckedUpdateManyWithoutBancoInput = {
@@ -55671,6 +57161,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AutosCreateManyColorInput = {
@@ -55695,10 +57187,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -55706,6 +57195,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUpdateWithoutColorInput = {
@@ -55721,12 +57211,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -55735,7 +57224,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -55768,10 +57256,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -55779,6 +57264,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -55807,10 +57293,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -55818,6 +57301,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ModelosCreateManyMarcaInput = {
@@ -55847,10 +57331,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -55858,6 +57339,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type ModelosUpdateWithoutMarcaInput = {
@@ -55891,12 +57373,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
     color?: ColoresUpdateOneRequiredWithoutAutosNestedInput
@@ -55905,7 +57386,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -55938,10 +57418,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -55949,6 +57426,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -55977,10 +57455,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -55988,6 +57463,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type AutosCreateManyModeloInput = {
@@ -56012,10 +57488,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -56023,6 +57496,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type ModelosVersionesCreateManyModeloInput = {
@@ -56043,12 +57517,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     color?: ColoresUpdateOneRequiredWithoutAutosNestedInput
@@ -56057,7 +57530,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -56090,10 +57562,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -56101,6 +57570,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -56129,10 +57599,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -56140,6 +57607,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ModelosVersionesUpdateWithoutModeloInput = {
@@ -56184,6 +57652,8 @@ export namespace Prisma {
     autoId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
   }
 
   export type ReservasUpdateWithoutTarjetaInput = {
@@ -56207,6 +57677,8 @@ export namespace Prisma {
     reservaCreado?: DateTimeFieldUpdateOperationsInput | Date | string
     reservaNumero?: NullableIntFieldUpdateOperationsInput | number | null
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     cliente?: ClientesUpdateOneRequiredWithoutReservasNestedInput
     beneficiario?: BeneficiariosUpdateOneRequiredWithoutReservasNestedInput
     auto?: AutosUpdateOneRequiredWithoutReservasNestedInput
@@ -56240,6 +57712,8 @@ export namespace Prisma {
     autoId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     Pagos?: PagosUncheckedUpdateManyWithoutReservaNestedInput
   }
 
@@ -56269,6 +57743,8 @@ export namespace Prisma {
     autoId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type AutosCreateManyTipoInput = {
@@ -56293,10 +57769,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -56304,6 +57777,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUpdateWithoutTipoInput = {
@@ -56319,12 +57793,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
     color?: ColoresUpdateOneRequiredWithoutAutosNestedInput
@@ -56333,7 +57806,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -56366,10 +57838,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -56377,6 +57846,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -56405,10 +57875,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -56416,6 +57883,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type AutosCreateManySeguroInput = {
@@ -56440,10 +57908,7 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -56451,6 +57916,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUpdateWithoutSeguroInput = {
@@ -56466,12 +57932,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -56480,7 +57945,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -56513,10 +57977,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -56524,6 +57985,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -56552,10 +58014,7 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -56563,6 +58022,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ReservasCreateManyAutoInput = {
@@ -56591,6 +58051,8 @@ export namespace Prisma {
     tarjetaId: number
     reservaEstatus: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
   }
 
   export type ValoracionesCreateManyAutoInput = {
@@ -56637,6 +58099,8 @@ export namespace Prisma {
     reservaCreado?: DateTimeFieldUpdateOperationsInput | Date | string
     reservaNumero?: NullableIntFieldUpdateOperationsInput | number | null
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     cliente?: ClientesUpdateOneRequiredWithoutReservasNestedInput
     beneficiario?: BeneficiariosUpdateOneRequiredWithoutReservasNestedInput
     tarjeta?: TarjetasUpdateOneRequiredWithoutReservasNestedInput
@@ -56670,6 +58134,8 @@ export namespace Prisma {
     tarjetaId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     Pagos?: PagosUncheckedUpdateManyWithoutReservaNestedInput
   }
 
@@ -56699,6 +58165,8 @@ export namespace Prisma {
     tarjetaId?: IntFieldUpdateOperationsInput | number
     reservaEstatus?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ValoracionesUpdateWithoutAutoInput = {
@@ -56774,6 +58242,7 @@ export namespace Prisma {
     fhCreacion?: Date | string
     usuarioId: number
     imagenArchivo?: string | null
+    documentoFormatoId?: number | null
   }
 
   export type DocumentosUpdateWithoutTipoInput = {
@@ -56782,6 +58251,7 @@ export namespace Prisma {
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
     estatus?: DocumentoEstatusUpdateOneRequiredWithoutDocumentosNestedInput
     usuario?: UsuariosUpdateOneRequiredWithoutDocumentosNestedInput
+    documentoFormato?: DocumentoFormatoUpdateOneWithoutDocumentosNestedInput
   }
 
   export type DocumentosUncheckedUpdateWithoutTipoInput = {
@@ -56791,6 +58261,7 @@ export namespace Prisma {
     fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarioId?: IntFieldUpdateOperationsInput | number
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+    documentoFormatoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type DocumentosUncheckedUpdateManyWithoutTipoInput = {
@@ -56800,6 +58271,7 @@ export namespace Prisma {
     fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarioId?: IntFieldUpdateOperationsInput | number
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+    documentoFormatoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type ImagenesCreateManyEstatusInput = {
@@ -56818,6 +58290,7 @@ export namespace Prisma {
     fhCreacion?: Date | string
     usuarioId: number
     imagenArchivo?: string | null
+    documentoFormatoId?: number | null
   }
 
   export type ImagenesUpdateWithoutEstatusInput = {
@@ -56852,6 +58325,7 @@ export namespace Prisma {
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
     tipo?: TipoDocumentoUpdateOneRequiredWithoutDocumentosNestedInput
     usuario?: UsuariosUpdateOneRequiredWithoutDocumentosNestedInput
+    documentoFormato?: DocumentoFormatoUpdateOneWithoutDocumentosNestedInput
   }
 
   export type DocumentosUncheckedUpdateWithoutEstatusInput = {
@@ -56861,6 +58335,7 @@ export namespace Prisma {
     fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarioId?: IntFieldUpdateOperationsInput | number
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+    documentoFormatoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type DocumentosUncheckedUpdateManyWithoutEstatusInput = {
@@ -56870,6 +58345,7 @@ export namespace Prisma {
     fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
     usuarioId?: IntFieldUpdateOperationsInput | number
     imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+    documentoFormatoId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type CiudadesCreateManyProvinciaInput = {
@@ -56900,10 +58376,7 @@ export namespace Prisma {
     autoNumeroAsientos?: number
     paisId: number
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -56911,6 +58384,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type CiudadesUpdateWithoutProvinciaInput = {
@@ -56945,12 +58419,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -56959,7 +58432,6 @@ export namespace Prisma {
     seguro?: SegurosUpdateOneWithoutAutosNestedInput
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -56992,10 +58464,7 @@ export namespace Prisma {
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
     paisId?: IntFieldUpdateOperationsInput | number
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -57003,6 +58472,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -57031,10 +58501,7 @@ export namespace Prisma {
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
     paisId?: IntFieldUpdateOperationsInput | number
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -57042,6 +58509,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type AutosCreateManyCiudadInput = {
@@ -57066,10 +58534,7 @@ export namespace Prisma {
     autoNumeroAsientos?: number
     paisId: number
     provinciaId?: number | null
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -57077,6 +58542,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUpdateWithoutCiudadInput = {
@@ -57092,12 +58558,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -57106,7 +58571,6 @@ export namespace Prisma {
     seguro?: SegurosUpdateOneWithoutAutosNestedInput
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -57139,10 +58603,7 @@ export namespace Prisma {
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -57150,6 +58611,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -57178,10 +58640,7 @@ export namespace Prisma {
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -57189,6 +58648,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type ProvinciasCreateManyPaisInput = {
@@ -57224,10 +58684,7 @@ export namespace Prisma {
     autoNumeroAsientos?: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -57235,6 +58692,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type ProvinciasUpdateWithoutPaisInput = {
@@ -57287,12 +58745,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -57301,7 +58758,6 @@ export namespace Prisma {
     seguro?: SegurosUpdateOneWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -57334,10 +58790,7 @@ export namespace Prisma {
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -57345,6 +58798,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -57373,10 +58827,7 @@ export namespace Prisma {
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -57384,6 +58835,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type PagosCreateManyReservaInput = {
@@ -57435,6 +58887,8 @@ export namespace Prisma {
     autoId: number
     tarjetaId: number
     tarjetaNumero?: string | null
+    codigoVerificacionEntrega?: number | null
+    entregaVerificada?: boolean
   }
 
   export type ReservasUpdateWithoutEstatusInput = {
@@ -57458,6 +58912,8 @@ export namespace Prisma {
     reservaCreado?: DateTimeFieldUpdateOperationsInput | Date | string
     reservaNumero?: NullableIntFieldUpdateOperationsInput | number | null
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     cliente?: ClientesUpdateOneRequiredWithoutReservasNestedInput
     beneficiario?: BeneficiariosUpdateOneRequiredWithoutReservasNestedInput
     auto?: AutosUpdateOneRequiredWithoutReservasNestedInput
@@ -57491,6 +58947,8 @@ export namespace Prisma {
     autoId?: IntFieldUpdateOperationsInput | number
     tarjetaId?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
     Pagos?: PagosUncheckedUpdateManyWithoutReservaNestedInput
   }
 
@@ -57520,6 +58978,8 @@ export namespace Prisma {
     autoId?: IntFieldUpdateOperationsInput | number
     tarjetaId?: IntFieldUpdateOperationsInput | number
     tarjetaNumero?: NullableStringFieldUpdateOperationsInput | string | null
+    codigoVerificacionEntrega?: NullableIntFieldUpdateOperationsInput | number | null
+    entregaVerificada?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BeneficiariosCreateManyBancoCuentaTipoInput = {
@@ -57533,6 +58993,8 @@ export namespace Prisma {
     beneficiarioCuentaNo: string
     beneficiarioFecha?: Date | string | null
     beneficiarioCorreo?: string | null
+    beneficiarioTelefono?: string | null
+    imagenBase64?: string | null
   }
 
   export type BeneficiariosUpdateWithoutBancoCuentaTipoInput = {
@@ -57544,10 +59006,13 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     banco?: BancosUpdateOneRequiredWithoutBeneficiariosNestedInput
     usuarios?: UsuariosUpdateManyWithoutBeneficiarioNestedInput
     autos?: AutosUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type BeneficiariosUncheckedUpdateWithoutBancoCuentaTipoInput = {
@@ -57561,9 +59026,12 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
     usuarios?: UsuariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
     autos?: AutosUncheckedUpdateManyWithoutBeneficiarioNestedInput
     reservas?: ReservasUncheckedUpdateManyWithoutBeneficiarioNestedInput
+    depositos?: DepositosBeneficiariosUncheckedUpdateManyWithoutBeneficiarioNestedInput
   }
 
   export type BeneficiariosUncheckedUpdateManyWithoutBancoCuentaTipoInput = {
@@ -57577,153 +59045,8 @@ export namespace Prisma {
     beneficiarioCuentaNo?: StringFieldUpdateOperationsInput | string
     beneficiarioFecha?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     beneficiarioCorreo?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type AutosCreateManyPrecioInput = {
-    autoId?: number
-    tipoId: number
-    marcaId: number
-    modeloId: number
-    colorId: number
-    autoAno: number
-    autoDescripcion: string
-    beneficiarioId: number
-    autoFecha?: Date | string
-    autoDireccion: string
-    autoCoorX: Decimal | DecimalJsLike | number | string
-    autoCoorY: Decimal | DecimalJsLike | number | string
-    seguroId?: number | null
-    autoKmIncluido: Decimal | DecimalJsLike | number | string
-    autoCondiciones: string
-    autoNumeroViajes?: number
-    autoNumeroPersonas?: number
-    autoNumeroPuertas?: number
-    autoNumeroAsientos?: number
-    paisId: number
-    provinciaId?: number | null
-    ciudadId: number
-    autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
-    valoracion?: Decimal | DecimalJsLike | number | string
-    valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
-    cantidadValoracion?: Decimal | DecimalJsLike | number | string
-    cantidadMeGustas?: number
-    transmisionId?: number | null
-    modeloVersionId?: number | null
-    combustibleId?: number | null
-  }
-
-  export type AutosUpdateWithoutPrecioInput = {
-    autoAno?: IntFieldUpdateOperationsInput | number
-    autoDescripcion?: StringFieldUpdateOperationsInput | string
-    autoFecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    autoDireccion?: StringFieldUpdateOperationsInput | string
-    autoCoorX?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    autoCoorY?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    autoKmIncluido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    autoCondiciones?: StringFieldUpdateOperationsInput | string
-    autoNumeroViajes?: IntFieldUpdateOperationsInput | number
-    autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
-    autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
-    autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    cantidadMeGustas?: IntFieldUpdateOperationsInput | number
-    tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
-    marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
-    modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
-    color?: ColoresUpdateOneRequiredWithoutAutosNestedInput
-    beneficiario?: BeneficiariosUpdateOneRequiredWithoutAutosNestedInput
-    seguro?: SegurosUpdateOneWithoutAutosNestedInput
-    pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
-    provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
-    ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    reservas?: ReservasUpdateManyWithoutAutoNestedInput
-    valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
-    imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
-    estatus?: AutoEstatusUpdateOneWithoutAutosNestedInput
-    transmision?: AutoTipoTransmisionUpdateOneWithoutAutosNestedInput
-    autosMeGustas?: AutosMeGustasUpdateManyWithoutAutoNestedInput
-    modeloVersion?: ModelosVersionesUpdateOneWithoutAutosNestedInput
-    combustible?: CombustiblesUpdateOneWithoutAutosNestedInput
-  }
-
-  export type AutosUncheckedUpdateWithoutPrecioInput = {
-    autoId?: IntFieldUpdateOperationsInput | number
-    tipoId?: IntFieldUpdateOperationsInput | number
-    marcaId?: IntFieldUpdateOperationsInput | number
-    modeloId?: IntFieldUpdateOperationsInput | number
-    colorId?: IntFieldUpdateOperationsInput | number
-    autoAno?: IntFieldUpdateOperationsInput | number
-    autoDescripcion?: StringFieldUpdateOperationsInput | string
-    beneficiarioId?: IntFieldUpdateOperationsInput | number
-    autoFecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    autoDireccion?: StringFieldUpdateOperationsInput | string
-    autoCoorX?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    autoCoorY?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    seguroId?: NullableIntFieldUpdateOperationsInput | number | null
-    autoKmIncluido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    autoCondiciones?: StringFieldUpdateOperationsInput | string
-    autoNumeroViajes?: IntFieldUpdateOperationsInput | number
-    autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
-    autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
-    autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    paisId?: IntFieldUpdateOperationsInput | number
-    provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
-    ciudadId?: IntFieldUpdateOperationsInput | number
-    autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    cantidadMeGustas?: IntFieldUpdateOperationsInput | number
-    transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
-    modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
-    combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
-    reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
-    valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
-    imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
-    autosMeGustas?: AutosMeGustasUncheckedUpdateManyWithoutAutoNestedInput
-  }
-
-  export type AutosUncheckedUpdateManyWithoutPrecioInput = {
-    autoId?: IntFieldUpdateOperationsInput | number
-    tipoId?: IntFieldUpdateOperationsInput | number
-    marcaId?: IntFieldUpdateOperationsInput | number
-    modeloId?: IntFieldUpdateOperationsInput | number
-    colorId?: IntFieldUpdateOperationsInput | number
-    autoAno?: IntFieldUpdateOperationsInput | number
-    autoDescripcion?: StringFieldUpdateOperationsInput | string
-    beneficiarioId?: IntFieldUpdateOperationsInput | number
-    autoFecha?: DateTimeFieldUpdateOperationsInput | Date | string
-    autoDireccion?: StringFieldUpdateOperationsInput | string
-    autoCoorX?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    autoCoorY?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    seguroId?: NullableIntFieldUpdateOperationsInput | number | null
-    autoKmIncluido?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    autoCondiciones?: StringFieldUpdateOperationsInput | string
-    autoNumeroViajes?: IntFieldUpdateOperationsInput | number
-    autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
-    autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
-    autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    paisId?: IntFieldUpdateOperationsInput | number
-    provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
-    ciudadId?: IntFieldUpdateOperationsInput | number
-    autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    cantidadMeGustas?: IntFieldUpdateOperationsInput | number
-    transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
-    modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
-    combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    beneficiarioTelefono?: NullableStringFieldUpdateOperationsInput | string | null
+    imagenBase64?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AutosCreateManyEstatusInput = {
@@ -57749,9 +59072,6 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
@@ -57759,6 +59079,7 @@ export namespace Prisma {
     transmisionId?: number | null
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUpdateWithoutEstatusInput = {
@@ -57774,12 +59095,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -57789,7 +59109,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -57822,9 +59141,6 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -57832,6 +59148,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -57861,9 +59178,6 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
@@ -57871,6 +59185,7 @@ export namespace Prisma {
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type UsuariosCreateManyTipoUsuarioInput = {
@@ -57953,16 +59268,14 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
     modeloVersionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUpdateWithoutTransmisionInput = {
@@ -57978,12 +59291,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -57993,7 +59305,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -58026,16 +59337,14 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -58065,16 +59374,14 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type UsuariosCreateManyManejadorInput = {
@@ -58157,16 +59464,14 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
     transmisionId?: number | null
     combustibleId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUpdateWithoutModeloVersionInput = {
@@ -58182,12 +59487,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -58197,7 +59501,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -58230,16 +59533,14 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -58269,16 +59570,14 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     combustibleId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
   }
 
   export type AutosCreateManyCombustibleInput = {
@@ -58304,16 +59603,14 @@ export namespace Prisma {
     paisId: number
     provinciaId?: number | null
     ciudadId: number
-    precioId: number
     autoEstatus?: number | null
-    fechaDeViajeInicial?: Date | string | null
-    fechaDeViajeFinal?: Date | string | null
     valoracion?: Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: Decimal | DecimalJsLike | number | string
     cantidadValoracion?: Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: number
     transmisionId?: number | null
     modeloVersionId?: number | null
+    precio?: Decimal | DecimalJsLike | number | string
   }
 
   export type AutosUpdateWithoutCombustibleInput = {
@@ -58329,12 +59626,11 @@ export namespace Prisma {
     autoNumeroPersonas?: IntFieldUpdateOperationsInput | number
     autoNumeroPuertas?: IntFieldUpdateOperationsInput | number
     autoNumeroAsientos?: IntFieldUpdateOperationsInput | number
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     tipo?: TipoAutoUpdateOneRequiredWithoutAutosNestedInput
     marca?: MarcasUpdateOneRequiredWithoutAutosNestedInput
     modelo?: ModelosUpdateOneRequiredWithoutAutosNestedInput
@@ -58344,7 +59640,6 @@ export namespace Prisma {
     pais?: PaisesUpdateOneRequiredWithoutAutosNestedInput
     provincia?: ProvinciasUpdateOneWithoutAutosNestedInput
     ciudad?: CiudadesUpdateOneRequiredWithoutAutosNestedInput
-    precio?: PreciosUpdateOneRequiredWithoutAutosNestedInput
     reservas?: ReservasUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUpdateManyWithoutAutoNestedInput
@@ -58377,16 +59672,14 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     reservas?: ReservasUncheckedUpdateManyWithoutAutoNestedInput
     valoraciones?: ValoracionesUncheckedUpdateManyWithoutAutoNestedInput
     imagenes?: ImagenesUncheckedUpdateManyWithoutAutoNestedInput
@@ -58416,16 +59709,53 @@ export namespace Prisma {
     paisId?: IntFieldUpdateOperationsInput | number
     provinciaId?: NullableIntFieldUpdateOperationsInput | number | null
     ciudadId?: IntFieldUpdateOperationsInput | number
-    precioId?: IntFieldUpdateOperationsInput | number
     autoEstatus?: NullableIntFieldUpdateOperationsInput | number | null
-    fechaDeViajeInicial?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    fechaDeViajeFinal?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     valoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valoracionAcumulacion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadValoracion?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     cantidadMeGustas?: IntFieldUpdateOperationsInput | number
     transmisionId?: NullableIntFieldUpdateOperationsInput | number | null
     modeloVersionId?: NullableIntFieldUpdateOperationsInput | number | null
+    precio?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+  }
+
+  export type DocumentosCreateManyDocumentoFormatoInput = {
+    documentoId?: number
+    imagenBase64: string
+    documentoEstatus: number
+    documentoTipo: number
+    fhCreacion?: Date | string
+    usuarioId: number
+    imagenArchivo?: string | null
+  }
+
+  export type DocumentosUpdateWithoutDocumentoFormatoInput = {
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+    estatus?: DocumentoEstatusUpdateOneRequiredWithoutDocumentosNestedInput
+    tipo?: TipoDocumentoUpdateOneRequiredWithoutDocumentosNestedInput
+    usuario?: UsuariosUpdateOneRequiredWithoutDocumentosNestedInput
+  }
+
+  export type DocumentosUncheckedUpdateWithoutDocumentoFormatoInput = {
+    documentoId?: IntFieldUpdateOperationsInput | number
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    documentoEstatus?: IntFieldUpdateOperationsInput | number
+    documentoTipo?: IntFieldUpdateOperationsInput | number
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarioId?: IntFieldUpdateOperationsInput | number
+    imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DocumentosUncheckedUpdateManyWithoutDocumentoFormatoInput = {
+    documentoId?: IntFieldUpdateOperationsInput | number
+    imagenBase64?: StringFieldUpdateOperationsInput | string
+    documentoEstatus?: IntFieldUpdateOperationsInput | number
+    documentoTipo?: IntFieldUpdateOperationsInput | number
+    fhCreacion?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuarioId?: IntFieldUpdateOperationsInput | number
+    imagenArchivo?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 
@@ -58518,10 +59848,6 @@ export namespace Prisma {
      */
     export type BancoCuentaTipoCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BancoCuentaTipoCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use PreciosCountOutputTypeDefaultArgs instead
-     */
-    export type PreciosCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PreciosCountOutputTypeDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use AutoEstatusCountOutputTypeDefaultArgs instead
      */
     export type AutoEstatusCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AutoEstatusCountOutputTypeDefaultArgs<ExtArgs>
@@ -58545,6 +59871,10 @@ export namespace Prisma {
      * @deprecated Use CombustiblesCountOutputTypeDefaultArgs instead
      */
     export type CombustiblesCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CombustiblesCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use DocumentoFormatoCountOutputTypeDefaultArgs instead
+     */
+    export type DocumentoFormatoCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DocumentoFormatoCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use UsuariosDefaultArgs instead
      */
@@ -58642,10 +59972,6 @@ export namespace Prisma {
      */
     export type BancoCuentaTipoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BancoCuentaTipoDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use PreciosDefaultArgs instead
-     */
-    export type PreciosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PreciosDefaultArgs<ExtArgs>
-    /**
      * @deprecated Use AutoEstatusDefaultArgs instead
      */
     export type AutoEstatusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AutoEstatusDefaultArgs<ExtArgs>
@@ -58681,6 +60007,14 @@ export namespace Prisma {
      * @deprecated Use CombustiblesDefaultArgs instead
      */
     export type CombustiblesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CombustiblesDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use DocumentoFormatoDefaultArgs instead
+     */
+    export type DocumentoFormatoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DocumentoFormatoDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use DepositosBeneficiariosDefaultArgs instead
+     */
+    export type DepositosBeneficiariosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DepositosBeneficiariosDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

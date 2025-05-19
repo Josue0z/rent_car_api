@@ -82,9 +82,10 @@ router.get('/historicoCliente', async (req, res) => {
             marca: true,
             modelo: true,
             color: true,
-            precio: true,
             provincia: true,
             ciudad: true,
+            modeloVersion: true,
+            combustible: true,
             transmision: true,
             imagenes: {
               select: {
@@ -154,6 +155,11 @@ router.get('/historicoCliente', async (req, res) => {
       };
     });
 
+    if(reservas.length == 0){
+      res.status(404).json([])
+      return;
+    }
+
     res.json(reservas);
   } catch (error) {
     res.status(501).json({ error });
@@ -161,16 +167,39 @@ router.get('/historicoCliente', async (req, res) => {
 });
 
 router.get('/historicoBeneficiario', async (req, res) => {
-  const { beneficiarioId } = req.query;
+    const { beneficiarioId, pagina, cantidad } = req.query;
+  const PAGINA = Number(pagina ?? '1') - 1;
+  const CANTIDAD = Number(cantidad ?? '10');
   try {
     let reservas = await prisma.reservas.findMany({
       where: {
         beneficiarioId: Number(beneficiarioId)
       },
+      skip: PAGINA * CANTIDAD,
+      take: CANTIDAD,
+
       include: {
+        estatus: true,
         cliente: {
-          include: {
-            direccion: true
+          select: {
+            clienteId: true,
+            clienteNombre: true,
+            clienteIdentificacion: true,
+            clienteCorreo: true,
+            clientedirId: true,
+            clienteTelefono1: true,
+            clienteTelefono2: true,
+            direccion: {
+              select: {
+                clientedirId: true,
+                clientedirNombre: true,
+                alias: true,
+                clientedirX: true,
+                clientedirY: true,
+                clientedirFecha: true,
+
+              }
+            }
           }
         },
         beneficiario: {
@@ -181,6 +210,15 @@ router.get('/historicoBeneficiario', async (req, res) => {
         },
         auto: {
           include: {
+            tipo: true,
+            marca: true,
+            modelo: true,
+            color: true,
+            provincia: true,
+            ciudad: true,
+            modeloVersion: true,
+            combustible: true,
+            transmision: true,
             imagenes: {
               select: {
                 imagenId: true,
@@ -190,7 +228,41 @@ router.get('/historicoBeneficiario', async (req, res) => {
               where: {
                 imagenEstatus: 2
               }
-            }
+            },
+            valoraciones: {
+              include: {
+                usuario: {
+                  select: {
+                    usuarioLogin: true,
+                    usuarioPerfil: true,
+                    tipoUsuario: true,
+                    cliente: {
+                      select: {
+                        clienteId: true,
+                        clienteNombre: true,
+                        clienteIdentificacion: true,
+                        clienteCorreo: true,
+                        clientedirId: true,
+                        clienteTelefono1: true,
+                        clienteTelefono2: true,
+                        direccion: {
+                          select: {
+                            clientedirId: true,
+                            clientedirNombre: true,
+                            alias: true,
+                            clientedirX: true,
+                            clientedirY: true,
+                            clientedirFecha: true,
+
+                          }
+                        }
+                      }
+                    }
+                  },
+
+                }
+              }
+            },
           }
         },
         tarjeta: {
@@ -214,16 +286,23 @@ router.get('/historicoBeneficiario', async (req, res) => {
         reservaNumeroEtiqueta: `CDC-${fechaFormateada}-${reserva?.reservaNumero?.toString().padStart(3, '0')}`
       };
     });
-    res.json(reservas)
+
+    if(reservas.length == 0){
+      res.status(404).json([])
+      return;
+    }
+
+    res.json(reservas);
   } catch (error) {
-    res.status(501).json({ error })
+    console.log(error)
+    res.status(501).json({ error });
   }
 })
 
 router.post('/crear', async (req, res) => {
-  const { clienteId, beneficiarioId, reservaFhInicial, reservaFhFinal, reservaRecogidaX, reservaRecogidaY, reservaRecogidaDireccion, reservaEntregaX, reservaEntregaY, reservaEntregaDireccion, reservaMontoxDias, reservaMonto, reservaAbono, reservaNotaCliente, reservaNotaBeneficiario, reservaMontoTotal, reservaPagado, reservaImpuestos, reservaDescuento, autoId, tarjetaId } = req.body;
+  const { tarjetaNumero, clienteId, beneficiarioId, reservaFhInicial, reservaFhFinal, reservaRecogidaX, reservaRecogidaY, reservaRecogidaDireccion, reservaEntregaX, reservaEntregaY, reservaEntregaDireccion, reservaMontoxDias, reservaMonto, reservaAbono, reservaNotaCliente, reservaNotaBeneficiario, reservaMontoTotal, reservaPagado, reservaImpuestos, reservaDescuento, autoId, tarjetaId } = req.body;
   try {
-
+    let codigoVerificacionEntrega = (100000 + Math.random() * 900000);
     let xreserva = await prisma.reservas.findFirst({
       where: {
         AND
@@ -264,12 +343,13 @@ router.post('/crear', async (req, res) => {
         reservaDescuento,
         autoId,
         tarjetaId,
-        reservaEstatus: 1
+        reservaEstatus: 1,
+        codigoVerificacionEntrega,
+        tarjetaNumero
       },
       include: {
         auto: {
           include: {
-            precio: true,
             marca: true,
             modelo: true,
             tipo: true,
@@ -348,6 +428,36 @@ router.post('/crear', async (req, res) => {
 router.put('/aceptar/:id', async (req, res) => {
   const { id } = req.params;
   try {
+
+    let r = await prisma.reservas.findFirst({
+      where: {
+        reservaId:Number(id)
+      }
+    });
+
+    if(r?.reservaEstatus == 3){
+      res.status(409).json({
+        error:"no se puede aceptar una reserva ya cerrada"
+      })
+      return;
+
+    }
+
+      if(r?.reservaEstatus == 4){
+      res.status(409).json({
+        error:"no se puede aceptar una reserva ya cencelada"
+      })
+      return;
+
+    }
+
+      if(r?.reservaEstatus == 5){
+      res.status(409).json({
+        error:"no se puede aceptar una reserva ya en ejecucion"
+      })
+      return;
+
+    }
     let reserva = await prisma.reservas.update({
       where: {
         reservaId: Number(id)
@@ -419,10 +529,300 @@ router.put('/aceptar/:id', async (req, res) => {
   }
 })
 
+router.put('/cancelar/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    let r = await prisma.reservas.findFirst({
+      where:{
+        reservaId:Number(id)
+      }
+    });
+
+    if(!r){
+      res.status(404).json({error:"No existe la reserva"})
+      return;
+    }
+    if(r?.reservaEstatus == 4){
+      res.status(409).json({error:"La reserva ya esta cancelada"})
+      return;
+    }
+
+  
+    let reserva = await prisma.reservas.update({
+      where: {
+        reservaId: Number(id)
+      },
+      data: {
+        reservaEstatus: 4,
+        reservaPagado:0,
+        reservaImpuestos:0,
+        reservaMonto:0,
+        reservaMontoTotal:0,
+        reservaDescuento:0,
+        reservaMontoxDias:0,
+        reservaAbono: 0
+      },
+      include: {
+        auto: {
+
+          include: {
+            marca: true,
+            modelo: true,
+            transmision: true,
+            imagenes: true
+          }
+        },
+        tarjeta: true,
+        cliente: true,
+        beneficiario: true,
+        estatus: true
+      }
+    });
+
+
+
+    let html = crearPlanillaDetalleReserva(reserva);
+
+    let reservaNumeroEtiqueta = obtenerEtiqueta(reserva);
+    let base64Data = removerBase64Data(reserva.auto.imagenes[0].imagenBase64);
+    let attachments = [
+      {
+        filename: 'imagen.jpeg',
+        content: base64Data,
+        encoding: 'base64',
+        cid: 'imagenReserva'
+      },
+      {
+        filename: 'reserva.ics',
+        content: generarICS(reserva)
+      }
+    ]
+
+    await prisma.autos.update({
+      where: {
+        autoId: reserva.autoId,
+      },
+      data: {
+        autoEstatus: 1
+      },
+    });
+    sendEmail({
+      to: reserva.cliente.clienteCorreo ?? '',
+      subject: `SE CANCELO TU RESERVACION - ${reservaNumeroEtiqueta} - CIDECA`,
+      text: '',
+      html,
+      attachments
+    })
+    sendEmail({
+      to: reserva.beneficiario.beneficiarioCorreo ?? '',
+      subject: `SE CANCELO LA RESERVACION - ${reservaNumeroEtiqueta} - CIDECA`,
+      text: '',
+      html,
+      attachments
+    })
+    res.json(reserva)
+  } catch (error) {
+    res.status(501).json({ error })
+  }
+})
+
+
+router.put('/cerrar/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    let r = await prisma.reservas.findFirst({
+      where:{
+        reservaId:Number(id)
+      }
+    });
+
+    if(!r){
+      res.status(404).json({error:"No existe la reserva"})
+      return;
+    }
+    if(r?.reservaEstatus == 3){
+      res.status(409).json({error:"La reserva ya esta cerrada"})
+      return;
+    }
+
+  
+    let reserva = await prisma.reservas.update({
+      where: {
+        reservaId: Number(id)
+      },
+      data: {
+        reservaEstatus: 3
+      },
+      include: {
+        auto: {
+
+          include: {
+            marca: true,
+            modelo: true,
+            transmision: true,
+            imagenes: true
+          }
+        },
+        tarjeta: true,
+        cliente: true,
+        beneficiario: true,
+        estatus: true
+      }
+    });
+
+
+
+    let html = crearPlanillaDetalleReserva(reserva);
+
+    let reservaNumeroEtiqueta = obtenerEtiqueta(reserva);
+    let base64Data = removerBase64Data(reserva.auto.imagenes[0].imagenBase64);
+    let attachments = [
+      {
+        filename: 'imagen.jpeg',
+        content: base64Data,
+        encoding: 'base64',
+        cid: 'imagenReserva'
+      },
+      {
+        filename: 'reserva.ics',
+        content: generarICS(reserva)
+      }
+    ]
+
+    await prisma.autos.update({
+      where: {
+        autoId: reserva.autoId,
+      },
+      data: {
+        autoEstatus: 1
+      },
+    });
+    sendEmail({
+      to: reserva.cliente.clienteCorreo ?? '',
+      subject: `SE FINALIZO TU RESERVACION - ${reservaNumeroEtiqueta} - CIDECA`,
+      text: '',
+      html,
+      attachments
+    })
+    sendEmail({
+      to: reserva.beneficiario.beneficiarioCorreo ?? '',
+      subject: `SE FINALIZO LA RESERVACION - ${reservaNumeroEtiqueta} - CIDECA`,
+      text: '',
+      html,
+      attachments
+    })
+    res.json(reserva)
+  } catch (error) {
+    res.status(501).json({ error })
+  }
+})
+
+router.put('/verificar-codigo-entrega/:id',async(req,res) =>{
+  const {id} = req.params;
+  const {codigoVerificacionEntrega} = req.body;
+   try{
+      let r = await prisma.reservas.findFirst({
+      where:{
+        reservaId:Number(id)
+      }
+    });
+    if(r?.codigoVerificacionEntrega == codigoVerificacionEntrega){
+         await prisma.reservas.update({
+          where: {
+            reservaId:Number(id)
+          },
+          data: {
+            entregaVerificada: true
+          }
+         });
+         res.json(r)
+    }else{
+      res.status(409).json({error:"no se pudo verificar la entrega"})
+    }
+   }catch(error){
+    res.status(501).json({error})
+   }
+})
 
 router.put('/entregar/:id', async (req, res) => {
   const { id } = req.params;
+
   try {
+    let r = await prisma.reservas.findFirst({
+      where:{
+        reservaId:Number(id)
+      }
+    });
+
+    if(!r){
+      res.status(404).json({error:"no existe la reserva"})
+      return;
+    }
+  
+    let reserva = await prisma.reservas.update({
+      where: {
+        reservaId: Number(id)
+      },
+      data: {
+        reservaEstatus: 5
+      },
+      include: {
+        auto: {
+          include: {
+            marca: true,
+            modelo: true,
+            transmision: true,
+            imagenes: true,
+          }
+        },
+        tarjeta: {
+          select: {
+            tarjetaNombre: true,
+            tarjetaNumero: true
+          }
+        },
+        cliente: true,
+        beneficiario: {
+          include: {
+            banco: true,
+            bancoCuentaTipo: true
+          }
+        },
+        estatus: true
+      }
+    });
+
+    await prisma.autos.update({
+      where: {
+        autoId: reserva.autoId,
+      },
+      data: {
+        autoEstatus: 2
+      },
+    });
+
+
+    res.json(reserva)
+  } catch (error) {
+    res.status(501).json({ error })
+  }
+})
+
+router.put('/devolver/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    let r = await prisma.reservas.findFirst({
+      where:{
+        reservaId:Number(id)
+      }
+    });
+
+    if(!r){
+      res.status(404).json({error:"no existe la reserva"})
+      return;
+    }
+  
     let reserva = await prisma.reservas.update({
       where: {
         reservaId: Number(id)
@@ -464,39 +864,10 @@ router.put('/entregar/:id', async (req, res) => {
         autoEstatus: 1
       },
     });
-    let base64Data = removerBase64Data(reserva.auto.imagenes[0].imagenBase64);
-    let attachments = [
-      {
-        filename: 'imagen.jpeg',
-        content: base64Data,
-        encoding: 'base64',
-        cid: 'imagenReserva'
-      },
 
-    ]
-
-    let html = crearPlanillaDetalleReserva(reserva);
-
-    sendEmail({
-      to: reserva.cliente.clienteCorreo ?? '',
-      subject: `TU RESERVA ${obtenerEtiqueta(reserva)} FINALIZO - CIDECA`,
-      text: '',
-      html,
-      attachments
-    })
-
-
-    sendEmail({
-      to: reserva.beneficiario.beneficiarioCorreo ?? '',
-      subject: `LA RESERVA ${obtenerEtiqueta(reserva)} FINALIZO - CIDECA`,
-      text: '',
-      html,
-      attachments
-    })
 
     res.json(reserva)
   } catch (error) {
-    console.log(error)
     res.status(501).json({ error })
   }
 })
@@ -541,7 +912,6 @@ router.get('/:id', async (req, res) => {
       include: {
         auto: {
           include: {
-            precio: true,
             marca: true,
             modelo: true,
             tipo: true,
@@ -550,6 +920,8 @@ router.get('/:id', async (req, res) => {
             provincia: true,
             pais: true,
             color: true,
+            modeloVersion: true,
+            combustible: true,
             transmision: true,
             estatus: true,
 
@@ -578,7 +950,7 @@ router.get('/:id', async (req, res) => {
 
 
 
-    if (reserva == undefined) {
+    if (!reserva) {
       res.status(404).json({
         error: 'No existe la reserva'
       })

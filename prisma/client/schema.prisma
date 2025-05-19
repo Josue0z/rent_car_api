@@ -73,6 +73,12 @@ model Beneficiarios {
   autos                      Autos[]
   reservas                   Reservas[]
   beneficiarioCorreo         String?
+
+  beneficiarioTelefono String?
+
+  imagenBase64 String?
+
+  depositos DepositosBeneficiarios[]
 }
 
 model Direcciones {
@@ -156,46 +162,43 @@ model Valoraciones {
 }
 
 model Autos {
-  autoId                Int                  @id @unique @default(autoincrement())
-  tipoId                Int
-  tipo                  TipoAuto             @relation(fields: [tipoId], references: [tipoId])
-  marcaId               Int
-  marca                 Marcas               @relation(fields: [marcaId], references: [marcaId])
-  modeloId              Int
-  modelo                Modelos              @relation(fields: [modeloId], references: [modeloId])
-  colorId               Int
-  color                 Colores              @relation(fields: [colorId], references: [colorId])
-  autoAno               Int
-  autoDescripcion       String
-  beneficiarioId        Int
-  beneficiario          Beneficiarios        @relation(fields: [beneficiarioId], references: [beneficiarioId])
-  autoFecha             DateTime             @default(now())
-  autoDireccion         String
-  autoCoorX             Decimal
-  autoCoorY             Decimal
-  seguroId              Int?
-  seguro                Seguros?             @relation(fields: [seguroId], references: [seguroId])
-  autoKmIncluido        Decimal
-  autoCondiciones       String
-  autoNumeroViajes      Int                  @default(0)
-  autoNumeroPersonas    Int                  @default(0)
-  autoNumeroPuertas     Int                  @default(0)
-  autoNumeroAsientos    Int                  @default(0)
-  paisId                Int
-  pais                  Paises               @relation(fields: [paisId], references: [paisId])
-  provinciaId           Int?
-  provincia             Provincias?          @relation(fields: [provinciaId], references: [provinciaId])
-  ciudadId              Int
-  ciudad                Ciudades             @relation(fields: [ciudadId], references: [ciudadId])
-  precioId              Int
-  precio                Precios              @relation(fields: [precioId], references: [precioId])
-  reservas              Reservas[]
-  valoraciones          Valoraciones[]
-  imagenes              Imagenes[]
-  autoEstatus           Int?
-  estatus               AutoEstatus?         @relation(fields: [autoEstatus], references: [autoEstatus])
-  fechaDeViajeInicial   DateTime?
-  fechaDeViajeFinal     DateTime?
+  autoId             Int            @id @unique @default(autoincrement())
+  tipoId             Int
+  tipo               TipoAuto       @relation(fields: [tipoId], references: [tipoId])
+  marcaId            Int
+  marca              Marcas         @relation(fields: [marcaId], references: [marcaId])
+  modeloId           Int
+  modelo             Modelos        @relation(fields: [modeloId], references: [modeloId])
+  colorId            Int
+  color              Colores        @relation(fields: [colorId], references: [colorId])
+  autoAno            Int
+  autoDescripcion    String
+  beneficiarioId     Int
+  beneficiario       Beneficiarios  @relation(fields: [beneficiarioId], references: [beneficiarioId])
+  autoFecha          DateTime       @default(now())
+  autoDireccion      String
+  autoCoorX          Decimal
+  autoCoorY          Decimal
+  seguroId           Int?
+  seguro             Seguros?       @relation(fields: [seguroId], references: [seguroId])
+  autoKmIncluido     Decimal
+  autoCondiciones    String
+  autoNumeroViajes   Int            @default(0)
+  autoNumeroPersonas Int            @default(0)
+  autoNumeroPuertas  Int            @default(0)
+  autoNumeroAsientos Int            @default(0)
+  paisId             Int
+  pais               Paises         @relation(fields: [paisId], references: [paisId])
+  provinciaId        Int?
+  provincia          Provincias?    @relation(fields: [provinciaId], references: [provinciaId])
+  ciudadId           Int
+  ciudad             Ciudades       @relation(fields: [ciudadId], references: [ciudadId])
+  reservas           Reservas[]
+  valoraciones       Valoraciones[]
+  imagenes           Imagenes[]
+  autoEstatus        Int?
+  estatus            AutoEstatus?   @relation(fields: [autoEstatus], references: [autoEstatus])
+
   valoracion            Decimal              @default(0)
   valoracionAcumulacion Decimal              @default(0)
   cantidadValoracion    Decimal              @default(0)
@@ -210,6 +213,8 @@ model Autos {
 
   combustibleId Int?
   combustible   Combustibles? @relation(fields: [combustibleId], references: [combustibleId])
+
+  precio Decimal @default(0)
 }
 
 model Imagenes {
@@ -235,6 +240,9 @@ model Documentos {
   usuarioId        Int
   usuario          Usuarios         @relation(fields: [usuarioId], references: [usuarioId])
   imagenArchivo    String?
+
+  documentoFormatoId Int?
+  documentoFormato   DocumentoFormato? @relation(fields: [documentoFormatoId], references: [formatoId])
 }
 
 model TipoDocumento {
@@ -312,6 +320,10 @@ model Reservas {
   Pagos Pagos[]
 
   tarjetaNumero String?
+
+  codigoVerificacionEntrega Int?
+
+  entregaVerificada Boolean @default(false)
 }
 
 model ReservaEstatus {
@@ -324,14 +336,6 @@ model BancoCuentaTipo {
   bancoCuentaTipoId Int             @id @unique @default(autoincrement())
   name              String          @unique
   beneficiarios     Beneficiarios[]
-}
-
-model Precios {
-  precioId           Int     @id @unique @default(autoincrement())
-  precioNombre       String  @unique
-  precioCliente      Decimal
-  precioBeneficiario Decimal
-  autos              Autos[]
 }
 
 model AutoEstatus {
@@ -403,4 +407,21 @@ model Combustibles {
   combustibleNombre String
 
   autos Autos[]
+}
+
+model DocumentoFormato {
+  formatoId     Int    @id @default(autoincrement())
+  formatoNombre String
+
+  documentos Documentos[]
+}
+
+model DepositosBeneficiarios {
+  depositoId     Int           @id @default(autoincrement())
+  beneficiarioId Int
+  beneficiario   Beneficiarios @relation(fields: [beneficiarioId], references: [beneficiarioId])
+  imagenBase64   String
+  fhCreacion     DateTime      @default(now())
+
+  monto Decimal @default(0)
 }

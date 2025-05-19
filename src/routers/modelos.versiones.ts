@@ -21,6 +21,11 @@ router.get('/todos', async (req, res) => {
         modelo: true
       }
     });
+
+    if(versiones.length == 0){
+      res.status(404).json([])
+      return;
+    }
     res.json(versiones)
   } catch (error) {
     console.log(error)

@@ -9,7 +9,16 @@ const router = Router()
 
 router.get('/todos',async(req,res) =>{
     try{
-       let combustibles =  await prisma.combustibles.findMany({});
+       let combustibles =  await prisma.combustibles.findMany({
+        orderBy: {
+            combustibleNombre:"asc"
+        }
+       });
+
+       if(combustibles.length == 0){
+        res.status(404).json([])
+        return;
+       }
        res.json(combustibles)
     }catch(error){
         res.status(501).json({error})

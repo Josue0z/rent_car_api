@@ -12,6 +12,11 @@ router.get('/todos', async (req, res) => {
         marcaNombre:"asc"
       }
     });
+
+    if(marcas.length == 0){
+      res.status(404).json([])
+      return;
+    }
     res.json(marcas)
   } catch (error) {
     console.log(error)

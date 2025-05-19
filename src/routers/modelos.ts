@@ -20,6 +20,11 @@ router.get('/todos', async (req, res) => {
         marca: true
       }
     });
+
+    if(modelos.length == 0){
+      res.status(404).json([])
+      return;
+    }
     res.json(modelos)
   } catch (error) {
     console.log(error)

@@ -5,7 +5,7 @@ import fs from 'fs';
 import https from 'https'
 import moment from 'moment';
 import { join } from 'path';
-import { crearPlanillaDetalleReserva, obtenerEtiqueta, removerBase64Data, sendEmail } from '../functions';
+import { crearPlanillaDeComprobanteDePago, crearPlanillaDetalleReserva, obtenerEtiqueta, removerBase64Data, sendEmail } from '../functions';
 import { checkSvgBase64 } from '../data';
 import { Decimal } from '../../prisma/client/runtime/library';
 
@@ -27,24 +27,6 @@ const router = Router()
 
 
 
-const crearPlanillaDeComprobanteDePago = (reserva:any, monto: number) =>{
-  let tarjetaNumero = reserva.tarjeta.tarjetaNumero;
-  let ultimosCuatroNumeros = tarjetaNumero.substring(tarjetaNumero.length-4);
-   let html = fs.readFileSync(join(__dirname,'../','planillas','voucher.pay.html')).toString('utf-8')
-   html = html.replaceAll('{{cliente}}','Cliente:');
-   html = html.replaceAll('{{clienteNombre}}',reserva.cliente.clienteNombre);
-   html = html.replaceAll('{{monto}}',`$${monto.toFixed(2)}`);
-   html = html.replaceAll('{{marca}}','Marca');
-   html = html.replaceAll('{{modelo}}','Modelo');
-   html = html.replaceAll('{{anoTag}}','Año');
-   html = html.replaceAll('{{marcaNombre}}',reserva.auto.marca.marcaNombre);
-   html = html.replaceAll('{{modeloNombre}}',reserva.auto.modelo.modeloNombre);
-   html = html.replaceAll('{{ano}}',reserva.auto.autoAno);
-   html = html.replaceAll('{{mensaje}}','¡Gracias por su pago!');
-   html = html.replaceAll('{{mensajeTarjeta}}',`Tarjeta finalizada en ${ultimosCuatroNumeros}`);
-   
-   return html;
-}
 
 // Parametros para manejar redirección y las credenciales 
 const getOptions = (path: string) => {
@@ -116,6 +98,11 @@ router.get('/todos',async(req,res)=>{
         }
       }
     });
+
+    if(pagos.length == 0){
+      res.status(404).json([])
+      return;
+    }
     res.json(pagos)
    }catch(error){
     res.status(501).json({

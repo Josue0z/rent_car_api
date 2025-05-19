@@ -11,6 +11,11 @@ router.get('/todos', async (req, res) => {
       let tipos = await prisma.bancoCuentaTipo.findMany({
   
       });
+
+      if(tipos.length == 0){
+        res.status(404).json([])
+        return;
+      }
       res.json(tipos)
     } catch (error) {
       res.status(501).json(error)

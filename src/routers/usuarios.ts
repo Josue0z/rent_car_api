@@ -22,9 +22,9 @@ const createUser = async (req: any, prisma: PrismaClient<Prisma.PrismaClientOpti
     let { beneficiario, cliente, usuario } = req.body;
     let { usuarioLogin, usuarioClave, usuarioTipo, manejador} = usuario;
     let { clienteIdentificacion, clienteNombre, clienteTelefono1, clienteTelefono2 } = cliente ?? {};
-    let { beneficiarioNombre, beneficiarioIdentificacion, beneficiarioDireccion, beneficiarioCoorX, beneficiarioCoorY, bancoId, beneficiarioCuentaTipo, beneficiarioCuentaNo } = beneficiario ?? {};
+    let {beneficiarioTelefono, imagenBase64, beneficiarioNombre, beneficiarioIdentificacion, beneficiarioDireccion, beneficiarioCoorX, beneficiarioCoorY, bancoId, beneficiarioCuentaTipo, beneficiarioCuentaNo } = beneficiario ?? {};
 
-    let {nombreCompleto,telefono, correo, manejadorIdentificacion} = manejador;
+    let {nombreCompleto,telefono, correo, manejadorIdentificacion} = manejador ?? {};
     const salt = Number(process.env.PASSWORD_SALT);
     const newPassword = await hash(usuarioClave, salt);
 
@@ -42,7 +42,9 @@ const createUser = async (req: any, prisma: PrismaClient<Prisma.PrismaClientOpti
             bancoId,
             beneficiarioCuentaTipo,
             beneficiarioCuentaNo,
-            beneficiarioCorreo: usuarioLogin
+            beneficiarioCorreo: (usuarioLogin as string).toLowerCase(),
+            beneficiarioTelefono,
+            imagenBase64
           }
         });
         return ben;
@@ -62,7 +64,7 @@ const createUser = async (req: any, prisma: PrismaClient<Prisma.PrismaClientOpti
             clienteNombre,
             clienteTelefono1,
             clienteTelefono2,
-            clienteCorreo: usuarioLogin
+            clienteCorreo: (usuarioLogin as string).toLowerCase()
           }
         });
         return cl;
@@ -77,7 +79,7 @@ const createUser = async (req: any, prisma: PrismaClient<Prisma.PrismaClientOpti
           data: {
             manejadorIdentificacion,
             telefono,
-            correo,
+            correo:(correo as string).toLowerCase(),
             nombreCompleto
           }
         });
@@ -97,7 +99,7 @@ const createUser = async (req: any, prisma: PrismaClient<Prisma.PrismaClientOpti
     cl = res[1];
     user = await prisma.usuarios.create({
       data: {
-        usuarioLogin,
+        usuarioLogin:(usuarioLogin as string).toLowerCase(),
         usuarioClave: newPassword,
         usuarioEstatus: 1,
         usuarioTipo,
@@ -108,7 +110,12 @@ const createUser = async (req: any, prisma: PrismaClient<Prisma.PrismaClientOpti
       include:
       {
         cliente: true,
-        beneficiario: true,
+        beneficiario: {
+          include: {
+            banco: true,
+            bancoCuentaTipo: true
+          }
+        },
         manejador: true,
         estatus: true
       }
@@ -155,7 +162,10 @@ router.get(`/todos`, async (req, res) => {
           }
         },
         manejador: true,
+        usuarioTipo: true,
         tipoUsuario: true,
+        usuarioEstatus: true,
+        
         estatus: true,
         documentos: {
           select: {
@@ -163,11 +173,19 @@ router.get(`/todos`, async (req, res) => {
             imagenArchivo: true,
             documentoTipo: true,
             tipo: true,
+            documentoEstatus: true,
+            documentoFormatoId: true,
+            documentoFormato: true,
             estatus: true
           }
         }
       }
     })
+
+    if(result.length == 0){
+      res.status(404).json([])
+      return;
+    }
     res.json(result)
   } catch (error) {
     res.status(501).json({
@@ -202,7 +220,7 @@ router.post('/login-as-client', async (req, res) => {
   try {
     let user = await prisma.usuarios.findFirst({
       where: {
-        usuarioLogin: usuario,
+        usuarioLogin: (usuario as string).toLowerCase(),
         usuarioTipo:1
       },
 
@@ -258,7 +276,7 @@ router.post('/login-as-admin', async (req, res) => {
   try {
     let user = await prisma.usuarios.findFirst({
       where: {
-        usuarioLogin: usuario,
+        usuarioLogin: (usuario as string).toLowerCase(),
         usuarioTipo:{
           in: [2,3]
         }
@@ -276,6 +294,7 @@ router.post('/login-as-admin', async (req, res) => {
         estatus: true
       }
     })
+
 
     let ux = { ...user };
 

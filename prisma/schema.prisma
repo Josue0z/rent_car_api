@@ -76,6 +76,12 @@ model Beneficiarios {
   autos Autos[]
   reservas Reservas[]
   beneficiarioCorreo   String?
+
+  beneficiarioTelefono String?
+
+  imagenBase64    String?
+
+  depositos  DepositosBeneficiarios[]
 }
 
 model Direcciones {
@@ -190,15 +196,12 @@ model Autos {
   provincia          Provincias? @relation(fields: [provinciaId],references: [provinciaId])
   ciudadId           Int
   ciudad             Ciudades @relation(fields: [ciudadId],references: [ciudadId])
-  precioId           Int
-  precio             Precios  @relation(fields: [precioId],references: [precioId])
   reservas           Reservas[]
   valoraciones       Valoraciones[]
   imagenes           Imagenes[]
   autoEstatus        Int?
   estatus            AutoEstatus? @relation(fields: [autoEstatus],references: [autoEstatus])
-  fechaDeViajeInicial DateTime?
-  fechaDeViajeFinal   DateTime?
+
   valoracion          Decimal    @default(0)
   valoracionAcumulacion Decimal     @default(0)
   cantidadValoracion  Decimal     @default(0)
@@ -213,6 +216,8 @@ model Autos {
 
   combustibleId   Int?
   combustible    Combustibles? @relation(fields: [combustibleId],references: [combustibleId])
+
+  precio  Decimal @default(0)
 }
 
 model Imagenes {
@@ -225,6 +230,8 @@ model Imagenes {
   estatus       DocumentoEstatus @relation(fields: [imagenEstatus],references: [id])
   fhCreacion    DateTime         @default(now())
   imagenArchivo String?
+
+
 }
 
 model Documentos {
@@ -238,6 +245,9 @@ model Documentos {
   usuarioId        Int
   usuario          Usuarios @relation(fields: [usuarioId],references: [usuarioId])
   imagenArchivo    String?
+
+  documentoFormatoId  Int?
+  documentoFormato   DocumentoFormato? @relation(fields: [documentoFormatoId], references: [formatoId])
 }
 
 model TipoDocumento {
@@ -315,6 +325,10 @@ model Reservas {
   Pagos Pagos[]
 
   tarjetaNumero String?
+
+  codigoVerificacionEntrega Int?
+
+  entregaVerificada Boolean @default(false)
 }
 
 model ReservaEstatus {
@@ -327,14 +341,6 @@ model BancoCuentaTipo {
   bancoCuentaTipoId   Int    @id @unique @default(autoincrement())
   name String @unique
   beneficiarios Beneficiarios[]
-}
-
-model Precios {
-  precioId           Int     @id @unique @default(autoincrement())
-  precioNombre       String  @unique
-  precioCliente      Decimal
-  precioBeneficiario Decimal
-  autos              Autos[]
 }
 
 model AutoEstatus {
@@ -406,4 +412,22 @@ model Combustibles {
   combustibleNombre String
   
   autos Autos[]
+}
+
+model DocumentoFormato {
+   formatoId  Int @id @default(autoincrement())
+   formatoNombre String
+
+   documentos Documentos[]
+}
+
+
+model DepositosBeneficiarios {
+  depositoId Int @id @default(autoincrement())
+  beneficiarioId Int
+  beneficiario Beneficiarios @relation(fields: [beneficiarioId],references: [beneficiarioId])
+  imagenBase64 String
+  fhCreacion DateTime @default(now())
+
+  monto Decimal @default(0)
 }

@@ -12,21 +12,39 @@ const router = Router()
 
 router.post('/subir-documento', async (req, res) => {
 
-    const { usuarioId, imagenBase64, documentoTipo} = req.body;
-  
+    const { usuarioId, imagenBase64, documentoTipo, documentoFormatoId} = req.body;
+    
+ 
   
     try {
+
+      let base64 = '';
+      let archivo = '';
+
       let imagenNombre = namor.generate({
         words: 3
       });
   
+
+      if(documentoFormatoId == 1){
+        base64 = await convertBase64ToJpegAndReturnBase64(imagenBase64);
+        archivo = `${imagenNombre}.jpeg`;
+      }
+  
+      if(documentoFormatoId == 2){
+        archivo = `${imagenNombre}.pdf`;
+        base64 = `data:application/pdf;base64,${imagenBase64}`;
+      }
+
+
       let documento = await prisma.documentos.create({
         data: {
           usuarioId,
           documentoTipo,
           documentoEstatus: 1,
-          imagenBase64: await convertBase64ToJpegAndReturnBase64(imagenBase64),
-          imagenArchivo: `${imagenNombre}.jpeg`
+          imagenBase64: base64,
+          imagenArchivo: archivo,
+          documentoFormatoId
         },
         include: {
           usuario: {
@@ -35,6 +53,7 @@ router.post('/subir-documento', async (req, res) => {
               beneficiario: true
             }
           },
+          documentoFormato: true,
           estatus: true
         }
       });
@@ -44,7 +63,7 @@ router.post('/subir-documento', async (req, res) => {
           usuarioId,
         },
         data: {
-          usuarioEstatus: 1
+          usuarioEstatus: 3
         }
       });
       res.json(documento)
@@ -56,11 +75,29 @@ router.post('/subir-documento', async (req, res) => {
   
   router.put('/modificar-documento/:id', async (req, res) => {
     const {id} = req.params;
-    const { usuarioId, imagenBase64, documentoTipo} = req.body;
+    const { usuarioId, imagenBase64, documentoTipo, documentoFormatoId} = req.body;
   
   
     try {
-     
+
+      let base64 = '';
+      let archivo = '';
+
+      let imagenNombre = namor.generate({
+        words: 3
+      });
+  
+
+      if(documentoFormatoId == 1){
+        base64 = await convertBase64ToJpegAndReturnBase64(imagenBase64);
+        archivo = `${imagenNombre}.jpeg`;
+      }
+  
+      if(documentoFormatoId == 2){
+        archivo = `${imagenNombre}.pdf`;
+        base64 = `data:application/pdf;base64,${imagenBase64}`;
+      }
+
       let documento = await prisma.documentos.update({
         where:{
           documentoId: Number(id)
@@ -68,7 +105,8 @@ router.post('/subir-documento', async (req, res) => {
         data: {
           documentoEstatus: 1,
           documentoTipo,
-          imagenBase64: await convertBase64ToJpegAndReturnBase64(imagenBase64),
+          imagenBase64: base64,
+          documentoFormatoId
         },
         include: {
           usuario: {
@@ -77,6 +115,7 @@ router.post('/subir-documento', async (req, res) => {
               beneficiario: true
             }
           },
+          documentoFormato: true,
           estatus: true
         }
       });
@@ -86,7 +125,7 @@ router.post('/subir-documento', async (req, res) => {
           usuarioId,
         },
         data: {
-          usuarioEstatus: 1
+          usuarioEstatus: 3
         }
       });
       res.json(documento)
@@ -148,6 +187,20 @@ router.post('/subir-documento', async (req, res) => {
   router.put('/aceptar/:id', async (req, res) => {
     const { id } = req.params;
     try {
+
+      let doc = await prisma.documentos.findFirst({
+        where: {
+          documentoId: Number(id)
+        }
+      });
+  
+      if(doc?.documentoEstatus == 2){
+        res.status(409).json({
+          error:"El documento esta activo"
+        })
+       return;
+      }
+  
   
       let documento = await prisma.documentos.update({
         where: {
@@ -190,6 +243,58 @@ router.post('/subir-documento', async (req, res) => {
       res.status(501).json({ error })
     }
   })
+
+  router.put('/rechazar/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+      let doc = await prisma.documentos.findFirst({
+        where: {
+          documentoId: Number(id)
+        }
+      });
+  
+      if(doc?.documentoEstatus == 2){
+        res.status(409).json({
+          error:"El documento esta activo"
+        })
+       return;
+      }
+      let documento = await prisma.documentos.update({
+        where: {
+          documentoId: Number(id),
+        },
+        data: {
+          documentoEstatus: 3
+        },
+        include: {
+          usuario: {
+            include: {
+              cliente: true,
+              beneficiario: true
+            }
+          },
+          tipo: true,
+          estatus: true
+        }
+      });
+  
+
+  
+    
+     await prisma.usuarios.update({
+          where: {
+            usuarioId: Number(documento.usuarioId)
+          },
+          data: {
+            usuarioEstatus: 3
+          }
+        });
+      
+      res.json(documento)
+    } catch (error) {
+      res.status(501).json({ error })
+    }
+  })
   
   router.get('/todos', async (req, res) => {
    
@@ -202,6 +307,7 @@ router.post('/subir-documento', async (req, res) => {
         },
         include:{
             tipo: true,
+            documentoFormato: true,
             estatus: true
         }
       });
@@ -237,8 +343,19 @@ router.post('/subir-documento', async (req, res) => {
       }
   
       let xbase64 = imagen?.imagenBase64 ?? doc?.imagenBase64;
+
+      if(doc?.documentoFormatoId == 1){
+        res.setHeader('Content-Type', 'image/jpeg');
+
+      }
+
+      if(doc?.documentoFormatoId == 2){
+        res.setHeader('Content-Type', 'application/pdf');
+
+      }
   
-      res.setHeader('Content-Type', 'image/jpeg');
+   
+
   
       let base64 = xbase64?.split('base64,')[1];
   

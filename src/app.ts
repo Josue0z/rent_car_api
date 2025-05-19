@@ -16,7 +16,6 @@ import bancosRouter from './routers/bancos'
 import valoracionesRouter from './routers/valoraciones'
 import usuarioTipoRouter from './routers/usuariotipo'
 import bancoCuentaTipoRouter from './routers/bancoCuentaTipo'
-import preciosRouter from './routers/precios'
 import tarjetasRouter from './routers/tarjetas'
 import pagosRouter from './routers/pagos'
 import clientesRouter from './routers/clientes'
@@ -24,6 +23,9 @@ import documentosRouter from './routers/documentos';
 import verificacionesRouter from './routers/verificaciones';
 import modelosVersiones from './routers/modelos.versiones';
 import combustiblesRouter from './routers/combustibles';
+import transmisionesRouter from './routers/transmisiones';
+import depositosRouter from './routers/depositos';
+import beneficiariosRouter from './routers/beneficiarios';
 
 export const app = express()
 export const prisma  = new PrismaClient();
@@ -74,12 +76,14 @@ app.use('/api/bancos',bancosRouter)
 app.use('/api/valoraciones',valoracionesRouter)
 app.use('/api/usuarioTipo',usuarioTipoRouter)
 app.use('/api/bancoCuentaTipo',bancoCuentaTipoRouter)
-app.use('/api/precios',preciosRouter)
 app.use('/api/tarjetas',tarjetasRouter)
 app.use('/api/pagos',pagosRouter)
 app.use('/api/clientes',clientesRouter)
 app.use('/api/documentos',documentosRouter)
 app.use('/api/verificaciones',verificacionesRouter)
 app.use('/api/combustibles',combustiblesRouter)
+app.use('/api/transmisiones',transmisionesRouter)
+app.use('/api/depositos',depositosRouter)
+app.use('/api/beneficiarios',beneficiariosRouter)
 
 

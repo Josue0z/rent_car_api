@@ -5,7 +5,8 @@ import { Router } from 'express'
 import { prisma } from '../app';
 import twilio from 'twilio';
 import { sendEmail } from '../functions';
-
+import fs from 'fs';
+import {join} from 'path'
 
 const router = Router()
 
@@ -18,7 +19,7 @@ const verifySid = process.env.TWILIO_VERIFY_SID;
 
 router.post('/enviar-verificacion-telefono', async (req, res) => {
     const { telefono } = req.body;
-    console.log(telefono)
+  
     try {
         const verification = await client.verify.v2.services(verifySid as string)
             .verifications.create({ to: telefono, channel: 'sms' });
@@ -71,11 +72,20 @@ router.post('/enviar-verificacion', async (req, res) => {
             }
         });
 
+
+       let buffer = fs.readFileSync(join(__dirname,'../','planillas','codigo.verificacion.html'))
+
+       let html = buffer.toString('utf-8')
+
+       html = html.replace('{{codigo}}',code);
+
+
+
         sendEmail({
             to: email,
             subject: 'CODIGO DE VERIFICACION - CIDECA',
             text: '',
-            html: `<h1>Tu codigo de verificacion es: ${code}</h1>`
+            html
         });
 
         res.json(verificacion)
@@ -105,11 +115,20 @@ router.post('/verificar-codigo', async (req, res) => {
             return;
         }
 
+        if(verificacion.verificado){
+               res.status(404).json({
+                error: "El codigo ya fue usado"
+            })
+            return;
+        }
+
+
         let date = new Date();
 
         let d1 = date.getTime();
         let d2 = verificacion?.fechaVencimiento.getTime();
 
+ 
         if (d2 && d1 > d2) {
             res.status(201).json({
                 error: "El codigo vencio"

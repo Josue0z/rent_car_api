@@ -1,7 +1,7 @@
-import { error } from 'console';
-import { AutoEstatus, Autos, AutosMeGustas, Beneficiarios, Ciudades, Colores, Combustibles, Imagenes, Marcas, Modelos, ModelosVersiones, Paises, Precios, Prisma, PrismaClient, Provincias, TipoAuto, Usuarios, Valoraciones } from '../../prisma/client'
-import { Router } from 'express'
 
+import { Router } from 'express'
+import {obtenerRecomendado,obtenerMasPotentes, obtenerMarcas, crearPlanillaDeComprobanteDePago, crearPlanillaDetalleAuto, sendEmail} from '../functions'
+import { PrismaClient } from '../../prisma/client'
 const prisma = new PrismaClient()
 
 const router = Router()
@@ -10,18 +10,21 @@ const router = Router()
 
 
 router.get('/todos', async (req, res) => {
-  const { pagina, cantidad, pais, marcaId, modeloId, autoAnoInicial, autoAnoFinal, colores, provinciaId, ciudadId } = req.query;
+
+  const {beneficiarioId, estado, pagina, cantidad, pais, marcaId, modeloId, modeloVersionId, autoAnoInicial, autoAnoFinal, colores, provinciaId, ciudadId } = req.query;
   const PAGINA = Number(pagina ?? '1') - 1;
   const CANTIDAD = Number(cantidad ?? '10');
   const MARCAID = Number(marcaId ?? '0');
   const MODELOID = Number(modeloId ?? '0');
+  const MODELOVERSIONID = Number(modeloVersionId ?? '0');
   const AUTOANOINICIAL = Number(autoAnoInicial ?? '1950');
   const AUTOANOFINAL = Number(autoAnoFinal ?? '2050');
   const COLORES = typeof colores == 'string' ? colores.split(',').map(Number) : [];
-
+  const ESTADO = Number(estado ?? '0');
 
   const PROVINCIAID = Number(provinciaId ?? '0');
   const CIUDADID = Number(ciudadId ?? '0');
+  const BENEFICIARIOID = Number(beneficiarioId ?? '0');
 
 
   let params: any = {};
@@ -52,6 +55,18 @@ router.get('/todos', async (req, res) => {
     params['colorId'] = { in: COLORES };
   }
 
+  if(MODELOVERSIONID != 0){
+    params['modeloVersionId'] = MODELOVERSIONID;
+  }
+
+  if(ESTADO  != 0){
+     params['autoEstatus'] = ESTADO;
+  }
+  if(BENEFICIARIOID != 0){
+    params['beneficiarioId'] = BENEFICIARIOID;
+  }
+ 
+
   try {
     let autos = await prisma.autos.findMany({
       skip: (PAGINA) * CANTIDAD,
@@ -71,19 +86,24 @@ router.get('/todos', async (req, res) => {
           }
         ],
 
+        
 
+
+      },
+      orderBy: {
+        autoEstatus:'desc'
       },
       include: {
         color: true,
-        precio: true,
         imagenes: {
           select: {
             imagenId: true,
+            autoId: true,
             imagenArchivo: true,
             imagenNota: true,
             imagenEstatus: true
           },
-          where: { imagenEstatus: 2 }
+       
         },
         tipo: true,
         beneficiario: true,
@@ -122,10 +142,11 @@ router.get('/todos', async (req, res) => {
       }
     });
 
-    if (autos.length == 0) {
-      res.status(404).json(autos)
+    if(autos.length ==0){
+      res.status(404).json([])
       return;
     }
+
 
     res.json(autos)
   } catch (error) {
@@ -135,92 +156,11 @@ router.get('/todos', async (req, res) => {
   }
 })
 
-router.get('/obtener-recomendado', async (req, res) => {
-  const { pais } = req.query;
-
-  // Definir los parámetros de búsqueda en función del país recibido.
-  let params = {};
-  if (pais) {
-    params = { paisId: Number(pais) };
-  }
-
-  try {
-    // Primero, contamos la cantidad de autos que cumplen con el filtro.
-    const count = await prisma.autos.count({
-      where: { ...params }
-    });
-
-    let auto = null;
-    if (count > 0) {
-      // Generamos un número aleatorio entre 0 y count - 1
-      const randomSkip = Math.floor(Math.random() * count);
-
-      // Consultamos únicamente el auto en esa posición usando skip y take.
-      const autos = await prisma.autos.findMany({
-        where: { ...params },
-        skip: randomSkip,
-        take: 1,
-        include: {
-          color: true,
-          precio: true,
-          imagenes: {
-            select: {
-              imagenId: true,
-              imagenArchivo: true,
-              imagenNota: true,
-              imagenEstatus: true
-            },
-            where: { imagenEstatus: 2 }
-          },
-          tipo: true,
-          beneficiario: true,
-          pais: true,
-          provincia: true,
-          ciudad: true,
-          marca: true,
-          modelo: true,
-          modeloVersion: true,
-          combustible: true,
-          transmision: true,
-          valoraciones: {
-            include: {
-              usuario: {
-                select: {
-                  usuarioLogin: true,
-                  usuarioPerfil: true,
-                  tipoUsuario: true,
-                  cliente: true
-                },
-              }
-            },
-            orderBy:{
-              valorFecha:"desc"
-            }
-          },
-          autosMeGustas: {
-            select: {
-              megustaId: true,
-              autoId: true,
-              usuarioId: true,
-            }
-          },
-          estatus: true
-        }
-      });
-      auto = autos[0]; // Seleccionamos el primer (y único) registro del array.
-    }
-
-    res.json(auto);
-  } catch (error) {
-    console.error(error);
-    res.status(501).json({ error });
-  }
-});
 
 
 
 router.get('/buscar', async (req, res) => {
-  const { pagina, cantidad, pais, marcaId, modeloId, autoAnoInicial, autoAnoFinal, colores, provinciaId, ciudadId } = req.query;
+  const {reservaFhInicial, reservaFhFinal, pagina, cantidad, pais, marcaId, modeloId, autoAnoInicial, autoAnoFinal, colores, provinciaId, ciudadId } = req.query;
   const PAGINA = Number(pagina ?? '1') - 1;
   const CANTIDAD = Number(cantidad ?? '10');
   const MARCAID = Number(marcaId);
@@ -262,13 +202,53 @@ router.get('/buscar', async (req, res) => {
     params['colorId'] = { in: COLORES };
   }
 
+  params['autoEstatus'] = {in: [1]};
 
+  /*let reservas:{
+    autoId:number
+  }[] = [];*/
+
+  
   try {
+
+    /*if(reservaFhInicial && reservaFhFinal){
+      reservas = await prisma.reservas.findMany({
+        select: {
+          autoId: true
+        },
+        where:{
+          AND: [
+           {
+             reservaFhInicial:  {
+               gte: new Date(reservaFhInicial as  string)
+             }
+           },
+           {
+             reservaFhFinal: {
+               lte: new Date(reservaFhFinal as string)
+             }
+           }
+          ]
+        }
+     });
+ 
+    }*/
+
+  
+    /*let autoIds  = reservas.map((r)=> r.autoId);
+
+    if(autoIds.length > 0){
+      params['autoId'] = {
+        notIn: autoIds
+      };
+    }*/
+
     let autos = await prisma.autos.findMany({
       skip: (PAGINA) * CANTIDAD,
       take: CANTIDAD,
       where: {
-        ...params,
+       ...params,
+      
         AND: [
           {
             autoAno: {
@@ -279,14 +259,15 @@ router.get('/buscar', async (req, res) => {
             autoAno: {
               lte: AUTOANOFINAL
             }
-          }
+          },
+
+  
         ],
 
 
       },
       include: {
         color: true,
-        precio: true,
         imagenes: {
           select: {
             imagenId: true,
@@ -347,11 +328,12 @@ router.get('/buscar', async (req, res) => {
 
 
 router.post('/crear', async (req, res) => {
-  const { transmisionId, combustibleId, modeloVersionId, fechaDeViajeInicial, fechaDeViajeFinal, tipoId, marcaId, modeloId, colorId, autoAno, autoDescripcion, beneficiarioId, autoDireccion, autoCoorX, autoCoorY, seguroId, autoKmIncluido, autoCondiciones, autoNumeroViajes, autoNumeroPersonas, autoNumeroPuertas, autoNumeroAsientos, paisId, provinciaId, ciudadId, precioId, autoEstatus } = req.body;
+  const {precio, transmisionId, combustibleId, modeloVersionId, fechaDeViajeInicial, fechaDeViajeFinal, tipoId, marcaId, modeloId, colorId, autoAno, autoDescripcion, beneficiarioId, autoDireccion, autoCoorX, autoCoorY, seguroId, autoKmIncluido, autoCondiciones, autoNumeroViajes, autoNumeroPersonas, autoNumeroPuertas, autoNumeroAsientos, paisId, provinciaId, ciudadId, precioId, autoEstatus } = req.body;
   try {
     let auto = await prisma.autos.create({
       data: {
         tipoId,
+        
         marcaId,
         modeloId,
         colorId,
@@ -364,20 +346,19 @@ router.post('/crear', async (req, res) => {
         seguroId,
         autoKmIncluido,
         autoCondiciones,
-        autoNumeroViajes,
+        autoNumeroViajes:0,
         autoNumeroPersonas,
         autoNumeroPuertas,
         autoNumeroAsientos,
         paisId,
         provinciaId,
         ciudadId,
-        precioId,
-        autoEstatus: 2,
-        fechaDeViajeInicial,
-        fechaDeViajeFinal,
+        autoEstatus: 3,
         modeloVersionId,
         combustibleId,
-        transmisionId
+        transmisionId,
+        precio
+      
       },
       include: {
         color: true,
@@ -400,15 +381,18 @@ router.post('/crear', async (req, res) => {
         },
       }
     });
+
+
     res.json(auto)
   } catch (error) {
+    console.log(error)
     res.status(501).json({ error })
   }
 })
 
 router.put('/modificar/:id', async (req, res) => {
   const { id } = req.params;
-  const {transmisionId, combustibleId, modeloVersionId, fechaDeViajeInicial, fechaDeViajeFinal, tipoId, marcaId, modeloId, colorId, autoAno, autoDescripcion, beneficiarioId, autoDireccion, autoCoorX, autoCoorY, seguroId, autoKmIncluido, autoCondiciones, autoNumeroViajes, autoNumeroPersonas, autoNumeroPuertas, autoNumeroAsientos, paisId, provinciaId, ciudadId, precioId, autoEstatus } = req.body;
+  const {precio,transmisionId, combustibleId, modeloVersionId, fechaDeViajeInicial, fechaDeViajeFinal, tipoId, marcaId, modeloId, colorId, autoAno, autoDescripcion, beneficiarioId, autoDireccion, autoCoorX, autoCoorY, seguroId, autoKmIncluido, autoCondiciones, autoNumeroViajes, autoNumeroPersonas, autoNumeroPuertas, autoNumeroAsientos, paisId, provinciaId, ciudadId, precioId, autoEstatus } = req.body;
   try {
     let auto = await prisma.autos.update({
       where: {
@@ -435,12 +419,11 @@ router.put('/modificar/:id', async (req, res) => {
         paisId,
         provinciaId,
         ciudadId,
-        precioId,
-        fechaDeViajeInicial,
-        fechaDeViajeFinal,
+
         modeloVersionId,
         combustibleId,
-        transmisionId
+        transmisionId,
+        precio
       },
       include: {
         color: true,
@@ -463,6 +446,8 @@ router.put('/modificar/:id', async (req, res) => {
         },
       }
     });
+
+
     res.json(auto)
   } catch (error) {
     console.log(error)
@@ -565,141 +550,7 @@ router.get('/transmisiones/crear', async (req, res) => {
   }
 })
 
-router.get('/mas-potentes', async (req, res) => {
-  const { pagina, cantidad, pais } = req.query;
-  const PAGINA = Number(pagina ?? '1') - 1;
-  const CANTIDAD = Number(cantidad ?? '10');
 
-
-  try {
-    let xautos: Autos[] = await prisma.$queryRaw`
-       SELECT * FROM "Autos" ORDER BY RANDOM() LIMIT 10;
-    `;
-
-    let autos: any = [...xautos];
-
-    for (let i = 0; i < xautos.length; i++) {
-
-      let xauto = autos[i];
-
-      let color: Colores[] = await prisma.$queryRaw`
-         SELECT * FROM "Colores" WHERE "colorId" = ${xauto.colorId}
-      `;
-
-      let precio: Precios[] = await prisma.$queryRaw`
-      SELECT * FROM "Precios" WHERE "precioId" = ${xauto.precioId}
-      `;
-
-      let imagenes: Imagenes[] = await prisma.$queryRaw`
-       SELECT "imagenId", "imagenArchivo", "imagenNota" FROM "Imagenes" WHERE "autoId" = ${xauto.autoId} AND "imagenEstatus" = 2 ORDER BY "imagenId"
-      `;
-
-      let tipos: TipoAuto[] = await prisma.$queryRaw`
-      SELECT * FROM "TipoAuto" WHERE "tipoId" = ${xauto.tipoId}
-      `;
-
-
-      let beneficiarios: Beneficiarios[] = await prisma.$queryRaw`
-               SELECT * FROM "Beneficiarios" WHERE "beneficiarioId" = ${xauto.beneficiarioId}
-             `;
-
-
-      let paises: Paises[] = await prisma.$queryRaw`
-      SELECT * FROM "Paises" WHERE "paisId" = ${xauto.paisId}
-      `;
-
-      let provincias: Provincias[] = await prisma.$queryRaw`
-       SELECT * FROM "Provincias" WHERE "provinciaId" = ${xauto.provinciaId}
-        `;
-
-      let ciudades: Ciudades[] = await prisma.$queryRaw`
-          SELECT * FROM "Ciudades" WHERE "ciudadId" = ${xauto.ciudadId}
-         `;
-
-
-      let marcas: Marcas[] = await prisma.$queryRaw`
-           SELECT * FROM "Marcas" WHERE "marcaId" = ${xauto.marcaId}
-      `;
-
-      let modelos: Modelos[] = await prisma.$queryRaw`
-           SELECT * FROM "Modelos" WHERE "modeloId" = ${xauto.modeloId}
-          `;
-
-      let modelosVersiones:ModelosVersiones[] = await prisma.$queryRaw`
-       SELECT * FROM "ModelosVersiones" WHERE "versionId" = ${xauto.modeloVersionId}
-      `;
-
-        let combustibles:Combustibles[] = await prisma.$queryRaw`
-            SELECT * FROM "Combustibles" WHERE "combustibleId" = ${xauto.combustibleId}
-         `;
-
-
-      let transmisiones: Modelos[] = await prisma.$queryRaw`
-           SELECT * FROM "AutoTipoTransmision" WHERE "transmisionId" = ${xauto.transmisionId}
-       `;
-
-      let estatus: AutoEstatus[] = await prisma.$queryRaw`
-        SELECT * FROM "AutoEstatus" WHERE "autoEstatus" = ${xauto.autoEstatus}
-        `;
-
-      let valoraciones: any[] = await prisma.$queryRaw`
-      SELECT * FROM "Valoraciones" WHERE "autoId" = ${xauto.autoId} ORDER BY "valorFecha" DESC
-       `;
-
-
-      let megustas: any[] = await prisma.$queryRaw`
-        SELECT "megustaId", "autoId", "usuarioId" FROM "AutosMeGustas" WHERE "autoId" = ${xauto.autoId}
-     `;
-
-
-      for (let j = 0; j < valoraciones.length; j++) {
-        let valoracion = valoraciones[j];
-        let usuarios: any[] = await prisma.$queryRaw`
-        SELECT "usuarioLogin", "usuarioPerfil", "usuarioTipo", "clienteId" FROM "Usuarios" WHERE "usuarioId" = ${valoracion.usuarioId}
-         `;
-        let usuario = usuarios[0];
-        let tipoUsuario = await prisma.$queryRaw`
-        SELECT * FROM "UsuarioTipo" WHERE "usuarioTipo" = ${usuario.usuarioTipo}
-         `;
-        let clientes: any[] = await prisma.$queryRaw`
-            SELECT * FROM "Clientes" WHERE "clienteId" = ${usuario.clienteId}
-          `;
-
-
-        valoracion.usuario = usuario;
-        usuario.cliente = clientes[0];
-        usuario.tipoUsuario = tipoUsuario;
-      }
-
-
-
-      xauto.color = color[0];
-      xauto.precio = precio[0];
-      xauto.imagenes = imagenes;
-      xauto.tipo = tipos[0];
-      xauto.beneficiario = beneficiarios[0];
-      xauto.pais = paises[0];
-      xauto.provincia = provincias[0];
-      xauto.ciudad = ciudades[0];
-      xauto.marca = marcas[0];
-      xauto.modelo = modelos[0];
-      xauto.modeloVersion = modelosVersiones[0];
-      xauto.combustible = combustibles[0];
-      xauto.transmision = transmisiones[0];
-      xauto.valoraciones = valoraciones;
-      xauto.autosMeGustas = megustas;
-      xauto.estatus = estatus[0];
-
-    }
-
-
-
-    res.json(autos)
-  } catch (error) {
-    console.log(error)
-    res.status(501).json({ error })
-  }
-})
 
 router.post('/agregar-me-gusta', async (req, res) => {
   const { autoId, usuarioId } = req.body;
@@ -810,7 +661,6 @@ router.get('/me-gustas/todos', async (req, res) => {
         
         auto: {
           include: {
-            precio: true,
             color: true,
             imagenes: {
               select: {
@@ -827,6 +677,8 @@ router.get('/me-gustas/todos', async (req, res) => {
             ciudad: true,
             marca: true,
             modelo: true,
+            modeloVersion: true,
+            combustible: true,
             transmision: true,
             
             autosMeGustas: {
@@ -856,7 +708,6 @@ router.get('/:id',async(req,res) =>{
       },
       include:{
         color: true,
-        precio: true,
         imagenes: {
           select: {
             imagenId: true,
@@ -874,6 +725,7 @@ router.get('/:id',async(req,res) =>{
         marca: true,
         modelo: true,
         modeloVersion: true,
+        combustible: true,
         transmision: true,
         valoraciones: {
           include: {
@@ -911,6 +763,30 @@ router.get('/:id',async(req,res) =>{
    }
 })
 
+
+router.get('/obtener-datos-inicio/todos',async(req,res) =>{
+  try{
+    let auto = await obtenerRecomendado();
+    let autos = await obtenerMasPotentes();
+    let marcas = await obtenerMarcas();
+
+    if(autos.length == 0){
+      res.status(404).json({
+        error:"no encontrados"
+      })
+      return;
+    }
+    res.json({
+      auto,
+      autos,
+      marcas
+    })
+  }catch(error){
+    res.status(501).json({
+    error
+    })
+  }
+})
 
 
 export default router;

@@ -14,6 +14,11 @@ router.get('/todos', async (req, res) => {
                 pais: true
             }
         });
+
+        if(provincias.length == 0){
+            res.status(404).json([])
+            return;
+        }
         res.json(provincias)
     } catch (error) {
         console.log(error)

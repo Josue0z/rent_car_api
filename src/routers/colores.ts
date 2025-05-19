@@ -9,6 +9,11 @@ const router = Router()
 router.get('/todos', async (req, res) => {
   try {
     let colores = await prisma.colores.findMany({});
+
+    if(colores.length == 0){
+      res.status(404).json([])
+      return;
+    }
     res.json(colores)
   } catch (error) {
     res.status(501).json({ error })

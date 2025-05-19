@@ -1,6 +1,6 @@
 
 import { Router } from 'express'
-import { agregarMarcaAgua, convertBase64ToJpegAndReturnBase64 } from '../functions'
+import { agregarMarcaAgua, convertBase64ToJpegAndReturnBase64, crearPlanillaDetalleAuto, removerBase64Data, sendEmail } from '../functions'
 import namor from "namor"
 import { prisma } from '../app'
 import { marcaDeAguaCideca } from '../data'
@@ -10,17 +10,27 @@ const router = Router()
 
 
 router.get('/todos', async (req, res) => {
+
+  const {autoId} = req.query;
   try {
     let imagenes = await prisma.imagenes.findMany({
-
+      where:{
+        autoId:Number(autoId)
+      },
       select: {
         imagenId: true,
+        autoId: true,
         imagenArchivo: true,
         imagenNota: true,
         imagenEstatus: true,
         estatus: true
       }
     });
+
+    if(imagenes.length == 0){
+      res.status(404).json([])
+      return;
+    }
     res.json(imagenes)
   } catch (error) {
     res.status(501).json({
@@ -75,27 +85,62 @@ router.post('/subir-imagen', async (req, res) => {
     });
 
     let base64 = await agregarMarcaAgua(imagenBase64, marcaDeAguaCideca);
+    let xbase64 = await convertBase64ToJpegAndReturnBase64(base64);
 
     let imagen = await prisma.imagenes.create({
       data: {
         autoId,
-        imagenNota,
-        imagenBase64: await convertBase64ToJpegAndReturnBase64(base64),
+        imagenNota:'',
+        imagenBase64: xbase64,
         imagenEstatus: 1,
         imagenArchivo: `${imagenNombre}.jpeg`
       },
+    
     });
 
-    await prisma.autos.update({
+     let auto = await prisma.autos.update({
       where: {
         autoId: Number(autoId)
       },
       data: {
-        autoEstatus: 2
+        autoEstatus: 3
+      },
+      include:{
+        imagenes: true,
+        marca: true,
+        modelo: true,
+        modeloVersion: true,
+        beneficiario: {
+          include:{
+            banco: true,
+            bancoCuentaTipo: true
+          }
+        }
       }
     });
+
+       let html = crearPlanillaDetalleAuto(auto);
+
+       let attachments = [
+           {
+                  filename: 'imagen.png',
+                  content: removerBase64Data(xbase64),
+                  cid: 'imagen',
+                  encoding: 'base64'
+            }
+       ];
+
+    sendEmail({
+      to: process.env.EMAIL_USERNAME as string,
+      subject:`SE SUBIO IMAGEN DEL AUTO - ${auto.marca.marcaNombre} ${auto.modeloVersion?.versionNombre ?? auto.modelo.modeloNombre} - ${auto.autoAno}`,
+      text:'',
+      html,
+      attachments
+    });
+
     res.json(imagen)
   } catch (error) {
+    console.log(error)
     res.status(501).json({ error })
   }
 })
@@ -108,6 +153,7 @@ router.put('/modificar-imagen/:id', async (req, res) => {
 
 
     let base64 = await agregarMarcaAgua(imagenBase64, marcaDeAguaCideca);
+    let xbase64 =  await convertBase64ToJpegAndReturnBase64(base64);
 
     let imagen = await prisma.imagenes.update({
       where: {
@@ -115,18 +161,49 @@ router.put('/modificar-imagen/:id', async (req, res) => {
       },
       data: {
         imagenNota,
-        imagenBase64: await convertBase64ToJpegAndReturnBase64(base64),
+        imagenBase64:xbase64,
         imagenEstatus: 1
       },
     });
 
-    await prisma.autos.update({
+    let auto = await prisma.autos.update({
       where: {
         autoId: Number(autoId)
       },
       data: {
-        autoEstatus: 2
+        autoEstatus: 3
+      },
+      include:{
+        imagenes: true,
+        marca: true,
+        modelo: true,
+        modeloVersion: true,
+        beneficiario: {
+          include:{
+            banco: true,
+            bancoCuentaTipo: true
+          }
+        }
       }
+    });
+
+      let html = crearPlanillaDetalleAuto(auto);
+
+      let attachments = [
+           {
+                  filename: 'imagen.png',
+                  content:removerBase64Data(xbase64),
+                  cid: 'imagen',
+                  encoding: 'base64'
+            }
+       ];
+
+    sendEmail({
+      to: process.env.EMAIL_USERNAME as string,
+      subject:`SE MODIFICO IMAGEN DEL AUTO - ${auto.marca.marcaNombre} ${auto.modeloVersion?.versionNombre ?? auto.modelo.modeloNombre} - ${auto.autoAno}`,
+      text:'',
+      html,
+      attachments
     });
     res.json(imagen)
   } catch (error) {
@@ -137,6 +214,7 @@ router.put('/modificar-imagen/:id', async (req, res) => {
 
 router.delete('/eliminar/:id', async (req, res) => {
   const { id } = req.params;
+  const {autoId} = req.body;
   try {
 
 
@@ -146,18 +224,29 @@ router.delete('/eliminar/:id', async (req, res) => {
       }
     });
 
-
     res.json(imagen)
   } catch (error) {
     res.status(501).json({ error })
   }
 })
 
-router.post('/aceptar/:id', async (req, res) => {
+router.put('/aceptar/:id', async (req, res) => {
   const { id } = req.params;
   const { autoId } = req.body;
+  
   try {
+    let img = await prisma.imagenes.findFirst({
+      where: {
+        imagenId: Number(id)
+      }
+    });
 
+    if(img?.imagenEstatus == 2){
+      res.status(409).json({
+        error:"La imagen esta activa"
+      })
+     return;
+    }
 
     let imagen = await prisma.imagenes.update({
       where: {
@@ -179,15 +268,134 @@ router.post('/aceptar/:id', async (req, res) => {
 
 
     if (imagenes.length == 0) {
-      await prisma.autos.update({
+       await prisma.autos.update({
         where: {
-          autoId: Number(autoId)
+          autoId
         },
         data: {
           autoEstatus: 1
+        },
+      });
+
+    }
+
+       let auto = await prisma.autos.findFirst({
+        where: {
+          autoId
+        },
+    
+        include:{
+          imagenes: true,
+          marca: true,
+          modelo: true,
+          modeloVersion: true,
+          beneficiario: {
+            include:{
+              banco: true,
+              bancoCuentaTipo: true
+            }
+          }
         }
       });
+
+      
+      let html = crearPlanillaDetalleAuto(auto);
+
+      let attachments = [
+           {
+                  filename: 'imagen.png',
+                  content: removerBase64Data(imagen.imagenBase64),
+                  cid: 'imagen',
+                  encoding: 'base64'
+            }
+       ];
+
+    sendEmail({
+      to: auto?.beneficiario.beneficiarioCorreo as string,
+      subject:`SE ACEPTO LA IMAGEN DEL AUTO - ${auto?.marca.marcaNombre} ${auto?.modeloVersion?.versionNombre ?? auto?.modelo.modeloNombre} - ${auto?.autoAno}`,
+      text:'',
+      html,
+      attachments
+    });
+    res.json(imagen)
+  } catch (error) {
+    console.log(error)
+    res.status(501).json({ error })
+  }
+})
+
+router.put('/rechazar/:id', async (req, res) => {
+  const { id } = req.params;
+  const { autoId } = req.body;
+  try {
+
+    let img = await prisma.imagenes.findFirst({
+      where: {
+        imagenId: Number(id)
+      }
+    });
+
+    if(img?.imagenEstatus == 2){
+      res.status(409).json({
+        error:"La imagen esta activa"
+      })
+     return;
     }
+    let imagen = await prisma.imagenes.update({
+      where: {
+        imagenId: Number(id)
+      },
+      data: {
+        imagenEstatus: 3
+      },
+
+    });
+
+
+
+    let auto = await prisma.autos.update({
+        where: {
+          autoId
+        },
+        data: {
+          autoEstatus: 3
+        },
+        include:{
+          imagenes: true,
+          marca: true,
+          modelo: true,
+          modeloVersion: true,
+          beneficiario:{
+            include:{
+              banco: true,
+              bancoCuentaTipo: true
+            }
+          }
+        }
+      });
+
+
+      let html = crearPlanillaDetalleAuto(auto);
+
+      let attachments = [
+           {
+                  filename: 'imagen.png',
+                  content: removerBase64Data(imagen.imagenBase64),
+                  cid: 'imagen',
+                  encoding: 'base64'
+            }
+       ];
+
+    sendEmail({
+      to: auto.beneficiario.beneficiarioCorreo as string,
+      subject:`SE RECHAZO LA IMAGEN DEL AUTO - ${auto.marca.marcaNombre} ${auto.modeloVersion?.versionNombre ?? auto.modelo.modeloNombre} - ${auto.autoAno}`,
+      text:'',
+      html,
+      attachments
+    });
+
+
+    
     res.json(imagen)
   } catch (error) {
     res.status(501).json({ error })

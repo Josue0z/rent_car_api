@@ -10,6 +10,11 @@ router.get('/todos', async (req, res) => {
   try {
     let bancos = await prisma.bancos.findMany({
     });
+
+    if(bancos.length == 0){
+      res.status(404).json([])
+      return;
+    }
     res.json(bancos)
   } catch (error) {
     res.status(501).json(error)

@@ -6,7 +6,7 @@ app.set('PORT', process.env.PORT ?? 3000)
 
  app.listen(app.get('PORT'), () =>
   console.log(`
-🚀 Server ready at: http://localhost:3000
+🚀 Server ready at: http://localhost:${app.get('PORT')}
 ⭐️ See sample requests: https://github.com/prisma/prisma-examples/blob/latest/orm/testing-express/README.md#using-the-rest-api`),
 )
 

@@ -4,7 +4,7 @@ import { prisma } from '../app';
 
 const router = Router()
 
-router.get('/todos', async (req, res) => {
+/*router.get('/todos', async (req, res) => {
   try {
     let precios = await prisma.precios.findMany({});
     res.json(precios)
@@ -50,6 +50,6 @@ router.put('/modificar/:id', async (req, res) => {
     res.status(501).json(error)
   }
 })
+*/
 
-
-export default router
+//export default router

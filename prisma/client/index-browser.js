@@ -163,7 +163,9 @@ exports.Prisma.BeneficiariosScalarFieldEnum = {
   beneficiarioCuentaTipo: 'beneficiarioCuentaTipo',
   beneficiarioCuentaNo: 'beneficiarioCuentaNo',
   beneficiarioFecha: 'beneficiarioFecha',
-  beneficiarioCorreo: 'beneficiarioCorreo'
+  beneficiarioCorreo: 'beneficiarioCorreo',
+  beneficiarioTelefono: 'beneficiarioTelefono',
+  imagenBase64: 'imagenBase64'
 };
 
 exports.Prisma.DireccionesScalarFieldEnum = {
@@ -254,17 +256,15 @@ exports.Prisma.AutosScalarFieldEnum = {
   paisId: 'paisId',
   provinciaId: 'provinciaId',
   ciudadId: 'ciudadId',
-  precioId: 'precioId',
   autoEstatus: 'autoEstatus',
-  fechaDeViajeInicial: 'fechaDeViajeInicial',
-  fechaDeViajeFinal: 'fechaDeViajeFinal',
   valoracion: 'valoracion',
   valoracionAcumulacion: 'valoracionAcumulacion',
   cantidadValoracion: 'cantidadValoracion',
   cantidadMeGustas: 'cantidadMeGustas',
   transmisionId: 'transmisionId',
   modeloVersionId: 'modeloVersionId',
-  combustibleId: 'combustibleId'
+  combustibleId: 'combustibleId',
+  precio: 'precio'
 };
 
 exports.Prisma.ImagenesScalarFieldEnum = {
@@ -284,7 +284,8 @@ exports.Prisma.DocumentosScalarFieldEnum = {
   documentoTipo: 'documentoTipo',
   fhCreacion: 'fhCreacion',
   usuarioId: 'usuarioId',
-  imagenArchivo: 'imagenArchivo'
+  imagenArchivo: 'imagenArchivo',
+  documentoFormatoId: 'documentoFormatoId'
 };
 
 exports.Prisma.TipoDocumentoScalarFieldEnum = {
@@ -341,7 +342,9 @@ exports.Prisma.ReservasScalarFieldEnum = {
   autoId: 'autoId',
   tarjetaId: 'tarjetaId',
   reservaEstatus: 'reservaEstatus',
-  tarjetaNumero: 'tarjetaNumero'
+  tarjetaNumero: 'tarjetaNumero',
+  codigoVerificacionEntrega: 'codigoVerificacionEntrega',
+  entregaVerificada: 'entregaVerificada'
 };
 
 exports.Prisma.ReservaEstatusScalarFieldEnum = {
@@ -352,13 +355,6 @@ exports.Prisma.ReservaEstatusScalarFieldEnum = {
 exports.Prisma.BancoCuentaTipoScalarFieldEnum = {
   bancoCuentaTipoId: 'bancoCuentaTipoId',
   name: 'name'
-};
-
-exports.Prisma.PreciosScalarFieldEnum = {
-  precioId: 'precioId',
-  precioNombre: 'precioNombre',
-  precioCliente: 'precioCliente',
-  precioBeneficiario: 'precioBeneficiario'
 };
 
 exports.Prisma.AutoEstatusScalarFieldEnum = {
@@ -419,6 +415,19 @@ exports.Prisma.CombustiblesScalarFieldEnum = {
   combustibleNombre: 'combustibleNombre'
 };
 
+exports.Prisma.DocumentoFormatoScalarFieldEnum = {
+  formatoId: 'formatoId',
+  formatoNombre: 'formatoNombre'
+};
+
+exports.Prisma.DepositosBeneficiariosScalarFieldEnum = {
+  depositoId: 'depositoId',
+  beneficiarioId: 'beneficiarioId',
+  imagenBase64: 'imagenBase64',
+  fhCreacion: 'fhCreacion',
+  monto: 'monto'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -460,7 +469,6 @@ exports.Prisma.ModelName = {
   Reservas: 'Reservas',
   ReservaEstatus: 'ReservaEstatus',
   BancoCuentaTipo: 'BancoCuentaTipo',
-  Precios: 'Precios',
   AutoEstatus: 'AutoEstatus',
   UsuarioTipo: 'UsuarioTipo',
   Pagos: 'Pagos',
@@ -469,7 +477,9 @@ exports.Prisma.ModelName = {
   Verificaciones: 'Verificaciones',
   Manejadores: 'Manejadores',
   ModelosVersiones: 'ModelosVersiones',
-  Combustibles: 'Combustibles'
+  Combustibles: 'Combustibles',
+  DocumentoFormato: 'DocumentoFormato',
+  DepositosBeneficiarios: 'DepositosBeneficiarios'
 };
 
 /**
