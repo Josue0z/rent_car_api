@@ -167,16 +167,31 @@ router.get('/historicoCliente', async (req, res) => {
 });
 
 router.get('/historicoBeneficiario', async (req, res) => {
-    const { beneficiarioId, pagina, cantidad } = req.query;
+    const { beneficiarioId, pagina, cantidad,fechaInicial, fechaFinal } = req.query;
   const PAGINA = Number(pagina ?? '1') - 1;
   const CANTIDAD = Number(cantidad ?? '10');
   try {
     let reservas = await prisma.reservas.findMany({
       where: {
-        beneficiarioId: Number(beneficiarioId)
+        beneficiarioId: Number(beneficiarioId),
+            AND: [
+          {
+            reservaCreado: {
+              gte: new Date(fechaInicial as string)
+            }
+          },
+          {
+            reservaCreado: {
+              lte: new Date(fechaFinal as string)
+            }
+          },
+
+  
+        ],
       },
       skip: PAGINA * CANTIDAD,
       take: CANTIDAD,
+      
 
       include: {
         estatus: true,
