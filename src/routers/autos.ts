@@ -419,6 +419,7 @@ router.put('/modificar/:id', async (req, res) => {
         paisId,
         provinciaId,
         ciudadId,
+        autoEstatus,
 
         modeloVersionId,
         combustibleId,
