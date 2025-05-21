@@ -562,6 +562,8 @@ router.put('/cancelar/:id', async (req, res) => {
       return;
     }
 
+
+
   
     let reserva = await prisma.reservas.update({
       where: {
@@ -593,6 +595,18 @@ router.put('/cancelar/:id', async (req, res) => {
         estatus: true
       }
     });
+
+    let pago  = await prisma.pagos.findFirst({
+      where: {
+        reservaId:reserva.reservaId
+      }
+    });
+
+    await prisma.pagos.delete({
+      where: {
+        pagoId: pago?.pagoId
+      }
+    })
 
 
 
