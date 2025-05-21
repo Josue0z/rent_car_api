@@ -756,13 +756,37 @@ router.put('/verificar-codigo-entrega/:id',async(req,res) =>{
       }
     });
     if(r?.codigoVerificacionEntrega == codigoVerificacionEntrega){
-         await prisma.reservas.update({
+        r = await prisma.reservas.update({
           where: {
             reservaId:Number(id)
           },
           data: {
             entregaVerificada: true
+          },
+           include: {
+        auto: {
+          include: {
+            marca: true,
+            modelo: true,
+            transmision: true,
+            imagenes: true,
           }
+        },
+        tarjeta: {
+          select: {
+            tarjetaNombre: true,
+            tarjetaNumero: true
+          }
+        },
+        cliente: true,
+        beneficiario: {
+          include: {
+            banco: true,
+            bancoCuentaTipo: true
+          }
+        },
+        estatus: true
+      }
          });
          res.json(r)
     }else{
