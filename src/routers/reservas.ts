@@ -755,6 +755,11 @@ router.put('/verificar-codigo-entrega/:id',async(req,res) =>{
         reservaId:Number(id)
       }
     });
+
+    if(r?.entregaVerificada){
+      res.status(409).json({error:"La reserva fue verificada"})
+      return;
+    }
     if(r?.codigoVerificacionEntrega == codigoVerificacionEntrega){
         r = await prisma.reservas.update({
           where: {

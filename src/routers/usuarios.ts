@@ -202,9 +202,15 @@ router.get(`/:id`, async (req, res) => {
         usuarioId: Number(id)
       },
       include: {
-        cliente: true,
+        cliente: {
+          include:{
+            direccion: true,
+            direcciones: true
+          }
+        },
         beneficiario: true,
-        estatus: true
+        estatus: true,
+      
       }
     })
     res.json(result)
