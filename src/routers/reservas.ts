@@ -821,15 +821,6 @@ router.put('/entregar/:id', async (req, res) => {
       }
     });
 
-    await prisma.autos.update({
-      where: {
-        autoId: reserva.autoId,
-      },
-      data: {
-        autoEstatus: 2
-      },
-    });
-
 
     res.json(reserva)
   } catch (error) {
