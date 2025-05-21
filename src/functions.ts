@@ -366,7 +366,7 @@ const obtenerMarcas = async() =>{
 const crearPlanillaDeComprobanteDePago = (reserva:any, monto: number) =>{
   let tarjetaNumero = reserva.tarjeta.tarjetaNumero;
   let ultimosCuatroNumeros = tarjetaNumero.substring(tarjetaNumero.length-4);
-   let html = fs.readFileSync(join(__dirname,'../','planillas','voucher.pay.html')).toString('utf-8')
+   let html = fs.readFileSync(join(__dirname,'planillas','voucher.pay.html')).toString('utf-8')
    html = html.replaceAll('{{cliente}}','Cliente:');
    html = html.replaceAll('{{clienteNombre}}',reserva.cliente.clienteNombre);
    html = html.replaceAll('{{monto}}',`$${monto.toFixed(2)}`);
