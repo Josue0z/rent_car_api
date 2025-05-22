@@ -157,7 +157,7 @@ const obtenerRecomendado = async() =>{
 
     let auto = null;
     if (count > 0) {
-      const randomSkip = Math.floor(Math.random() * count);
+      const randomSkip = Math.floor(1 + Math.random() * count);
 
       const autos = await prisma.autos.findMany({
         skip: randomSkip,
