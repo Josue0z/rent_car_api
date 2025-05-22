@@ -45,6 +45,9 @@ router.get('/historicoCliente', async (req, res) => {
       },
       skip: PAGINA * CANTIDAD,
       take: CANTIDAD,
+      orderBy:{
+        reservaEstatus:"desc"
+      },
 
       include: {
         estatus: true,
