@@ -562,6 +562,16 @@ router.put('/cancelar/:id', async (req, res) => {
       return;
     }
 
+      if(r?.reservaEstatus == 3){
+       res.status(409).json({error:"No se puede cancelar una reserva ya cerrada"})
+      return;
+    }
+
+    if(r?.reservaEstatus == 5){
+       res.status(409).json({error:"No se puede cancelar una reserva en ejecucion"})
+      return;
+    }
+
 
 
   
