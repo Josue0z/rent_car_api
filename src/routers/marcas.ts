@@ -8,9 +8,10 @@ const router = Router()
 router.get('/todos', async (req, res) => {
   try {
     const {display} = req.query;
-    const keys = (display as string).split(',');
+    const keys = (display as string).split(',') ?? [];
 
-      let params:any = {};
+    
+    let params:any = {};
     if(keys.length > 0){
     
 
