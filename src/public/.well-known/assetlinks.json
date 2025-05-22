@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.cideca.rent_car_app",
+      "sha256_cert_fingerprints": [
+        "C7:7E:C1:E4:B7:37:05:63:BC:75:B8:86:23:2F:A7:3B:FE:95:CE:3D:EC:7B:2F:60:55:66:FF:28:65:CA:1B:3C"
+      ]
+    }
+  }
+]

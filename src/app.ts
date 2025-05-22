@@ -35,11 +35,7 @@ export const prisma  = new PrismaClient();
 
 app.use(express.json({ limit: '50mb' }));
 
-
-
-app.get('/politicas-de-privacidad', (req, res) => {
-  res.sendFile(join(__dirname, '../', 'politicas.html'))
-})
+app.use(express.static(join(__dirname, 'public')));
 
 /*app.all('*', (req, res, next) => {
   var key = req.headers['key'];
