@@ -150,9 +150,10 @@ const crearPlanillaDetalleAuto = (auto:any) =>{
 const obtenerRecomendado = async() =>{
 
 
-    const count = await prisma.autos.count({
+    try{
+       const count = await prisma.autos.count({
     });
-    console.log(count)
+  
 
     let auto = null;
     if (count > 0) {
@@ -212,9 +213,14 @@ const obtenerRecomendado = async() =>{
           estatus: true
         }
       });
-      auto = autos[0]; // Seleccionamos el primer (y único) registro del array.
+     if(autos.length > 0){
+         auto = autos[0]; // Seleccionamos el primer (y único) registro del array.
+     }
     }
     return auto;
+    }catch(e){
+      throw e;
+    }
 
 }
 
