@@ -57,6 +57,10 @@ app.get('/home',(req,res) =>{
   res.send('HOME')
 })
 
+app.get('/details/:id',(req,res) =>{
+  const {id} = req.params;
+  res.send(`Detalle ${id}`)
+})
 
 
 
