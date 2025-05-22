@@ -191,6 +191,9 @@ router.get('/historicoBeneficiario', async (req, res) => {
       },
       skip: PAGINA * CANTIDAD,
       take: CANTIDAD,
+      orderBy:{
+        reservaEstatus:"desc"
+      },
       
 
       include: {
@@ -320,6 +323,9 @@ router.post('/crear', async (req, res) => {
     let codigoVerificacionEntrega = (100000 + Math.random() * 900000);
     let xreserva = await prisma.reservas.findFirst({
       where: {
+        reservaEstatus: {
+          in:[1,2,5]
+        },
         AND
           : [
             { reservaFhInicial: { lt: new Date(reservaFhFinal) } },
