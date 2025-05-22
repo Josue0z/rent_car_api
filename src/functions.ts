@@ -280,11 +280,11 @@ const obtenerRecomendado = async() =>{
 
 }
 
-const obtenerMasPotentes = async() =>{
+const obtenerMasPotentes = async(autoId:number) =>{
   
     try {
       let xautos: Autos[] = await prisma.$queryRaw`
-         SELECT * FROM "Autos" WHERE "autoEstatus" in (1) ORDER BY RANDOM() LIMIT 6;
+         SELECT * FROM "Autos" WHERE "autoEstatus" in (1) AND "autoId" != ${autoId} ORDER BY RANDOM() LIMIT 6;
       `;
   
       let autos: any = [...xautos];

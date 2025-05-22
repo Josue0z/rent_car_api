@@ -768,7 +768,7 @@ router.get('/:id',async(req,res) =>{
 router.get('/obtener-datos-inicio/todos',async(req,res) =>{
   try{
     let auto = await obtenerRecomendado();
-    let autos = await obtenerMasPotentes();
+    let autos = await obtenerMasPotentes(auto.autoId);
     let marcas = await obtenerMarcas();
 
     if(autos.length == 0){
