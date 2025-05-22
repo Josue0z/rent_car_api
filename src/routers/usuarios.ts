@@ -208,7 +208,13 @@ router.get(`/:id`, async (req, res) => {
             direcciones: true
           }
         },
-        beneficiario: true,
+        beneficiario: {
+           include:{
+            banco: true,
+            bancoCuentaTipo: true
+           }
+        },
+        manejador: true,
         estatus: true,
       
       }
