@@ -9,6 +9,121 @@ import { AutoEstatus, Autos, Beneficiarios, Ciudades, Colores, Combustibles, Ima
 
 const prisma = new PrismaClient()
 
+const agregarAutoData = async(xautos:any[])=>{
+   
+  let autos =[];
+    for (let i = 0; i < xautos.length; i++) {
+  
+        let xauto = xautos[i];
+  
+        let color: Colores[] = await prisma.$queryRaw`
+           SELECT * FROM "Colores" WHERE "colorId" = ${xauto.colorId}
+        `;
+  
+    
+        let imagenes: Imagenes[] = await prisma.$queryRaw`
+         SELECT "imagenId", "imagenArchivo", "imagenNota" FROM "Imagenes" WHERE "autoId" = ${xauto.autoId} AND "imagenEstatus" = 2 ORDER BY "imagenId"
+        `;
+  
+        let tipos: TipoAuto[] = await prisma.$queryRaw`
+        SELECT * FROM "TipoAuto" WHERE "tipoId" = ${xauto.tipoId}
+        `;
+  
+  
+        let beneficiarios: Beneficiarios[] = await prisma.$queryRaw`
+                 SELECT * FROM "Beneficiarios" WHERE "beneficiarioId" = ${xauto.beneficiarioId}
+               `;
+  
+  
+        let paises: Paises[] = await prisma.$queryRaw`
+        SELECT * FROM "Paises" WHERE "paisId" = ${xauto.paisId}
+        `;
+  
+        let provincias: Provincias[] = await prisma.$queryRaw`
+         SELECT * FROM "Provincias" WHERE "provinciaId" = ${xauto.provinciaId}
+          `;
+  
+        let ciudades: Ciudades[] = await prisma.$queryRaw`
+            SELECT * FROM "Ciudades" WHERE "ciudadId" = ${xauto.ciudadId}
+           `;
+  
+  
+        let marcas: Marcas[] = await prisma.$queryRaw`
+             SELECT * FROM "Marcas" WHERE "marcaId" = ${xauto.marcaId}
+        `;
+  
+        let modelos: Modelos[] = await prisma.$queryRaw`
+             SELECT * FROM "Modelos" WHERE "modeloId" = ${xauto.modeloId}
+            `;
+  
+        let modelosVersiones:ModelosVersiones[] = await prisma.$queryRaw`
+         SELECT * FROM "ModelosVersiones" WHERE "versionId" = ${xauto.modeloVersionId}
+        `;
+  
+          let combustibles:Combustibles[] = await prisma.$queryRaw`
+              SELECT * FROM "Combustibles" WHERE "combustibleId" = ${xauto.combustibleId}
+           `;
+  
+  
+        let transmisiones: Modelos[] = await prisma.$queryRaw`
+             SELECT * FROM "AutoTipoTransmision" WHERE "transmisionId" = ${xauto.transmisionId}
+         `;
+  
+        let estatus: AutoEstatus[] = await prisma.$queryRaw`
+          SELECT * FROM "AutoEstatus" WHERE "autoEstatus" = ${xauto.autoEstatus}
+          `;
+  
+        let valoraciones: any[] = await prisma.$queryRaw`
+        SELECT * FROM "Valoraciones" WHERE "autoId" = ${xauto.autoId} ORDER BY "valorFecha" DESC
+         `;
+  
+  
+        let megustas: any[] = await prisma.$queryRaw`
+          SELECT "megustaId", "autoId", "usuarioId" FROM "AutosMeGustas" WHERE "autoId" = ${xauto.autoId}
+       `;
+  
+  
+        for (let j = 0; j < valoraciones.length; j++) {
+          let valoracion = valoraciones[j];
+          let usuarios: any[] = await prisma.$queryRaw`
+          SELECT "usuarioLogin", "usuarioPerfil", "usuarioTipo", "clienteId" FROM "Usuarios" WHERE "usuarioId" = ${valoracion.usuarioId}
+           `;
+          let usuario = usuarios[0];
+          let tipoUsuario = await prisma.$queryRaw`
+          SELECT * FROM "UsuarioTipo" WHERE "usuarioTipo" = ${usuario.usuarioTipo}
+           `;
+          let clientes: any[] = await prisma.$queryRaw`
+              SELECT * FROM "Clientes" WHERE "clienteId" = ${usuario.clienteId}
+            `;
+  
+  
+          valoracion.usuario = usuario;
+          usuario.cliente = clientes[0];
+          usuario.tipoUsuario = tipoUsuario;
+        }
+  
+  
+  
+        xauto.color = color[0];
+        xauto.imagenes = imagenes;
+        xauto.tipo = tipos[0];
+        xauto.beneficiario = beneficiarios[0];
+        xauto.pais = paises[0];
+        xauto.provincia = provincias[0];
+        xauto.ciudad = ciudades[0];
+        xauto.marca = marcas[0];
+        xauto.modelo = modelos[0];
+        xauto.modeloVersion = modelosVersiones[0];
+        xauto.combustible = combustibles[0];
+        xauto.transmision = transmisiones[0];
+        xauto.valoraciones = valoraciones;
+        xauto.autosMeGustas = megustas;
+        xauto.estatus = estatus[0];
+        autos.push(xauto)
+  
+      }
+    return autos;
+}
 async function convertBase64ToJpegAndReturnBase64(base64String: string): Promise<string> {
     // Si la cadena contiene el encabezado (header), lo removemos
     let base64Data = base64String;
@@ -149,75 +264,16 @@ const crearPlanillaDetalleAuto = (auto:any) =>{
 
 const obtenerRecomendado = async() =>{
 
-
     try{
-       const count = await prisma.autos.count({
-    });
+       let xautos: Autos[] = await prisma.$queryRaw`
+         SELECT * FROM "Autos" WHERE "autoEstatus" in (1) ORDER BY RANDOM() LIMIT 1;
+      `;
   
+      let autos: any = [...xautos];
 
-    let auto = null;
-    if (count > 0) {
-      const randomSkip = Math.floor(1 + Math.random() * count);
-
-      const autos = await prisma.autos.findMany({
-        skip: randomSkip,
-        take: 1,
-        where:{
-          autoEstatus: {
-            in: [1]
-          }
-        },
-        include: {
-          color: true,
-          imagenes: {
-            select: {
-              imagenId: true,
-              imagenArchivo: true,
-              imagenNota: true,
-              imagenEstatus: true
-            },
-            where: { imagenEstatus: 2 }
-          },
-          tipo: true,
-          beneficiario: true,
-          pais: true,
-          provincia: true,
-          ciudad: true,
-          marca: true,
-          modelo: true,
-          modeloVersion: true,
-          combustible: true,
-          transmision: true,
-          valoraciones: {
-            include: {
-              usuario: {
-                select: {
-                  usuarioLogin: true,
-                  usuarioPerfil: true,
-                  tipoUsuario: true,
-                  cliente: true
-                },
-              }
-            },
-            orderBy:{
-              valorFecha:"desc"
-            }
-          },
-          autosMeGustas: {
-            select: {
-              megustaId: true,
-              autoId: true,
-              usuarioId: true,
-            }
-          },
-          estatus: true
-        }
-      });
-     if(autos.length > 0){
-         auto = autos[0]; // Seleccionamos el primer (y único) registro del array.
-     }
-    }
-    return auto;
+      autos = await agregarAutoData(autos);
+  
+    return autos[0];
     }catch(e){
       throw e;
     }
@@ -225,10 +281,6 @@ const obtenerRecomendado = async() =>{
 }
 
 const obtenerMasPotentes = async() =>{
-  // const { pagina, cantidad, pais } = req.query;
-   // const PAGINA = Number(pagina ?? '1') - 1;
-   // const CANTIDAD = Number(cantidad ?? '10');
-  
   
     try {
       let xautos: Autos[] = await prisma.$queryRaw`
@@ -236,117 +288,8 @@ const obtenerMasPotentes = async() =>{
       `;
   
       let autos: any = [...xautos];
-  
-      for (let i = 0; i < xautos.length; i++) {
-  
-        let xauto = autos[i];
-  
-        let color: Colores[] = await prisma.$queryRaw`
-           SELECT * FROM "Colores" WHERE "colorId" = ${xauto.colorId}
-        `;
-  
-    
-        let imagenes: Imagenes[] = await prisma.$queryRaw`
-         SELECT "imagenId", "imagenArchivo", "imagenNota" FROM "Imagenes" WHERE "autoId" = ${xauto.autoId} AND "imagenEstatus" = 2 ORDER BY "imagenId"
-        `;
-  
-        let tipos: TipoAuto[] = await prisma.$queryRaw`
-        SELECT * FROM "TipoAuto" WHERE "tipoId" = ${xauto.tipoId}
-        `;
-  
-  
-        let beneficiarios: Beneficiarios[] = await prisma.$queryRaw`
-                 SELECT * FROM "Beneficiarios" WHERE "beneficiarioId" = ${xauto.beneficiarioId}
-               `;
-  
-  
-        let paises: Paises[] = await prisma.$queryRaw`
-        SELECT * FROM "Paises" WHERE "paisId" = ${xauto.paisId}
-        `;
-  
-        let provincias: Provincias[] = await prisma.$queryRaw`
-         SELECT * FROM "Provincias" WHERE "provinciaId" = ${xauto.provinciaId}
-          `;
-  
-        let ciudades: Ciudades[] = await prisma.$queryRaw`
-            SELECT * FROM "Ciudades" WHERE "ciudadId" = ${xauto.ciudadId}
-           `;
-  
-  
-        let marcas: Marcas[] = await prisma.$queryRaw`
-             SELECT * FROM "Marcas" WHERE "marcaId" = ${xauto.marcaId}
-        `;
-  
-        let modelos: Modelos[] = await prisma.$queryRaw`
-             SELECT * FROM "Modelos" WHERE "modeloId" = ${xauto.modeloId}
-            `;
-  
-        let modelosVersiones:ModelosVersiones[] = await prisma.$queryRaw`
-         SELECT * FROM "ModelosVersiones" WHERE "versionId" = ${xauto.modeloVersionId}
-        `;
-  
-          let combustibles:Combustibles[] = await prisma.$queryRaw`
-              SELECT * FROM "Combustibles" WHERE "combustibleId" = ${xauto.combustibleId}
-           `;
-  
-  
-        let transmisiones: Modelos[] = await prisma.$queryRaw`
-             SELECT * FROM "AutoTipoTransmision" WHERE "transmisionId" = ${xauto.transmisionId}
-         `;
-  
-        let estatus: AutoEstatus[] = await prisma.$queryRaw`
-          SELECT * FROM "AutoEstatus" WHERE "autoEstatus" = ${xauto.autoEstatus}
-          `;
-  
-        let valoraciones: any[] = await prisma.$queryRaw`
-        SELECT * FROM "Valoraciones" WHERE "autoId" = ${xauto.autoId} ORDER BY "valorFecha" DESC
-         `;
-  
-  
-        let megustas: any[] = await prisma.$queryRaw`
-          SELECT "megustaId", "autoId", "usuarioId" FROM "AutosMeGustas" WHERE "autoId" = ${xauto.autoId}
-       `;
-  
-  
-        for (let j = 0; j < valoraciones.length; j++) {
-          let valoracion = valoraciones[j];
-          let usuarios: any[] = await prisma.$queryRaw`
-          SELECT "usuarioLogin", "usuarioPerfil", "usuarioTipo", "clienteId" FROM "Usuarios" WHERE "usuarioId" = ${valoracion.usuarioId}
-           `;
-          let usuario = usuarios[0];
-          let tipoUsuario = await prisma.$queryRaw`
-          SELECT * FROM "UsuarioTipo" WHERE "usuarioTipo" = ${usuario.usuarioTipo}
-           `;
-          let clientes: any[] = await prisma.$queryRaw`
-              SELECT * FROM "Clientes" WHERE "clienteId" = ${usuario.clienteId}
-            `;
-  
-  
-          valoracion.usuario = usuario;
-          usuario.cliente = clientes[0];
-          usuario.tipoUsuario = tipoUsuario;
-        }
-  
-  
-  
-        xauto.color = color[0];
-        xauto.imagenes = imagenes;
-        xauto.tipo = tipos[0];
-        xauto.beneficiario = beneficiarios[0];
-        xauto.pais = paises[0];
-        xauto.provincia = provincias[0];
-        xauto.ciudad = ciudades[0];
-        xauto.marca = marcas[0];
-        xauto.modelo = modelos[0];
-        xauto.modeloVersion = modelosVersiones[0];
-        xauto.combustible = combustibles[0];
-        xauto.transmision = transmisiones[0];
-        xauto.valoraciones = valoraciones;
-        xauto.autosMeGustas = megustas;
-        xauto.estatus = estatus[0];
-  
-      }
-  
+
+      autos = await agregarAutoData(autos);
   
   
        return autos;
