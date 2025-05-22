@@ -160,7 +160,7 @@ router.get('/todos', async (req, res) => {
 
 
 router.get('/buscar', async (req, res) => {
-  const {reservaFhInicial, reservaFhFinal, pagina, cantidad, pais, marcaId, modeloId, autoAnoInicial, autoAnoFinal, colores, provinciaId, ciudadId } = req.query;
+  const { pagina, cantidad, pais, marcaId, modeloId, autoAnoInicial, autoAnoFinal, colores, provinciaId, ciudadId } = req.query;
   const PAGINA = Number(pagina ?? '1') - 1;
   const CANTIDAD = Number(cantidad ?? '10');
   const MARCAID = Number(marcaId);

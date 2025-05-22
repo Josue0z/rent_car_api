@@ -57,6 +57,10 @@ app.get('/', (req, res) => {
   res.send('OK')
 })
 
+app.get('/home',(req,res) =>{
+  res.send('HOME')
+})
+
 
 
 
