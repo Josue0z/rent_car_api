@@ -7,7 +7,27 @@ const router = Router()
 
 router.get('/todos', async (req, res) => {
   try {
+    const {display} = req.query;
+    const keys = (display as string).split(',');
+
+      let params:any = {};
+    if(keys.length > 0){
+    
+
+    for(let i = 0;i< keys.length;i++){
+      params[keys[i]] = true;
+    }
+    
+    }
+    else{
+      params['marcaId'] = true;
+      params['marcaNombre'] = true;
+      params['marcaLogo'] = true;
+    }
     let marcas = await prisma.marcas.findMany({
+      select:{
+        ...params
+      },
       orderBy:{
         marcaNombre:"asc"
       }
