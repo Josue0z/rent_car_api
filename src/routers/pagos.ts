@@ -120,7 +120,7 @@ router.post('/probar-pago',async(req,res) =>{
         tarjetaId:Number(tarjetaId)
       }
      });
-     console.log(tarjeta)
+   
 
       const  sale  = { 
         "Channel"  : Channel, 
@@ -140,7 +140,6 @@ router.post('/probar-pago',async(req,res) =>{
         "ForceNo3DS" : 1 
     } 
 
-    console.log(sale);
 
 
       // await sendTrx(sale,'Sale','/webservices/JSON/ Default.aspx');
