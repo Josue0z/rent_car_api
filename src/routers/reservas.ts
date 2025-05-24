@@ -8,6 +8,8 @@ import moment from 'moment'
 import { Money, Currencies } from 'ts-money'
 import { error } from 'console';
 
+import cron from 'node-cron';
+
 const generarICS = (reserva: any) => {
   return `BEGIN:VCALENDAR
 VERSION:2.0
@@ -1031,4 +1033,43 @@ router.get('/:id', async (req, res) => {
     res.status(501).json({ error })
   }
 })
+
+
+cron.schedule('25 11 * * *', async () => { // Se ejecuta diariamente a las 11:10 AM
+    const hoy = new Date();
+
+    let reservas = await prisma.reservas.findMany({
+      include:{
+        cliente: true,
+        beneficiario: true
+      }
+    });
+
+    reservas.forEach(async reserva => {
+        const fechaInicioReserva = new Date(reserva.reservaFhInicial);
+        const fechaFinReserva = new Date(reserva.reservaFhFinal);
+
+        // Calcular los días restantes de ejecución
+        const tiempoRestante = Math.ceil((fechaFinReserva.getTime() - hoy.getTime()) / (1000 * 60 * 60 * 24));
+
+        console.log(tiempoRestante);
+        
+        if (tiempoRestante >= 100) {
+            await sendEmail({
+              to: reserva.cliente.clienteCorreo ?? '',
+              subject:`LA RESERVA ${obtenerEtiqueta(reserva)} - CIDECA`,
+              text:'',
+              html:'<h2>LE QUE DAN MÁS DE 100 DÍAS</h2>'
+            });
+            await sendEmail({
+              to: reserva.beneficiario.beneficiarioCorreo ?? '',
+              subject:`LA RESERVA ${obtenerEtiqueta(reserva)} - CIDECA`,
+              text:'',
+              html:'<h2>LE QUE DAN MÁS DE 100 DÍAS</h2>'
+            });
+        }
+    });
+});
+
+
 export default router;
