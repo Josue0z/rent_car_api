@@ -629,5 +629,40 @@ router.post('/enviar-clave',async(req,res) =>{
    }
 })
 
+router.put('/modificar/:id',async(req,res) =>{
+  const {id} = req.params;
+   const {usuarioPerfil} = req.body;
+   try{
+
+     let xus = await prisma.usuarios.findFirst({
+      where:{
+        usuarioId:Number(id)
+      }
+     })
+     if(!xus){
+      res.status(404).json({
+        error:"No existe el usuario"
+      })
+      return;
+     }
+     let usuario = await prisma.usuarios.update({
+        where:{
+       usuarioId: Number(id)
+        },
+        data:{
+          usuarioPerfil
+        },
+        include:{
+          cliente: true,
+          beneficiario: true,
+          manejador: true,
+          estatus: true
+        }
+      });
+      res.json(usuario)
+   }catch(error){
+    res.status(501).json({error})
+   }
+})
 
 export default router;
